@@ -1,0 +1,486 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Machine>ANT-PC</Machine>
+    <WindowsUser>Ant</WindowsUser>
+    <TargetPlatformIdentifier>Windows</TargetPlatformIdentifier>
+    <SolutionConfiguration>Debug|AnyCPU</SolutionConfiguration>
+    <PackageArchitecture>neutral</PackageArchitecture>
+    <PackageIdentityName>f6e05fb4-53d9-4b63-bdcd-4c3aa4015065</PackageIdentityName>
+    <IntermediateOutputPath>C:\Users\Ant\Documents\Visual Studio 2013\Projects\MyFirstGame\MyFirstGame\MyFirstGame.Windows\obj\Debug\</IntermediateOutputPath>
+    <RegisteredManifestChecksum>1035D29C1B92C72FBC4B8A0B694F7324D6DE3673A2E6F46AC927C211BC643048</RegisteredManifestChecksum>
+    <RegisteredPackageMoniker>f6e05fb4-53d9-4b63-bdcd-4c3aa4015065_1.0.0.0_neutral__16dhhdw4vwxny</RegisteredPackageMoniker>
+    <RegisteredUserModeAppID>f6e05fb4-53d9-4b63-bdcd-4c3aa4015065_16dhhdw4vwxny!App</RegisteredUserModeAppID>
+    <RegisteredPackageID>f6e05fb4-53d9-4b63-bdcd-4c3aa4015065</RegisteredPackageID>
+    <RegisteredPackagePublisher>CN=Ant</RegisteredPackagePublisher>
+    <RegisteredVersion>1.0.0.0</RegisteredVersion>
+    <JitOptimizationSuppressed>True</JitOptimizationSuppressed>
+  </PropertyGroup>
+  <ItemGroup>
+    <AppXManifest Include="C:\Users\Ant\Documents\Visual Studio 2013\Projects\MyFirstGame\MyFirstGame\MyFirstGame.Windows\bin\Debug\AppxManifest.xml">
+      <PackagePath>AppxManifest.xml</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2015-03-14T06:33:18.716</Modified>
+    </AppXManifest>
+  </ItemGroup>
+  <ItemGroup>
+    <AppxPackagedFile Include="C:\Users\Ant\Documents\Visual Studio 2013\Projects\MyFirstGame\MyFirstGame\MyFirstGame.Windows\bin\Debug\MyFirstGame.Windows.exe">
+      <PackagePath>MyFirstGame.Windows.exe</PackagePath>
+      <Modified>2015-03-14T07:03:36.654</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Program Files %28x86%29\MonoGame\v3.0\Assemblies\Windows8\MonoGame.Framework.dll">
+      <PackagePath>MonoGame.Framework.dll</PackagePath>
+      <Modified>2014-12-23T02:07:54.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Program Files %28x86%29\MonoGame\v3.0\Assemblies\Windows8\SharpDX.XAudio2.dll">
+      <PackagePath>SharpDX.XAudio2.dll</PackagePath>
+      <Modified>2014-07-07T03:54:56.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Program Files %28x86%29\MonoGame\v3.0\Assemblies\Windows8\SharpDX.dll">
+      <PackagePath>SharpDX.dll</PackagePath>
+      <Modified>2014-07-07T03:54:56.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Program Files %28x86%29\MonoGame\v3.0\Assemblies\Windows8\SharpDX.Direct3D11.dll">
+      <PackagePath>SharpDX.Direct3D11.dll</PackagePath>
+      <Modified>2014-07-07T03:54:54.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Program Files %28x86%29\MonoGame\v3.0\Assemblies\Windows8\SharpDX.Direct2D1.dll">
+      <PackagePath>SharpDX.Direct2D1.dll</PackagePath>
+      <Modified>2014-07-07T03:54:54.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Program Files %28x86%29\MonoGame\v3.0\Assemblies\Windows8\SharpDX.DXGI.dll">
+      <PackagePath>SharpDX.DXGI.dll</PackagePath>
+      <Modified>2014-07-07T03:54:54.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Program Files %28x86%29\MonoGame\v3.0\Assemblies\Windows8\SharpDX.XInput.dll">
+      <PackagePath>SharpDX.XInput.dll</PackagePath>
+      <Modified>2014-07-07T03:54:56.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Program Files %28x86%29\MonoGame\v3.0\Assemblies\Windows8\SharpDX.MediaFoundation.dll">
+      <PackagePath>SharpDX.MediaFoundation.dll</PackagePath>
+      <Modified>2014-07-07T03:54:56.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Ant\Documents\Visual Studio 2013\Projects\MyFirstGame\MyFirstGame\MyFirstGame.Windows\Assets\Logo.scale-100.png">
+      <PackagePath>Assets\Logo.scale-100.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2014-11-09T05:22:00.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Ant\Documents\Visual Studio 2013\Projects\MyFirstGame\MyFirstGame\MyFirstGame.Windows\Assets\SmallLogo.scale-100.png">
+      <PackagePath>Assets\SmallLogo.scale-100.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2014-11-09T05:22:00.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Ant\Documents\Visual Studio 2013\Projects\MyFirstGame\MyFirstGame\MyFirstGame.Windows\Assets\SplashScreen.scale-100.png">
+      <PackagePath>Assets\SplashScreen.scale-100.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2014-11-09T05:22:00.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Ant\Documents\Visual Studio 2013\Projects\MyFirstGame\MyFirstGame\MyFirstGame.Windows\Assets\StoreLogo.scale-100.png">
+      <PackagePath>Assets\StoreLogo.scale-100.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2014-11-09T05:22:00.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Ant\Documents\Visual Studio 2013\Projects\MyFirstGame\MyFirstGame\MyFirstGame.Shared\Content\Images\animatedradar.png">
+      <PackagePath>Content\Images\animatedradar.png</PackagePath>
+      <Modified>2012-02-09T08:05:53.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Ant\Documents\Visual Studio 2013\Projects\MyFirstGame\MyFirstGame\MyFirstGame.Shared\Content\Images\BAMF.png">
+      <PackagePath>Content\Images\BAMF.png</PackagePath>
+      <Modified>2012-02-08T08:13:33.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Ant\Documents\Visual Studio 2013\Projects\MyFirstGame\MyFirstGame\MyFirstGame.Shared\Content\Images\blackball.png">
+      <PackagePath>Content\Images\blackball.png</PackagePath>
+      <Modified>2014-12-26T14:44:57.231</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Ant\Documents\Visual Studio 2013\Projects\MyFirstGame\MyFirstGame\MyFirstGame.Shared\Content\Images\blackball2.png">
+      <PackagePath>Content\Images\blackball2.png</PackagePath>
+      <Modified>2012-04-29T01:16:42.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Ant\Documents\Visual Studio 2013\Projects\MyFirstGame\MyFirstGame\MyFirstGame.Shared\Content\Images\blackballdeath.png">
+      <PackagePath>Content\Images\blackballdeath.png</PackagePath>
+      <Modified>2012-04-26T06:30:32.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Ant\Documents\Visual Studio 2013\Projects\MyFirstGame\MyFirstGame\MyFirstGame.Shared\Content\Images\blackballdeath2.png">
+      <PackagePath>Content\Images\blackballdeath2.png</PackagePath>
+      <Modified>2012-04-29T07:19:09.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Ant\Documents\Visual Studio 2013\Projects\MyFirstGame\MyFirstGame\MyFirstGame.Shared\Content\Images\blacksquare.png">
+      <PackagePath>Content\Images\blacksquare.png</PackagePath>
+      <Modified>2012-02-09T07:52:04.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Ant\Documents\Visual Studio 2013\Projects\MyFirstGame\MyFirstGame\MyFirstGame.Shared\Content\Images\BlueLaser.png">
+      <PackagePath>Content\Images\BlueLaser.png</PackagePath>
+      <Modified>2012-04-26T21:52:48.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Ant\Documents\Visual Studio 2013\Projects\MyFirstGame\MyFirstGame\MyFirstGame.Shared\Content\Images\BlueLaserDeath.png">
+      <PackagePath>Content\Images\BlueLaserDeath.png</PackagePath>
+      <Modified>2012-04-26T21:58:44.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Ant\Documents\Visual Studio 2013\Projects\MyFirstGame\MyFirstGame\MyFirstGame.Shared\Content\Images\BlueLaserDeathsmall.png">
+      <PackagePath>Content\Images\BlueLaserDeathsmall.png</PackagePath>
+      <Modified>2012-04-29T22:16:11.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Ant\Documents\Visual Studio 2013\Projects\MyFirstGame\MyFirstGame\MyFirstGame.Shared\Content\Images\BlueLasersmall.png">
+      <PackagePath>Content\Images\BlueLasersmall.png</PackagePath>
+      <Modified>2012-04-29T22:15:57.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Ant\Documents\Visual Studio 2013\Projects\MyFirstGame\MyFirstGame\MyFirstGame.Shared\Content\Images\border.png">
+      <PackagePath>Content\Images\border.png</PackagePath>
+      <Modified>2012-02-09T08:50:50.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Ant\Documents\Visual Studio 2013\Projects\MyFirstGame\MyFirstGame\MyFirstGame.Shared\Content\Images\bullet.png">
+      <PackagePath>Content\Images\bullet.png</PackagePath>
+      <Modified>2012-02-05T08:19:23.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Ant\Documents\Visual Studio 2013\Projects\MyFirstGame\MyFirstGame\MyFirstGame.Shared\Content\Images\bullet2.png">
+      <PackagePath>Content\Images\bullet2.png</PackagePath>
+      <Modified>2012-04-29T01:17:12.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Ant\Documents\Visual Studio 2013\Projects\MyFirstGame\MyFirstGame\MyFirstGame.Shared\Content\Images\bullet2death.png">
+      <PackagePath>Content\Images\bullet2death.png</PackagePath>
+      <Modified>2012-04-29T07:21:46.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Ant\Documents\Visual Studio 2013\Projects\MyFirstGame\MyFirstGame\MyFirstGame.Shared\Content\Images\circlebullet0.png">
+      <PackagePath>Content\Images\circlebullet0.png</PackagePath>
+      <Modified>2012-04-28T18:24:55.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Ant\Documents\Visual Studio 2013\Projects\MyFirstGame\MyFirstGame\MyFirstGame.Shared\Content\Images\circlebullet02.png">
+      <PackagePath>Content\Images\circlebullet02.png</PackagePath>
+      <Modified>2012-04-29T01:20:13.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Ant\Documents\Visual Studio 2013\Projects\MyFirstGame\MyFirstGame\MyFirstGame.Shared\Content\Images\circlebullet0death.png">
+      <PackagePath>Content\Images\circlebullet0death.png</PackagePath>
+      <Modified>2012-04-24T23:37:55.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Ant\Documents\Visual Studio 2013\Projects\MyFirstGame\MyFirstGame\MyFirstGame.Shared\Content\Images\circlebullet0death2.png">
+      <PackagePath>Content\Images\circlebullet0death2.png</PackagePath>
+      <Modified>2012-04-29T07:23:10.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Ant\Documents\Visual Studio 2013\Projects\MyFirstGame\MyFirstGame\MyFirstGame.Shared\Content\Images\circlebullet1.png">
+      <PackagePath>Content\Images\circlebullet1.png</PackagePath>
+      <Modified>2012-02-07T17:45:26.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Ant\Documents\Visual Studio 2013\Projects\MyFirstGame\MyFirstGame\MyFirstGame.Shared\Content\Images\circlebullet12.png">
+      <PackagePath>Content\Images\circlebullet12.png</PackagePath>
+      <Modified>2012-04-29T01:21:36.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Ant\Documents\Visual Studio 2013\Projects\MyFirstGame\MyFirstGame\MyFirstGame.Shared\Content\Images\circlebulletdeath.png">
+      <PackagePath>Content\Images\circlebulletdeath.png</PackagePath>
+      <Modified>2012-02-08T07:39:08.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Ant\Documents\Visual Studio 2013\Projects\MyFirstGame\MyFirstGame\MyFirstGame.Shared\Content\Images\circlebulletdeath1.png">
+      <PackagePath>Content\Images\circlebulletdeath1.png</PackagePath>
+      <Modified>2012-02-09T05:31:50.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Ant\Documents\Visual Studio 2013\Projects\MyFirstGame\MyFirstGame\MyFirstGame.Shared\Content\Images\circlebulletdeath12.png">
+      <PackagePath>Content\Images\circlebulletdeath12.png</PackagePath>
+      <Modified>2012-04-29T07:24:40.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Ant\Documents\Visual Studio 2013\Projects\MyFirstGame\MyFirstGame\MyFirstGame.Shared\Content\Images\circlefighter.png">
+      <PackagePath>Content\Images\circlefighter.png</PackagePath>
+      <Modified>2012-04-29T08:59:54.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Ant\Documents\Visual Studio 2013\Projects\MyFirstGame\MyFirstGame\MyFirstGame.Shared\Content\Images\circlefighterdeath.png">
+      <PackagePath>Content\Images\circlefighterdeath.png</PackagePath>
+      <Modified>2012-04-29T22:40:51.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Ant\Documents\Visual Studio 2013\Projects\MyFirstGame\MyFirstGame\MyFirstGame.Shared\Content\Images\circlefighterspawn.png">
+      <PackagePath>Content\Images\circlefighterspawn.png</PackagePath>
+      <Modified>2012-04-29T22:40:40.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Ant\Documents\Visual Studio 2013\Projects\MyFirstGame\MyFirstGame\MyFirstGame.Shared\Content\Images\circlelazershooter.png">
+      <PackagePath>Content\Images\circlelazershooter.png</PackagePath>
+      <Modified>2012-04-29T08:56:26.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Ant\Documents\Visual Studio 2013\Projects\MyFirstGame\MyFirstGame\MyFirstGame.Shared\Content\Images\circlelazershooterdeath.png">
+      <PackagePath>Content\Images\circlelazershooterdeath.png</PackagePath>
+      <Modified>2012-04-29T19:40:08.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Ant\Documents\Visual Studio 2013\Projects\MyFirstGame\MyFirstGame\MyFirstGame.Shared\Content\Images\circlelazershooterspawn.png">
+      <PackagePath>Content\Images\circlelazershooterspawn.png</PackagePath>
+      <Modified>2012-04-29T19:40:20.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Ant\Documents\Visual Studio 2013\Projects\MyFirstGame\MyFirstGame\MyFirstGame.Shared\Content\Images\circlesprayer.png">
+      <PackagePath>Content\Images\circlesprayer.png</PackagePath>
+      <Modified>2012-04-30T03:18:19.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Ant\Documents\Visual Studio 2013\Projects\MyFirstGame\MyFirstGame\MyFirstGame.Shared\Content\Images\circlesprayerdeath.png">
+      <PackagePath>Content\Images\circlesprayerdeath.png</PackagePath>
+      <Modified>2012-04-30T03:21:38.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Ant\Documents\Visual Studio 2013\Projects\MyFirstGame\MyFirstGame\MyFirstGame.Shared\Content\Images\circlesprayerspawn.png">
+      <PackagePath>Content\Images\circlesprayerspawn.png</PackagePath>
+      <Modified>2012-04-30T03:21:45.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Ant\Documents\Visual Studio 2013\Projects\MyFirstGame\MyFirstGame\MyFirstGame.Shared\Content\Images\enemyradar.png">
+      <PackagePath>Content\Images\enemyradar.png</PackagePath>
+      <Modified>2012-02-09T07:43:30.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Ant\Documents\Visual Studio 2013\Projects\MyFirstGame\MyFirstGame\MyFirstGame.Shared\Content\Images\foolscap.png">
+      <PackagePath>Content\Images\foolscap.png</PackagePath>
+      <Modified>2012-02-04T20:04:16.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Ant\Documents\Visual Studio 2013\Projects\MyFirstGame\MyFirstGame\MyFirstGame.Shared\Content\Images\foolscap2.png">
+      <PackagePath>Content\Images\foolscap2.png</PackagePath>
+      <Modified>2012-02-09T05:25:48.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Ant\Documents\Visual Studio 2013\Projects\MyFirstGame\MyFirstGame\MyFirstGame.Shared\Content\Images\Health.png">
+      <PackagePath>Content\Images\Health.png</PackagePath>
+      <Modified>2012-04-29T01:24:17.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Ant\Documents\Visual Studio 2013\Projects\MyFirstGame\MyFirstGame\MyFirstGame.Shared\Content\Images\hpbar2.png">
+      <PackagePath>Content\Images\hpbar2.png</PackagePath>
+      <Modified>2012-02-14T07:43:00.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Ant\Documents\Visual Studio 2013\Projects\MyFirstGame\MyFirstGame\MyFirstGame.Shared\Content\Images\hpbar2small.png">
+      <PackagePath>Content\Images\hpbar2small.png</PackagePath>
+      <Modified>2012-02-14T08:12:18.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Ant\Documents\Visual Studio 2013\Projects\MyFirstGame\MyFirstGame\MyFirstGame.Shared\Content\Images\HPDeath.png">
+      <PackagePath>Content\Images\HPDeath.png</PackagePath>
+      <Modified>2012-04-29T07:26:21.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Ant\Documents\Visual Studio 2013\Projects\MyFirstGame\MyFirstGame\MyFirstGame.Shared\Content\Images\HPTaken.png">
+      <PackagePath>Content\Images\HPTaken.png</PackagePath>
+      <Modified>2012-04-29T07:29:19.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Ant\Documents\Visual Studio 2013\Projects\MyFirstGame\MyFirstGame\MyFirstGame.Shared\Content\Images\Lazer.png">
+      <PackagePath>Content\Images\Lazer.png</PackagePath>
+      <Modified>2012-04-30T05:10:14.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Ant\Documents\Visual Studio 2013\Projects\MyFirstGame\MyFirstGame\MyFirstGame.Shared\Content\Images\Lazerdeath.png">
+      <PackagePath>Content\Images\Lazerdeath.png</PackagePath>
+      <Modified>2012-04-29T07:29:47.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Ant\Documents\Visual Studio 2013\Projects\MyFirstGame\MyFirstGame\MyFirstGame.Shared\Content\Images\MenuLevel0.png">
+      <PackagePath>Content\Images\MenuLevel0.png</PackagePath>
+      <Modified>2012-04-29T08:47:51.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Ant\Documents\Visual Studio 2013\Projects\MyFirstGame\MyFirstGame\MyFirstGame.Shared\Content\Images\pellet.png">
+      <PackagePath>Content\Images\pellet.png</PackagePath>
+      <Modified>2012-04-28T07:29:34.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Ant\Documents\Visual Studio 2013\Projects\MyFirstGame\MyFirstGame\MyFirstGame.Shared\Content\Images\pellet2.png">
+      <PackagePath>Content\Images\pellet2.png</PackagePath>
+      <Modified>2012-04-29T01:22:24.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Ant\Documents\Visual Studio 2013\Projects\MyFirstGame\MyFirstGame\MyFirstGame.Shared\Content\Images\pelletdeath.png">
+      <PackagePath>Content\Images\pelletdeath.png</PackagePath>
+      <Modified>2012-04-28T07:30:48.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Ant\Documents\Visual Studio 2013\Projects\MyFirstGame\MyFirstGame\MyFirstGame.Shared\Content\Images\pelletdeath2.png">
+      <PackagePath>Content\Images\pelletdeath2.png</PackagePath>
+      <Modified>2012-04-29T07:30:01.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Ant\Documents\Visual Studio 2013\Projects\MyFirstGame\MyFirstGame\MyFirstGame.Shared\Content\Images\plane.png">
+      <PackagePath>Content\Images\plane.png</PackagePath>
+      <Modified>2012-02-04T20:09:41.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Ant\Documents\Visual Studio 2013\Projects\MyFirstGame\MyFirstGame\MyFirstGame.Shared\Content\Images\plane2.png">
+      <PackagePath>Content\Images\plane2.png</PackagePath>
+      <Modified>2012-04-29T01:24:41.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Ant\Documents\Visual Studio 2013\Projects\MyFirstGame\MyFirstGame\MyFirstGame.Shared\Content\Images\planedeath.png">
+      <PackagePath>Content\Images\planedeath.png</PackagePath>
+      <Modified>2012-04-29T07:32:16.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Ant\Documents\Visual Studio 2013\Projects\MyFirstGame\MyFirstGame\MyFirstGame.Shared\Content\Images\planehpbar.png">
+      <PackagePath>Content\Images\planehpbar.png</PackagePath>
+      <Modified>2012-02-09T09:09:41.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Ant\Documents\Visual Studio 2013\Projects\MyFirstGame\MyFirstGame\MyFirstGame.Shared\Content\Images\radarbase.png">
+      <PackagePath>Content\Images\radarbase.png</PackagePath>
+      <Modified>2012-02-09T07:51:22.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Ant\Documents\Visual Studio 2013\Projects\MyFirstGame\MyFirstGame\MyFirstGame.Shared\Content\Images\sniperbullet.png">
+      <PackagePath>Content\Images\sniperbullet.png</PackagePath>
+      <Modified>2012-04-26T08:53:23.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Ant\Documents\Visual Studio 2013\Projects\MyFirstGame\MyFirstGame\MyFirstGame.Shared\Content\Images\sniperbullet2.png">
+      <PackagePath>Content\Images\sniperbullet2.png</PackagePath>
+      <Modified>2012-04-29T01:27:15.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Ant\Documents\Visual Studio 2013\Projects\MyFirstGame\MyFirstGame\MyFirstGame.Shared\Content\Images\sniperbulletdeath.png">
+      <PackagePath>Content\Images\sniperbulletdeath.png</PackagePath>
+      <Modified>2012-04-26T08:54:58.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Ant\Documents\Visual Studio 2013\Projects\MyFirstGame\MyFirstGame\MyFirstGame.Shared\Content\Images\sniperbulletdeath2.png">
+      <PackagePath>Content\Images\sniperbulletdeath2.png</PackagePath>
+      <Modified>2012-04-29T01:27:29.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Ant\Documents\Visual Studio 2013\Projects\MyFirstGame\MyFirstGame\MyFirstGame.Shared\Content\Images\snipersquare.png">
+      <PackagePath>Content\Images\snipersquare.png</PackagePath>
+      <Modified>2012-04-27T04:59:23.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Ant\Documents\Visual Studio 2013\Projects\MyFirstGame\MyFirstGame\MyFirstGame.Shared\Content\Images\snipersquare2.png">
+      <PackagePath>Content\Images\snipersquare2.png</PackagePath>
+      <Modified>2012-04-29T01:29:27.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Ant\Documents\Visual Studio 2013\Projects\MyFirstGame\MyFirstGame\MyFirstGame.Shared\Content\Images\snipersquaredeath.png">
+      <PackagePath>Content\Images\snipersquaredeath.png</PackagePath>
+      <Modified>2012-04-26T09:11:47.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Ant\Documents\Visual Studio 2013\Projects\MyFirstGame\MyFirstGame\MyFirstGame.Shared\Content\Images\snipersquaredeath2.png">
+      <PackagePath>Content\Images\snipersquaredeath2.png</PackagePath>
+      <Modified>2012-04-29T07:35:06.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Ant\Documents\Visual Studio 2013\Projects\MyFirstGame\MyFirstGame\MyFirstGame.Shared\Content\Images\snipersquarespawn.png">
+      <PackagePath>Content\Images\snipersquarespawn.png</PackagePath>
+      <Modified>2012-04-26T09:12:24.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Ant\Documents\Visual Studio 2013\Projects\MyFirstGame\MyFirstGame\MyFirstGame.Shared\Content\Images\snipersquarespawn2.png">
+      <PackagePath>Content\Images\snipersquarespawn2.png</PackagePath>
+      <Modified>2012-04-29T07:35:24.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Ant\Documents\Visual Studio 2013\Projects\MyFirstGame\MyFirstGame\MyFirstGame.Shared\Content\Images\sprayerbullet.png">
+      <PackagePath>Content\Images\sprayerbullet.png</PackagePath>
+      <Modified>2012-04-30T04:11:29.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Ant\Documents\Visual Studio 2013\Projects\MyFirstGame\MyFirstGame\MyFirstGame.Shared\Content\Images\sprayerbulletdeath.png">
+      <PackagePath>Content\Images\sprayerbulletdeath.png</PackagePath>
+      <Modified>2012-04-30T04:11:40.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Ant\Documents\Visual Studio 2013\Projects\MyFirstGame\MyFirstGame\MyFirstGame.Shared\Content\Images\square0.png">
+      <PackagePath>Content\Images\square0.png</PackagePath>
+      <Modified>2012-04-28T18:24:14.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Ant\Documents\Visual Studio 2013\Projects\MyFirstGame\MyFirstGame\MyFirstGame.Shared\Content\Images\square02.png">
+      <PackagePath>Content\Images\square02.png</PackagePath>
+      <Modified>2012-04-29T01:30:50.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Ant\Documents\Visual Studio 2013\Projects\MyFirstGame\MyFirstGame\MyFirstGame.Shared\Content\Images\square0death.png">
+      <PackagePath>Content\Images\square0death.png</PackagePath>
+      <Modified>2012-04-24T23:32:06.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Ant\Documents\Visual Studio 2013\Projects\MyFirstGame\MyFirstGame\MyFirstGame.Shared\Content\Images\square0death2.png">
+      <PackagePath>Content\Images\square0death2.png</PackagePath>
+      <Modified>2012-04-29T07:37:29.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Ant\Documents\Visual Studio 2013\Projects\MyFirstGame\MyFirstGame\MyFirstGame.Shared\Content\Images\square0spawn.png">
+      <PackagePath>Content\Images\square0spawn.png</PackagePath>
+      <Modified>2012-04-24T23:32:23.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Ant\Documents\Visual Studio 2013\Projects\MyFirstGame\MyFirstGame\MyFirstGame.Shared\Content\Images\square0spawn2.png">
+      <PackagePath>Content\Images\square0spawn2.png</PackagePath>
+      <Modified>2012-04-29T07:37:42.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Ant\Documents\Visual Studio 2013\Projects\MyFirstGame\MyFirstGame\MyFirstGame.Shared\Content\Images\square1.png">
+      <PackagePath>Content\Images\square1.png</PackagePath>
+      <Modified>2012-02-07T20:32:19.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Ant\Documents\Visual Studio 2013\Projects\MyFirstGame\MyFirstGame\MyFirstGame.Shared\Content\Images\square12.png">
+      <PackagePath>Content\Images\square12.png</PackagePath>
+      <Modified>2012-04-29T01:31:48.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Ant\Documents\Visual Studio 2013\Projects\MyFirstGame\MyFirstGame\MyFirstGame.Shared\Content\Images\square2.png">
+      <PackagePath>Content\Images\square2.png</PackagePath>
+      <Modified>2012-04-26T05:31:48.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Ant\Documents\Visual Studio 2013\Projects\MyFirstGame\MyFirstGame\MyFirstGame.Shared\Content\Images\square22.png">
+      <PackagePath>Content\Images\square22.png</PackagePath>
+      <Modified>2012-04-29T01:32:00.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Ant\Documents\Visual Studio 2013\Projects\MyFirstGame\MyFirstGame\MyFirstGame.Shared\Content\Images\square2death.png">
+      <PackagePath>Content\Images\square2death.png</PackagePath>
+      <Modified>2012-04-29T08:26:33.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Ant\Documents\Visual Studio 2013\Projects\MyFirstGame\MyFirstGame\MyFirstGame.Shared\Content\Images\square2death2.png">
+      <PackagePath>Content\Images\square2death2.png</PackagePath>
+      <Modified>2012-04-29T08:07:29.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Ant\Documents\Visual Studio 2013\Projects\MyFirstGame\MyFirstGame\MyFirstGame.Shared\Content\Images\square2spawn.png">
+      <PackagePath>Content\Images\square2spawn.png</PackagePath>
+      <Modified>2012-04-26T06:27:32.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Ant\Documents\Visual Studio 2013\Projects\MyFirstGame\MyFirstGame\MyFirstGame.Shared\Content\Images\square2spawn2.png">
+      <PackagePath>Content\Images\square2spawn2.png</PackagePath>
+      <Modified>2012-04-29T08:06:57.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Ant\Documents\Visual Studio 2013\Projects\MyFirstGame\MyFirstGame\MyFirstGame.Shared\Content\Images\squaredeath.png">
+      <PackagePath>Content\Images\squaredeath.png</PackagePath>
+      <Modified>2012-02-08T07:09:51.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Ant\Documents\Visual Studio 2013\Projects\MyFirstGame\MyFirstGame\MyFirstGame.Shared\Content\Images\squaredeath1.png">
+      <PackagePath>Content\Images\squaredeath1.png</PackagePath>
+      <Modified>2012-04-24T03:40:10.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Ant\Documents\Visual Studio 2013\Projects\MyFirstGame\MyFirstGame\MyFirstGame.Shared\Content\Images\squaredeath12.png">
+      <PackagePath>Content\Images\squaredeath12.png</PackagePath>
+      <Modified>2012-04-29T07:59:25.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Ant\Documents\Visual Studio 2013\Projects\MyFirstGame\MyFirstGame\MyFirstGame.Shared\Content\Images\squaredeath2.png">
+      <PackagePath>Content\Images\squaredeath2.png</PackagePath>
+      <Modified>2012-02-09T05:23:05.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Ant\Documents\Visual Studio 2013\Projects\MyFirstGame\MyFirstGame\MyFirstGame.Shared\Content\Images\squaredeath22.png">
+      <PackagePath>Content\Images\squaredeath22.png</PackagePath>
+      <Modified>2012-04-29T07:58:47.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Ant\Documents\Visual Studio 2013\Projects\MyFirstGame\MyFirstGame\MyFirstGame.Shared\Content\Images\star.png">
+      <PackagePath>Content\Images\star.png</PackagePath>
+      <Modified>2012-04-27T07:10:21.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Ant\Documents\Visual Studio 2013\Projects\MyFirstGame\MyFirstGame\MyFirstGame.Shared\Content\Images\TLC.png">
+      <PackagePath>Content\Images\TLC.png</PackagePath>
+      <Modified>2012-04-27T07:17:01.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Ant\Documents\Visual Studio 2013\Projects\MyFirstGame\MyFirstGame\MyFirstGame.Shared\Content\Images\turretplatform.png">
+      <PackagePath>Content\Images\turretplatform.png</PackagePath>
+      <Modified>2012-04-26T21:23:22.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Ant\Documents\Visual Studio 2013\Projects\MyFirstGame\MyFirstGame\MyFirstGame.Shared\Content\Images\turretplatformdeath.png">
+      <PackagePath>Content\Images\turretplatformdeath.png</PackagePath>
+      <Modified>2012-04-26T19:03:27.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Ant\Documents\Visual Studio 2013\Projects\MyFirstGame\MyFirstGame\MyFirstGame.Shared\Content\Images\turretplatformfit.png">
+      <PackagePath>Content\Images\turretplatformfit.png</PackagePath>
+      <Modified>2012-04-26T19:55:56.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Ant\Documents\Visual Studio 2013\Projects\MyFirstGame\MyFirstGame\MyFirstGame.Shared\Content\Images\turretplatformfitdeath.png">
+      <PackagePath>Content\Images\turretplatformfitdeath.png</PackagePath>
+      <Modified>2012-04-30T00:45:05.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Ant\Documents\Visual Studio 2013\Projects\MyFirstGame\MyFirstGame\MyFirstGame.Shared\Content\Images\turretplatformfitspawn.png">
+      <PackagePath>Content\Images\turretplatformfitspawn.png</PackagePath>
+      <Modified>2012-04-30T00:45:16.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Ant\Documents\Visual Studio 2013\Projects\MyFirstGame\MyFirstGame\MyFirstGame.Shared\Content\Images\turretplatformspawn.png">
+      <PackagePath>Content\Images\turretplatformspawn.png</PackagePath>
+      <Modified>2012-04-29T08:27:23.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Ant\Documents\Visual Studio 2013\Projects\MyFirstGame\MyFirstGame\MyFirstGame.Shared\Content\Images\Weapon.png">
+      <PackagePath>Content\Images\Weapon.png</PackagePath>
+      <Modified>2012-04-29T23:43:16.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Ant\Documents\Visual Studio 2013\Projects\MyFirstGame\MyFirstGame\MyFirstGame.Shared\Content\Images\weaponbar.png">
+      <PackagePath>Content\Images\weaponbar.png</PackagePath>
+      <Modified>2012-04-30T05:56:58.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Ant\Documents\Visual Studio 2013\Projects\MyFirstGame\MyFirstGame\MyFirstGame.Shared\Content\Images\Weapontake.png">
+      <PackagePath>Content\Images\Weapontake.png</PackagePath>
+      <Modified>2012-04-29T23:46:59.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Ant\Documents\Visual Studio 2013\Projects\MyFirstGame\MyFirstGame\MyFirstGame.Shared\Content\Images\Weaponvanish.png">
+      <PackagePath>Content\Images\Weaponvanish.png</PackagePath>
+      <Modified>2012-04-29T23:45:23.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Ant\Documents\Visual Studio 2013\Projects\MyFirstGame\MyFirstGame\MyFirstGame.Windows\bin\Debug\App.xbf">
+      <PackagePath>App.xbf</PackagePath>
+      <Modified>2014-12-26T14:40:43.237</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Ant\Documents\Visual Studio 2013\Projects\MyFirstGame\MyFirstGame\MyFirstGame.Windows\bin\Debug\GamePage.xbf">
+      <PackagePath>GamePage.xbf</PackagePath>
+      <Modified>2014-12-26T14:40:43.240</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Ant\Documents\Visual Studio 2013\Projects\MyFirstGame\MyFirstGame\MyFirstGame.Windows\bin\Debug\MyFirstGame.Windows.xr.xml">
+      <PackagePath>MyFirstGame.Windows.xr.xml</PackagePath>
+      <Modified>2014-12-24T09:20:22.508</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Ant\Documents\Visual Studio 2013\Projects\MyFirstGame\MyFirstGame\MyFirstGame.Windows\bin\Debug\resources.pri">
+      <PackagePath>resources.pri</PackagePath>
+      <Modified>2015-03-14T07:03:36.846</Modified>
+    </AppxPackagedFile>
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+</Project>
