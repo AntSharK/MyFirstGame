@@ -27,7 +27,8 @@ namespace MyFirstGame.Screens
         /// <param name="game">Our main game class</param>
         public TestScreen(GameRunner game): base(game)
         {
-            this.addSprite(new TestSprite(game), Special.Hero);
+            //this.addSprite(new TestSprite(game), Special.Hero);
+            this.addSprite(new TestAnimatedSprite(game), Special.Hero);
             this.addDecorator(new TestCameraDecorator(this));
         }
 

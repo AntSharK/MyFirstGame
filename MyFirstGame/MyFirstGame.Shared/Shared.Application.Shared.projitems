@@ -26,7 +26,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)Screens\ScreenDecorators\BaseScreenDecorator.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Screens\ScreenDecorators\TestCameraDecorator.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Screens\TestScreen.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Sprites\BaseAnimatedSprite.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Sprites\BaseSprite.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Sprites\TestAnimatedSprite.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Sprites\TestSprite.cs" />
   </ItemGroup>
   <ItemGroup>

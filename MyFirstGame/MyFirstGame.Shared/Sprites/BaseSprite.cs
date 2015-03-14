@@ -29,7 +29,7 @@ namespace MyFirstGame.Sprites
             this.screen = screen;
         }
 
-        public void Draw(SpriteBatch batch)
+        public virtual void Draw(SpriteBatch batch)
         {
             batch.Draw(this.texture, this.position, Color.White);
         }
