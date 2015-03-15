@@ -6,5 +6,5 @@ Monogame 3.2
 Instructions might be found here:
 http://rbwhitaker.wikidot.com/setting-up-monogame
 
-Code in: MyFirstGame.Shared
-Startup debug project: MyFirstGame.Windows
+Short documentation OneNote found here:
+https://onedrive.live.com/redir?resid=60EEE2548DFF2269%217074
