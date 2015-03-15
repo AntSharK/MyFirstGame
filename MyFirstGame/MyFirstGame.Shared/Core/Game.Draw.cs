@@ -13,26 +13,15 @@ namespace MyFirstGame
     public partial class GameRunner : Game
     {
         /// <summary>
-        /// Graphics device
-        /// </summary>
-        public GraphicsDeviceManager graphics;
-
-        /// <summary>
-        /// Spritebatch to draw sprites on
-        /// </summary>
-        public SpriteBatch spriteBatch;
-        
-        /// <summary>
         /// Allows the game to run logic such as updating the world,
         /// checking for collisions, gathering input, and playing audio.
         /// </summary>
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-			InputState.BeginUpdate (gameTime);
-            // Update the keyboard state
-            currentKeyboardState = Keyboard.GetState();
-
+            // Update the input state
+			InputState.BeginUpdate(gameTime);
+            
             // Update all active screens
             foreach (BaseScreen screen in screens)
             {
@@ -40,8 +29,9 @@ namespace MyFirstGame
                     screen.Update(gameTime);
             }
             base.Update(gameTime);
-            previousKeyboardState = currentKeyboardState;
-			InputState.EndUpdate ();
+
+            // End updating input state
+            InputState.EndUpdate();
         }
 
         /// <summary>
@@ -50,16 +40,16 @@ namespace MyFirstGame
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
-
+            ////GraphicsDevice.Clear(Color.CornflowerBlue);
+            CurrentGame.graphics.GraphicsDevice.Clear(Color.CornflowerBlue);
             // Draw all visible screens.
-            spriteBatch.Begin();
+            CurrentGame.spriteBatch.Begin();
             foreach (BaseScreen screen in screens)
             {
                 if (screen.isVisible)
                     screen.Draw(gameTime);
             }
-            spriteBatch.End();
+            CurrentGame.spriteBatch.End();
 
             base.Draw(gameTime);
         }

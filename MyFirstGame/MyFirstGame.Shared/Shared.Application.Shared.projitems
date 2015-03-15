@@ -9,9 +9,7 @@
     <Import_RootNamespace>MyFirstGame</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <ApplicationDefinition Include="$(MSBuildThisFileDirectory)App.xaml">
-      <SubType>Designer</SubType>
-    </ApplicationDefinition>
+    <Compile Include="$(MSBuildThisFileDirectory)Core\CurrentGame.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Core\Game.Draw.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Core\Game.Initialize.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Core\Game.Utility.cs" />
@@ -19,11 +17,11 @@
     <Compile Include="$(MSBuildThisFileDirectory)Screens\BaseScreen.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Screens\ScreenDecorators\BaseScreenDecorator.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Screens\ScreenDecorators\TestCameraDecorator.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Screens\TestScreen.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Screens\Testing\TestScreen.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Sprites\BaseAnimatedSprite.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Sprites\BaseSprite.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Sprites\TestAnimatedSprite.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Sprites\TestSprite.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Sprites\Testing\TestAnimatedSprite.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Sprites\Testing\TestSprite.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Core\InputState.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -38,11 +36,14 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <None Include="$(MSBuildThisFileDirectory)App.xaml.cs" Condition=" '$(OS)' == 'Windows_NT' ">
+    <ApplicationDefinition Include="$(MSBuildThisFileDirectory)App.xaml">
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="$(MSBuildThisFileDirectory)App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
-    </None>
-    <None Include="$(MSBuildThisFileDirectory)GamePage.xaml.cs" Condition=" '$(OS)' == 'Windows_NT' ">
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)GamePage.xaml.cs">
       <DependentUpon>GamePage.xaml</DependentUpon>
-    </None>
+    </Compile>
   </ItemGroup>
 </Project>

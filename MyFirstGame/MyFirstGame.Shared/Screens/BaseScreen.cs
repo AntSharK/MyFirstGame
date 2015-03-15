@@ -41,14 +41,9 @@ namespace MyFirstGame.Screens
         /// To put something here, add it to both the sprites list as well as the dictionary
         /// </summary>
         public Dictionary<string, BaseSprite> reservedSprite = new Dictionary<string, BaseSprite>();
-
+        
         /// <summary>
-        /// Reference to the main game object
-        /// </summary>
-        public GameRunner game;
-
-        /// <summary>
-        /// Reference to the main content manager
+        /// Reference to this screen's special content manager
         /// </summary>
         public ContentManager content;
 
@@ -57,9 +52,8 @@ namespace MyFirstGame.Screens
         /// By default, it is visible and active on initialization.
         /// </summary>
         /// <param name="game">Reference to the main game</param>
-        public BaseScreen(GameRunner game)
+        public BaseScreen()
         {
-            this.game = game;
             this.isActive = true;
             this.isVisible = true;
         }
@@ -74,7 +68,7 @@ namespace MyFirstGame.Screens
             foreach (BaseSprite sprite in sprites)
             {
                 if (sprite.isVisible)
-                    sprite.Draw(game.spriteBatch);
+                    sprite.Draw(CurrentGame.spriteBatch);
             }
         }
 

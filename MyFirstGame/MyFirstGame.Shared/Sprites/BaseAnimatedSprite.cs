@@ -65,6 +65,30 @@ namespace MyFirstGame.Sprites
         }
 
         /// <summary>
+        /// Draws the current animation, for the currentgame's spritebatch
+        /// </summary>
+        public override void Draw()
+        {
+            this.currentAnimation.Draw(CurrentGame.spriteBatch);
+        }
+
+        /// <summary>
+        /// Sets the current animation to a given name
+        /// </summary>
+        /// <param name="animationName">Name of animation</param>
+        /// <param name="resetCurrent">Whether to reset the current animation to the start</param>
+        /// <param name="deactivate">Whether to deactivate the current animation</param>
+        public void SetAnimation(string animationName, bool resetCurrent = true, bool deactivate = true)
+        {
+            if (resetCurrent)
+                this.currentAnimation.Reset();
+            if (deactivate)
+                this.currentAnimation.isActive = false;
+            this.currentAnimation = animations[animationName];
+            this.currentAnimation.isActive = true;
+        }
+
+        /// <summary>
         /// Adds an animation to the animated sprite
         /// </summary>
         /// <param name="xStart">X position of square to start from, with left being 0</param>
@@ -74,17 +98,18 @@ namespace MyFirstGame.Sprites
         /// <param name="timePerFrame">Time per frame</param>
         /// <param name="animationName">Name to give the animation</param>
         /// <returns></returns>
-        public bool addAnimation(int xStart, int yStart, int xEnd, int yEnd, float timePerFrame = 0.1f, string animationName = "", bool isReversible = false)
+        public bool addAnimation(int xStart, int yStart, int xEnd, int yEnd, float timePerFrame = 0.1f, string animationName = "", bool isReversible = false, bool isLooping = true)
         {
             // Return false if there are invalid parameters
-            if (xStart >= this.numberOfColumns || xEnd >= this.numberOfColumns || yEnd >= this.numberOfRows || yEnd < yStart)
+            if (xStart >= this.numberOfColumns || xEnd >= this.numberOfColumns || yEnd >= this.numberOfRows || yStart >= this.numberOfRows)
             {
                 return false;
             }
+            
             // Otherwise try creating a new animation and adding it
             try
             {
-                Animation newAnimation = new Animation(this, xStart, yStart, xEnd, yEnd, timePerFrame, isReversible);
+                Animation newAnimation = new Animation(this, xStart, yStart, xEnd, yEnd, timePerFrame, isReversible, isLooping);
                 this.animations.Add(animationName, newAnimation);
             }
             catch (Exception)
@@ -106,6 +131,16 @@ namespace MyFirstGame.Sprites
         public bool isActive;
 
         /// <summary>
+        /// An animation is only finished if it is PAST its last frame
+        /// </summary>
+        public bool isFinished;
+
+        /// <summary>
+        /// Whether the animation loops or just stops at its last frame
+        /// </summary>
+        public bool isLooping;
+
+        /// <summary>
         /// Current frame number
         /// </summary>
         public int currentFrame;
@@ -114,6 +149,12 @@ namespace MyFirstGame.Sprites
         /// Total number of frames
         /// </summary>
         public int numberOfFrames;
+
+        /// <summary>
+        /// Squares to advance by for each frame
+        /// Useful to set to a negative number. Say we want an animation to go from a later square to an earlier square.
+        /// </summary>
+        public int frameAdvance;
 
         /// <summary>
         /// Time between each frame
@@ -179,10 +220,11 @@ namespace MyFirstGame.Sprites
         /// <param name="xEnd">X position of square in sprite to end this animation</param>
         /// <param name="yEnd">Y position of square in sprite to end this animation</param>
         /// <param name="timePerFrame">Duration of each frame</param>
-        public Animation(BaseAnimatedSprite sprite, int xStart, int yStart, int xEnd, int yEnd, float timePerFrame = 0, bool isReversible = false)
+        public Animation(BaseAnimatedSprite sprite, int xStart, int yStart, int xEnd, int yEnd, float timePerFrame = 0, bool isReversible = false, bool isLooping = true)
         {
             // Initialize a bunch of stuff
             this.isActive = true;
+            this.isFinished = false;
             this.currentFrame = 0;
             this.timePerFrame = timePerFrame;
             this.timeElapsed = 0;
@@ -191,7 +233,20 @@ namespace MyFirstGame.Sprites
             this.yStart = yStart;
             this.xEnd = xEnd;
             this.yEnd = yEnd;
-            this.numberOfFrames = sprite.numberOfColumns-xStart + sprite.numberOfColumns * (yEnd - yStart - 1) + xEnd + 1;
+
+            // If we set the start before the end, the animation should go backwards
+            if (yEnd < yStart || yEnd == yStart && xEnd < xStart)
+            {
+                this.frameAdvance = -1;
+                this.numberOfFrames = xStart + sprite.numberOfColumns - xEnd + sprite.numberOfColumns * (yStart - yEnd - 1) + 1;
+            }
+            else
+            {
+                this.frameAdvance = 1;
+                this.numberOfFrames = sprite.numberOfColumns - xStart + sprite.numberOfColumns * (yEnd - yStart - 1) + xEnd + 1;
+            }
+
+            this.isLooping = isLooping;
             this.isReversible = isReversible;
             this.frameWidth = sprite.texture.Width / sprite.numberOfColumns;
             this.frameHeight = sprite.texture.Height / sprite.numberOfRows;
@@ -210,12 +265,17 @@ namespace MyFirstGame.Sprites
             int y = yStart;
             for (int i = 0; i < numberOfFrames; i++)
             {
-                rectangles[i] = new Rectangle(x * this.frameWidth, y * this.frameHeight, this.frameWidth, this.frameHeight);
-                x++;
+                rectangles[i] = new Rectangle(x * this.frameWidth + x, y * this.frameHeight + y, this.frameWidth, this.frameHeight);
+                x = x + this.frameAdvance;
                 if (x >= this.sprite.numberOfColumns)
                 {
                     x = 0;
                     y = y + 1;
+                }
+                if (x < 0)
+                {
+                    x = this.sprite.numberOfColumns - 1;
+                    y = y - 1;
                 }
             }
 
@@ -239,15 +299,23 @@ namespace MyFirstGame.Sprites
         {
             if (this.isActive)
             {
-                timeElapsed = timeElapsed + (float)gameTime.ElapsedGameTime.TotalSeconds;
-                while (timeElapsed > timePerFrame)
+                this.timeElapsed = this.timeElapsed + (float)gameTime.ElapsedGameTime.TotalSeconds;
+                while (this.timeElapsed > this.timePerFrame)
                 {
-                    currentFrame++;
-                    timeElapsed = timeElapsed - timePerFrame;
+                    this.currentFrame++;
+                    // Condition: If not looping, then stop at last frame and exit.
+                    if (!this.isLooping && this.currentFrame >= this.numberOfFrames)
+                    {
+                        this.currentFrame = this.numberOfFrames - 1;
+                        this.isFinished = true;
+                        break;
+                    }
+
+                    this.timeElapsed = this.timeElapsed - this.timePerFrame;
                 }
-                while (currentFrame >= numberOfFrames)
+                while (this.currentFrame >= this.numberOfFrames)
                 {
-                    currentFrame = currentFrame - numberOfFrames;
+                    this.currentFrame = this.currentFrame - this.numberOfFrames;
                 }
             }
         }
@@ -268,6 +336,7 @@ namespace MyFirstGame.Sprites
         {
             this.currentFrame = 0;
             this.timeElapsed = 0;
+            this.isFinished = false;
         }
 
         /// <summary>
