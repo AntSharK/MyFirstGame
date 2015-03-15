@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework;
 using MyFirstGame.Sprites;
 
@@ -27,6 +28,20 @@ namespace MyFirstGame.Sprites
             this.addAnimation(0, 0, 7, 0, 0.1f, AnimationNames.Default, true);
             //this.addAnimation(4, 0, 7, 1, 0.1f, AnimationNames.Default2);
             this.currentAnimation = this.animations[AnimationNames.Default];
+        }
+
+        /// <summary>
+        /// Updates stuff.
+        /// REMEMBER TO CALL BASE.UPDATE to draw things.
+        /// </summary>
+        /// <param name="gameTime">GameTime from main game</param>
+        public override void Update(GameTime gameTime)
+        {
+            base.Update(gameTime);
+            if (this.screen.game.currentKeyboardState.IsKeyDown(Keys.Z))
+            {
+                this.isVisible = !this.isVisible;
+            }
         }
     }
 }
