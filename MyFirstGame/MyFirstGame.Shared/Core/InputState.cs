@@ -29,18 +29,75 @@ namespace MyFirstGame
 		private static Dictionary<Keys, double> durations = new Dictionary<Keys, double>();
         
         /// <summary>
-        /// Checks if a key is pressed
+        /// Checks if a key is currently down
         /// </summary>
         /// <param name="key">The key we want to check</param>
-        /// <returns>True if that key is pressed, false otherwise</returns>
+        /// <returns>True if that key is down, false otherwise</returns>
 		public static bool IsKeyDown(Keys key) {
 			return currentKeyboardState.IsKeyDown (key);
 		}
 
+
+		/// <summary>
+		/// Checks if a number of keys are currently down
+		/// </summary>
+		/// <param name="keys">The keys we want to check</param>
+		/// <returns>True if all keys are down, false otherwise</returns>
+		public static bool AreKeysDown(params Keys[] keys) {
+			foreach (Keys key in keys) {
+				if (!IsKeyDown(key))
+					return false;
+			}
+			return true;
+		}
+
+		/// <summary>
+		/// Checks if a number of keys are currently up
+		/// </summary>
+		/// <param name="keys">The keys we want to check</param>
+		/// <returns>True if all keys are up, false otherwise</returns>
+		public static bool AreKeysUp(params Keys[] keys) {
+			foreach (Keys key in keys) {
+				if (IsKeyDown(key))
+					return false;
+			}
+			return true;
+		}
+
+
+		/// <summary>
+		/// Checks if a number of keys have just been pressed in this update cycle
+		/// </summary>
+		/// <param name="keys">The keys we want to check</param>
+		/// <returns>True if all keys are pressed, false otherwise</returns>
+		public static bool AreKeysPressed(params Keys[] keys) {
+
+			bool result = true;
+
+			foreach (Keys key in keys) {
+				result = result && IsKeyPress(key);
+			}
+			return result;
+		}
+
+		/// <summary>
+		/// Checks if a number of keys have just been released in this update cycle
+		/// </summary>
+		/// <param name="keys">The keys we want to check</param>
+		/// <returns>True if all keys are released, false otherwise</returns>
+		public static bool AreKeysReleased(params Keys[] keys) {
+			bool result = true;
+
+			foreach (Keys key in keys) {
+				result = result && IsKeyRelease(key);
+			}
+			return result;
+		}
+
         /// <summary>
-        /// Checks if any key is pressed
+        /// Checks if any key is down
         /// </summary>
-        /// <returns>True if a key is pressed, false otherwise</returns>
+        /// <returns>True if a key is down, false otherwise</returns>
 		public static bool AnyKeyDown() {
 			return durations.Skip (1).Sum (x => x.Value) > 0;
 		}

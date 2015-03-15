@@ -49,9 +49,6 @@
     <Reference Include="MonoGame.Framework">
       <HintPath>..\..\packages\MonoGame.Binaries.3.2.0\build\MonoMac\MonoGame.Framework.dll</HintPath>
     </Reference>
-    <Reference Include="MonoGameContentProcessors">
-      <HintPath>..\..\packages\MonoGame.ContentProcessors.3.2.1\lib\MonoGameContentProcessors.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Main.cs" />
@@ -337,6 +334,12 @@
     </BundleResource>
     <BundleResource Include="..\MyFirstGame.Shared\Content\Images\star.png">
       <Link>Content\Images\star.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\MyFirstGame.Shared\Content\Images\testelevator.png">
+      <Link>Content\Images\testelevator.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\MyFirstGame.Shared\Content\Images\testlevel.png">
+      <Link>Content\Images\testlevel.png</Link>
     </BundleResource>
     <BundleResource Include="..\MyFirstGame.Shared\Content\Images\turretplatform.png">
       <Link>Content\Images\turretplatform.png</Link>

@@ -147,7 +147,7 @@ namespace MyFirstGame.Sprites
                 }
             }
 
-            if (InputState.IsKeyUp(Keys.Down) && InputState.IsKeyUp(Keys.Up))
+			if (InputState.AreKeysUp(Keys.Up, Keys.Down))
             {
                 this.currentSpeed = this.currentSpeed * this.deacceleratePerSecond;
                 if ((this.currentSpeed < this.cutOff && this.currentSpeed > 0) || (this.currentSpeed > -this.cutOff && this.currentSpeed < 0))
