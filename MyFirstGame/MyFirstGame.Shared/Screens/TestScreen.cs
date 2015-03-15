@@ -25,10 +25,10 @@ namespace MyFirstGame.Screens
         /// Initializes the test screen
         /// </summary>
         /// <param name="game">Our main game class</param>
-        public TestScreen(GameRunner game): base(game)
+        public TestScreen(): base()
         {
             //this.addSprite(new TestSprite(game), Special.Hero);
-            this.addSprite(new TestAnimatedSprite(game), Special.Hero);
+            this.addSprite(new TestAnimatedSprite(), Special.Hero);
             this.addDecorator(new TestCameraDecorator(this));
         }
 
@@ -41,19 +41,19 @@ namespace MyFirstGame.Screens
         {
 		    base.Update(gameTime);
 
-			if (InputState.IsDown(Keys.D))
+			if (InputState.IsKeyDown(Keys.D))
             {
                 this.reservedSprite[Special.Hero].position.X += (float)gameTime.ElapsedGameTime.TotalSeconds * 100;
             }
-			if (InputState.IsDown(Keys.A))
+			if (InputState.IsKeyDown(Keys.A))
             {
                 this.reservedSprite[Special.Hero].position.X -= (float)gameTime.ElapsedGameTime.TotalSeconds * 100;
             }
-			if (InputState.IsDown(Keys.W))
+			if (InputState.IsKeyDown(Keys.W))
             {
                 this.reservedSprite[Special.Hero].position.Y -= (float)gameTime.ElapsedGameTime.TotalSeconds * 100;
             }
-			if (InputState.IsDown(Keys.S))
+			if (InputState.IsKeyDown(Keys.S))
             {
                 this.reservedSprite[Special.Hero].position.Y += (float)gameTime.ElapsedGameTime.TotalSeconds * 100;
             }

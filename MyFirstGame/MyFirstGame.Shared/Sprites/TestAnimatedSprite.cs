@@ -14,19 +14,25 @@ namespace MyFirstGame.Sprites
     /// </summary>
     public class TestAnimatedSprite : BaseAnimatedSprite
     {
+        /// <summary>
+        /// Animation names
+        /// </summary>
         public class AnimationNames
         {
             public const string Default = "default";
             public const string Default2 = "default2";
         }
 
-        public TestAnimatedSprite(GameRunner game):
-            base(game.Content.Load<Texture2D>("Images\\turretplatformspawntransclucent.png"),
-            new Vector2(game.GraphicsDevice.Viewport.TitleSafeArea.X, game.GraphicsDevice.Viewport.TitleSafeArea.Y + game.GraphicsDevice.Viewport.TitleSafeArea.Height / 2),
+        /// <summary>
+        /// Initializes a new instance of the test animated sprite
+        /// </summary>
+        public TestAnimatedSprite():
+            base(CurrentGame.content.Load<Texture2D>("Images\\turretplatformspawntransclucent.png"),
+            new Vector2(CurrentGame.graphics.GraphicsDevice.Viewport.TitleSafeArea.X, CurrentGame.graphics.GraphicsDevice.Viewport.TitleSafeArea.Y + CurrentGame.graphics.GraphicsDevice.Viewport.TitleSafeArea.Height / 2),
             8, 1)
         {
             this.addAnimation(0, 0, 7, 0, 0.1f, AnimationNames.Default, true);
-            //this.addAnimation(4, 0, 7, 1, 0.1f, AnimationNames.Default2);
+            this.addAnimation(4, 0, 7, 0, 0.1f, AnimationNames.Default2);
             this.currentAnimation = this.animations[AnimationNames.Default];
         }
 
@@ -38,7 +44,7 @@ namespace MyFirstGame.Sprites
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
-            if (this.screen.game.currentKeyboardState.IsKeyDown(Keys.Z))
+            if (InputState.IsKeyDown(Keys.Z))
             {
                 this.isVisible = !this.isVisible;
             }

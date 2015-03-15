@@ -9,9 +9,7 @@
     <Import_RootNamespace>MyFirstGame</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <ApplicationDefinition Include="$(MSBuildThisFileDirectory)App.xaml">
-      <SubType>Designer</SubType>
-    </ApplicationDefinition>
+    <Compile Include="$(MSBuildThisFileDirectory)Core\CurrentGame.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Core\Game.Draw.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Core\Game.Initialize.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Core\Game.Utility.cs" />
@@ -36,13 +34,5 @@
     <Content Include="$(MSBuildThisFileDirectory)Content\Images\*.*">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="$(MSBuildThisFileDirectory)App.xaml.cs" Condition=" '$(OS)' == 'Windows_NT' ">
-      <DependentUpon>App.xaml</DependentUpon>
-    </None>
-    <None Include="$(MSBuildThisFileDirectory)GamePage.xaml.cs" Condition=" '$(OS)' == 'Windows_NT' ">
-      <DependentUpon>GamePage.xaml</DependentUpon>
-    </None>
   </ItemGroup>
 </Project>

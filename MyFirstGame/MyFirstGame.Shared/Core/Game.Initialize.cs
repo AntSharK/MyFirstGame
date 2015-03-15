@@ -5,7 +5,6 @@ using Microsoft.Xna.Framework.Input;
 using MyFirstGame.Sprites;
 using MyFirstGame.Screens;
 using Microsoft.Xna.Framework;
-using MyFirstGame.Screens;
 
 namespace MyFirstGame
 {
@@ -14,16 +13,6 @@ namespace MyFirstGame
     /// </summary>
     public partial class GameRunner : Game
     {
-        /// <summary>
-        /// To get current keyboard state
-        /// </summary>
-        public KeyboardState currentKeyboardState;
-
-        /// <summary>
-        /// To get the previous keyboard state
-        /// </summary>
-        public KeyboardState previousKeyboardState;
-
         /// <summary>
         /// Ordered list of screens, to determine what to draw first
         /// </summary>
@@ -47,11 +36,13 @@ namespace MyFirstGame
         /// </summary>
         public GameRunner()
         {
-            // Initialize graphics device
-            this.graphics = new GraphicsDeviceManager(this);
+            // Initialize current game's static variables for graphics
+            CurrentGame.game = this;
+            CurrentGame.graphics = new GraphicsDeviceManager(this);
 
             // Initialize root directory of content
             Content.RootDirectory = "Content";
+            CurrentGame.content = Content;
         }
 
         /// <summary>
@@ -72,10 +63,10 @@ namespace MyFirstGame
         protected override void LoadContent()
         {
             // Create a new SpriteBatch, which can be used to draw textures.
-            this.spriteBatch = new SpriteBatch(GraphicsDevice);
+            CurrentGame.spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // Load all the screens at the start here
-            this.addScreen(new TestScreen(this), ScreenNames.Test);
+            this.addScreen(new TestScreen(), ScreenNames.Test);
         }
 
         /// <summary>

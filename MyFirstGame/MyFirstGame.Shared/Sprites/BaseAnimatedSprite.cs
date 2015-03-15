@@ -65,6 +65,14 @@ namespace MyFirstGame.Sprites
         }
 
         /// <summary>
+        /// Draws the current animation, for the currentgame's spritebatch
+        /// </summary>
+        public override void Draw()
+        {
+            this.currentAnimation.Draw(CurrentGame.spriteBatch);
+        }
+
+        /// <summary>
         /// Adds an animation to the animated sprite
         /// </summary>
         /// <param name="xStart">X position of square to start from, with left being 0</param>
