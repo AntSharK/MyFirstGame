@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework.Input;
 using MyFirstGame.Sprites;
 using MyFirstGame.Screens;
 using Microsoft.Xna.Framework;
+using MyFirstGame.Screens;
 
 namespace MyFirstGame
 {

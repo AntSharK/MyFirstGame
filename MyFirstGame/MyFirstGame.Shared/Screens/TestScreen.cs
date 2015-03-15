@@ -39,23 +39,25 @@ namespace MyFirstGame.Screens
         /// <param name="gameTime">GameTime from main game</param>
         public override void Update(GameTime gameTime)
         {
-            base.Update(gameTime);
-            if (game.currentKeyboardState.IsKeyDown(Keys.D))
+		    base.Update(gameTime);
+
+			if (InputState.IsDown(Keys.D))
             {
                 this.reservedSprite[Special.Hero].position.X += (float)gameTime.ElapsedGameTime.TotalSeconds * 100;
             }
-            if (game.currentKeyboardState.IsKeyDown(Keys.A))
+			if (InputState.IsDown(Keys.A))
             {
                 this.reservedSprite[Special.Hero].position.X -= (float)gameTime.ElapsedGameTime.TotalSeconds * 100;
             }
-            if (game.currentKeyboardState.IsKeyDown(Keys.W))
+			if (InputState.IsDown(Keys.W))
             {
                 this.reservedSprite[Special.Hero].position.Y -= (float)gameTime.ElapsedGameTime.TotalSeconds * 100;
             }
-            if (game.currentKeyboardState.IsKeyDown(Keys.S))
+			if (InputState.IsDown(Keys.S))
             {
                 this.reservedSprite[Special.Hero].position.Y += (float)gameTime.ElapsedGameTime.TotalSeconds * 100;
             }
+		
         }
     }
 }

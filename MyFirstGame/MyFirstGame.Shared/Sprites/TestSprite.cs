@@ -26,7 +26,7 @@ namespace MyFirstGame.Sprites
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
-            if (this.screen.game.currentKeyboardState.IsKeyDown(Keys.Z))
+            if (InputState.IsDown(Keys.Z))
             {
                 this.isVisible = !this.isVisible;
             }

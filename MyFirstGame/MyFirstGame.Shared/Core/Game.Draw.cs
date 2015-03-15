@@ -29,6 +29,7 @@ namespace MyFirstGame
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
+			InputState.BeginUpdate (gameTime);
             // Update the keyboard state
             currentKeyboardState = Keyboard.GetState();
 
@@ -40,6 +41,7 @@ namespace MyFirstGame
             }
             base.Update(gameTime);
             previousKeyboardState = currentKeyboardState;
+			InputState.EndUpdate ();
         }
 
         /// <summary>

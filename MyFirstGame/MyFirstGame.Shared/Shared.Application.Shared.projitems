@@ -24,6 +24,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Sprites\BaseSprite.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Sprites\TestAnimatedSprite.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Sprites\TestSprite.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\InputState.cs" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="$(MSBuildThisFileDirectory)GamePage.xaml">

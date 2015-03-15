@@ -13,28 +13,28 @@ namespace MyFirstGame.Screens.ScreenDecorators
 
         public override void Act(GameTime gameTime)
         {
-            if (this.screen.game.currentKeyboardState.IsKeyDown(Keys.Down))
+            if (InputState.IsDown(Keys.Down))
             {
                 foreach (BaseSprite s in this.screen.sprites)
                 {
                     s.position.Y = s.position.Y + (float) gameTime.ElapsedGameTime.TotalSeconds * 100;
                 }
             }
-            if (this.screen.game.currentKeyboardState.IsKeyDown(Keys.Up))
+            if (InputState.IsDown(Keys.Up))
             {
                 foreach (BaseSprite s in this.screen.sprites)
                 {
                     s.position.Y = s.position.Y - (float)gameTime.ElapsedGameTime.TotalSeconds * 100;
                 }
             }
-            if (this.screen.game.currentKeyboardState.IsKeyDown(Keys.Left))
+            if (InputState.IsDown(Keys.Left))
             {
                 foreach (BaseSprite s in this.screen.sprites)
                 {
                     s.position.X = s.position.X + (float)gameTime.ElapsedGameTime.TotalSeconds * 100;
                 }
             }
-            if (this.screen.game.currentKeyboardState.IsKeyDown(Keys.Right))
+            if (InputState.IsDown(Keys.Right))
             {
                 foreach (BaseSprite s in this.screen.sprites)
                 {
