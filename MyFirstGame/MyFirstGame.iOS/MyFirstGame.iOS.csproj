@@ -101,10 +101,10 @@
     <None Include="Entitlements.plist" />
     <None Include="packages.config" />
   </ItemGroup>
+  <Import Project="..\MyFirstGame.Shared\Shared.Application.Shared.projitems" Label="Shared" Condition="Exists('..\MyFirstGame.Shared\Shared.Application.Shared.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.MonoTouch.CSharp.targets" />
   <Import Project="..\..\packages\MonoGame.Binaries.3.2.0\build\MonoTouch\MonoGame.Binaries.targets" Condition="Exists('..\..\packages\MonoGame.Binaries.3.2.0\build\MonoTouch\MonoGame.Binaries.targets')" />
   <ItemGroup>
-    <Compile Include="Game1.cs" />
     <Compile Include="GameMain.cs" />
   </ItemGroup>
 </Project>

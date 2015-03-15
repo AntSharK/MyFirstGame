@@ -8,12 +8,12 @@ namespace MyFirstGame.iOS
 	[Register ("AppDelegate")]
 	class Program : UIApplicationDelegate 
 	{
-		private Game1 game;
+		private GameRunner game;
 
 		public override void FinishedLaunching (UIApplication app)
 		{
 			// Fun begins..
-			game = new Game1();
+			game = new GameRunner();
 			game.Run();
 		}
 
