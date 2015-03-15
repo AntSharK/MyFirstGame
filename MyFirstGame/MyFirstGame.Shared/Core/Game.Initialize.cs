@@ -26,7 +26,7 @@ namespace MyFirstGame
         /// <summary>
         /// Ordered list of screens, to determine what to draw first
         /// </summary>
-        LinkedList<BaseScreen> screens = new LinkedList<BaseScreen>();
+        List<BaseScreen> screens = new List<BaseScreen>();
         
         /// <summary>
         /// Dictionary of screens, to retrieve a specific screen

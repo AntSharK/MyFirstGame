@@ -18,7 +18,7 @@ namespace MyFirstGame
         /// <param name="screenName">Name of screen in screenDictionary</param>
         private void addScreen(BaseScreen screen, string screenName)
         {
-            screens.AddLast(screen);
+			screens.Add(screen);
             screenDictionary.Add(screenName, screen);
         }
 

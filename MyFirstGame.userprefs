@@ -1,0 +1,30 @@
+﻿<Properties StartupItem="MyFirstGame/MyFirstGame.Mac/MyFirstGame.Mac.csproj" MonoDevelop.MonoMac.LastXamMacNagTime="3/15/2015 2:06:21 AM">
+  <DisabledProjects>
+    <String>MyFirstGame/MyFirstGame.WindowsPhone/MyFirstGame.WindowsPhone.csproj</String>
+    <String>MyFirstGame/MyFirstGame.Windows/MyFirstGame.Windows.csproj</String>
+  </DisabledProjects>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="MyFirstGame/MyFirstGame.Shared/App.xaml.cs">
+    <Files>
+      <File FileName="MyFirstGame/MyFirstGame.Shared/App.xaml.cs" Line="17" Column="23" />
+      <File FileName="MyFirstGame/MyFirstGame.Shared/GamePage.xaml.cs" Line="1" Column="1" />
+      <File FileName="MyFirstGame/MyFirstGame.iOS/GameMain.cs" Line="1" Column="1" />
+      <File FileName="MyFirstGame/MyFirstGame.iOS/Game1.cs" Line="1" Column="1" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State expanded="True">
+          <Node name="MyFirstGame" expanded="True">
+            <Node name="MyFirstGame.iOS" expanded="True" />
+            <Node name="MyFirstGame.Mac" expanded="True" selected="True" />
+            <Node name="MyFirstGame.Shared" expanded="True" />
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>

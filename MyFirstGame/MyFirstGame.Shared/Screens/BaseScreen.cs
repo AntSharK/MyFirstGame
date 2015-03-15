@@ -28,12 +28,12 @@ namespace MyFirstGame.Screens
         /// <summary>
         /// Ordered list of every sprite in the screen
         /// </summary>
-        public LinkedList<BaseSprite> sprites = new LinkedList<BaseSprite>();
+        public List<BaseSprite> sprites = new List<BaseSprite>();
 
         /// <summary>
         /// Ordered list of every decorator
         /// </summary>
-        public LinkedList<BaseScreenDecorator> decorators = new LinkedList<BaseScreenDecorator>();
+        public List<BaseScreenDecorator> decorators = new List<BaseScreenDecorator>();
 
         /// <summary>
         /// For referencing special sprites, such as hero
@@ -105,7 +105,7 @@ namespace MyFirstGame.Screens
         /// <returns>True if successful, false if cannot be added to list</returns>
         protected bool addSprite(BaseSprite sprite, string special = "")
         {
-            this.sprites.AddLast(sprite);
+            this.sprites.Add(sprite);
             sprite.screen = this;
             if (special != "")
             {
@@ -151,7 +151,7 @@ namespace MyFirstGame.Screens
         /// <returns>True all the time</returns>
         protected bool addDecorator(BaseScreenDecorator decorator)
         {
-            this.decorators.AddLast(decorator);
+            this.decorators.Add(decorator);
             return true;
         }
     }
