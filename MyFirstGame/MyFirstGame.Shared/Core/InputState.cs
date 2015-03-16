@@ -178,7 +178,7 @@ namespace MyFirstGame
 				// Ignore the option for where Key is None
 				if (key != Keys.None) { 
 					if (currentKeyboardState.IsKeyDown (key)) {
-						durations [key] += gameTime.ElapsedGameTime.TotalSeconds;
+						durations [key] += CurrentGame.getDelta(gameTime);
 					} else
 						durations [key] = 0;
 				}

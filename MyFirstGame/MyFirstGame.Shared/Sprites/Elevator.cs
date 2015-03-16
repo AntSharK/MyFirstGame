@@ -117,7 +117,7 @@ namespace MyFirstGame.Sprites
 				currentKey = Keys.Up;
                 if (this.state == AnimationNames.Accelerating)
                 {
-					this.currentSpeed = this.currentSpeed + (float)gameTime.ElapsedGameTime.TotalSeconds*acceleration;
+					this.currentSpeed = this.currentSpeed + CurrentGame.getDelta(gameTime)*acceleration;
                     if (this.currentSpeed > this.maxSpeed)
                         this.currentSpeed = this.maxSpeed;
                 }
@@ -140,7 +140,7 @@ namespace MyFirstGame.Sprites
 				currentKey = Keys.Down;
                 if (this.state == AnimationNames.Accelerating)
                 {
-					this.currentSpeed = this.currentSpeed - (float)gameTime.ElapsedGameTime.TotalSeconds*acceleration;
+					this.currentSpeed = this.currentSpeed - CurrentGame.getDelta(gameTime)*acceleration;
                     if (this.currentSpeed < -this.maxSpeed)
                         this.currentSpeed = -this.maxSpeed;
                 }
@@ -176,7 +176,9 @@ namespace MyFirstGame.Sprites
 						destinationY = closestFloor;
 					}
 					this.currentSpeed = 0;
-					this.position.Y += Math.Max (Math.Min ((destinationY - this.position.Y) * (float)gameTime.ElapsedGameTime.TotalSeconds * 5f, maxSpeed), -1 * maxSpeed);
+					float delta = CurrentGame.getDelta (gameTime);
+					float velocity = MathHelper.Clamp((destinationY - this.position.Y) * 5f, -1*maxSpeed/delta, maxSpeed/delta);
+					this.position.Y += velocity * delta;
 					if (Math.Abs (destinationY - this.position.Y) < 5) {
 						this.position.Y = destinationY;
 						this.state = AnimationNames.Deaccelerating;
@@ -210,7 +212,7 @@ namespace MyFirstGame.Sprites
                 this.SetAnimation(AnimationNames.Opened);
             }
 
-            this.position.Y -= (float)gameTime.ElapsedGameTime.TotalSeconds * 100 * currentSpeed;
+            this.position.Y -= CurrentGame.getDelta(gameTime) * 100 * currentSpeed;
         }
     }
 }

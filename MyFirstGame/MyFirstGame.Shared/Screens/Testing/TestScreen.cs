@@ -49,19 +49,19 @@ namespace MyFirstGame.Screens
 
 			if (InputState.IsKeyDown(Keys.D))
             {
-                this.reservedSprite[Special.Hero].position.X += (float)gameTime.ElapsedGameTime.TotalSeconds * 100;
+				this.reservedSprite[Special.Hero].position.X += CurrentGame.getDelta(gameTime) * 100;
             }
 			if (InputState.IsKeyDown(Keys.A))
             {
-                this.reservedSprite[Special.Hero].position.X -= (float)gameTime.ElapsedGameTime.TotalSeconds * 100;
+				this.reservedSprite[Special.Hero].position.X -= CurrentGame.getDelta(gameTime) * 100;
             }
 			if (InputState.IsKeyDown(Keys.W))
             {
-                this.reservedSprite[Special.Hero].position.Y -= (float)gameTime.ElapsedGameTime.TotalSeconds * 100;
+				this.reservedSprite[Special.Hero].position.Y -= CurrentGame.getDelta(gameTime) * 100;
             }
 			if (InputState.IsKeyDown(Keys.S))
             {
-                this.reservedSprite[Special.Hero].position.Y += (float)gameTime.ElapsedGameTime.TotalSeconds * 100;
+				this.reservedSprite[Special.Hero].position.Y += CurrentGame.getDelta(gameTime) * 100;
             }
 
 

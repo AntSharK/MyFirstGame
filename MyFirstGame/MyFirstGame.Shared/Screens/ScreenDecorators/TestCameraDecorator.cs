@@ -17,28 +17,28 @@ namespace MyFirstGame.Screens.ScreenDecorators
             {
                 foreach (BaseSprite s in this.screen.sprites)
                 {
-                    s.position.Y = s.position.Y + (float) gameTime.ElapsedGameTime.TotalSeconds * 100;
+                    s.position.Y = s.position.Y +  CurrentGame.getDelta(gameTime) * 100;
                 }
             }
             if (InputState.IsKeyDown(Keys.Up))
             {
                 foreach (BaseSprite s in this.screen.sprites)
                 {
-                    s.position.Y = s.position.Y - (float)gameTime.ElapsedGameTime.TotalSeconds * 100;
+                    s.position.Y = s.position.Y - CurrentGame.getDelta(gameTime) * 100;
                 }
             }
             if (InputState.IsKeyDown(Keys.Left))
             {
                 foreach (BaseSprite s in this.screen.sprites)
                 {
-                    s.position.X = s.position.X + (float)gameTime.ElapsedGameTime.TotalSeconds * 100;
+                    s.position.X = s.position.X + CurrentGame.getDelta(gameTime) * 100;
                 }
             }
             if (InputState.IsKeyDown(Keys.Right))
             {
                 foreach (BaseSprite s in this.screen.sprites)
                 {
-                    s.position.X = s.position.X - (float)gameTime.ElapsedGameTime.TotalSeconds * 100;
+					s.position.X = s.position.X - CurrentGame.getDelta(gameTime) * 100;
                 }
             }
         }

@@ -36,9 +36,9 @@ namespace MyFirstGame
         public static ContentManager content;	
 
 
-		public static float timeScale = 1;
+		public static float timeScale = 1f;
 
-		public static float GetDelta(GameTime gameTime)
+		public static float getDelta(GameTime gameTime)
 		{
 			return (float) gameTime.ElapsedGameTime.TotalSeconds*timeScale;
 		}
