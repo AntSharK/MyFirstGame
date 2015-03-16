@@ -139,7 +139,7 @@ namespace MyFirstGame.Screens
         }
 
         /// <summary>
-        /// Because it's just nicer to do this than call addLast
+        /// Because it's just nicer to do this than call add
         /// </summary>
         /// <param name="decorator">Decorator to add</param>
         /// <returns>True all the time</returns>

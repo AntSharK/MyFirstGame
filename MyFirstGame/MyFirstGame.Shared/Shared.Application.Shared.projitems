@@ -20,9 +20,11 @@
     <Compile Include="$(MSBuildThisFileDirectory)Screens\Testing\TestScreen.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Sprites\BaseAnimatedSprite.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Sprites\BaseSprite.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Sprites\Testing\TestAnimatedSprite.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Sprites\Testing\TestSprite.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Core\InputState.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Sprites\Building.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\ContentLoader.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Sprites\Elevator.cs" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="$(MSBuildThisFileDirectory)GamePage.xaml">

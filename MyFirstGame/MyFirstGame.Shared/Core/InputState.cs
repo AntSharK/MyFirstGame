@@ -66,6 +66,33 @@ namespace MyFirstGame
 
 
 		/// <summary>
+		/// Checks if any one of a number of keys are currently down
+		/// </summary>
+		/// <param name="keys">The keys we want to check</param>
+		/// <returns>True if any key is down, false otherwise</returns>
+		public static bool AnyKeysDown(params Keys[] keys) {
+			foreach (Keys key in keys) {
+				if (IsKeyDown(key))
+					return true;
+			}
+			return false;
+		}
+
+		/// <summary>
+		/// Checks if any one number of keys are currently up
+		/// </summary>
+		/// <param name="keys">The keys we want to check</param>
+		/// <returns>True if any key is  up, false otherwise</returns>
+		public static bool AnyKeysUp(params Keys[] keys) {
+			foreach (Keys key in keys) {
+				if (!IsKeyDown(key))
+					return true;
+			}
+			return false;
+		}
+
+
+		/// <summary>
 		/// Checks if a number of keys have just been pressed in this update cycle
 		/// </summary>
 		/// <param name="keys">The keys we want to check</param>

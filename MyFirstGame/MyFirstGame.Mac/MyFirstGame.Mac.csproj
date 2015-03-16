@@ -365,5 +365,8 @@
     <BundleResource Include="..\MyFirstGame.Shared\Content\Images\weaponbar.png">
       <Link>Content\Images\weaponbar.png</Link>
     </BundleResource>
+    <BundleResource Include="..\MyFirstGame.Shared\Content\Images\building.png">
+      <Link>Content\Images\building.png</Link>
+    </BundleResource>
   </ItemGroup>
 </Project>

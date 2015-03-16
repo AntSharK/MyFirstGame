@@ -21,14 +21,20 @@ namespace MyFirstGame.Screens
             public const string Hero = "hero";
         }
 
+
+		Elevator elevator;
         /// <summary>
         /// Initializes the test screen
         /// </summary>
         /// <param name="game">Our main game class</param>
         public TestScreen(): base()
         {
+			elevator = new Elevator ();
+			Building building = new Building ();
             //this.addSprite(new TestSprite(game), Special.Hero);
-            this.addSprite(new TestAnimatedSprite(), Special.Hero);
+            this.addSprite(elevator, Special.Hero);
+			this.addSprite (building);
+			elevator.currentBuilding = building;
             //this.addDecorator(new TestCameraDecorator(this));
         }
 
@@ -57,7 +63,14 @@ namespace MyFirstGame.Screens
             {
                 this.reservedSprite[Special.Hero].position.Y += (float)gameTime.ElapsedGameTime.TotalSeconds * 100;
             }
-		
+
+
+			if (elevator.position.Y < 0) {
+				elevator.position.Y = 0;
+			}
+			if (elevator.position.Y + elevator.texture.Height / elevator.numberOfRows > CurrentGame.graphics.GraphicsDevice.Viewport.Height) {
+				elevator.position.Y = CurrentGame.graphics.GraphicsDevice.Viewport.Height - elevator.texture.Height / elevator.numberOfRows;
+			}
         }
     }
 }

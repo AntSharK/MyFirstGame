@@ -39,10 +39,16 @@ namespace MyFirstGame
             // Initialize current game's static variables for graphics
             CurrentGame.game = this;
             CurrentGame.graphics = new GraphicsDeviceManager(this);
-
+			CurrentGame.graphicsDevice = GraphicsDevice;
             // Initialize root directory of content
             Content.RootDirectory = "Content";
             CurrentGame.content = Content;
+			ContentLoader.content = Content;
+			CurrentGame.graphics.PreferredBackBufferWidth = 800;
+			CurrentGame.graphics.PreferredBackBufferHeight = 600;
+
+
+			
         }
 
         /// <summary>

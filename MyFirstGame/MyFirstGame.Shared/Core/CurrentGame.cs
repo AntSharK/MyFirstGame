@@ -15,9 +15,15 @@ namespace MyFirstGame
         public static GameRunner game;
 
         /// <summary>
-        /// Graphics device
+        /// Graphics device manager
         /// </summary>
         public static GraphicsDeviceManager graphics;
+
+
+		/// <summary>
+		/// Graphics device 
+		/// </summary>
+		public static GraphicsDevice graphicsDevice;
 
         /// <summary>
         /// Spritebatch to draw sprites on
@@ -27,6 +33,14 @@ namespace MyFirstGame
         /// <summary>
         /// Content manager of game
         /// </summary>
-        public static ContentManager content;
+        public static ContentManager content;	
+
+
+		public static float timeScale = 1;
+
+		public static float GetDelta(GameTime gameTime)
+		{
+			return (float) gameTime.ElapsedGameTime.TotalSeconds*timeScale;
+		}
     }
 }
