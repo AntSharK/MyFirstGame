@@ -15,7 +15,6 @@ namespace MyFirstGame
 		public static Dictionary<string, Texture2D> texturePool = new Dictionary<string, Texture2D>();
 		public static Dictionary<string, SoundEffect> soundEffectPool = new Dictionary<string, SoundEffect>();
 
-
 		// Loads and returns texture if not in dictionary; otherwise, returns already loaded texture
 		public static Texture2D GetTexture(string assetName)
 		{
@@ -30,7 +29,7 @@ namespace MyFirstGame
 			}
 			catch (Exception e)
 			{
-				Console.WriteLine(e.Message);
+				//Console.WriteLine(e.Message);
 				return null;
 			}
 			texturePool[assetName] = texture;
@@ -51,7 +50,7 @@ namespace MyFirstGame
 			}
 			catch (Exception e)
 			{
-				Console.WriteLine(e.Message);
+				//Console.WriteLine(e.Message);
 				return null;
 			}
 			soundEffectPool[assetName] = soundEffect;

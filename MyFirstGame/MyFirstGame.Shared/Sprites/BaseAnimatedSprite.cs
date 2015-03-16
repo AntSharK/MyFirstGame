@@ -32,6 +32,11 @@ namespace MyFirstGame.Sprites
         public Animation currentAnimation;
 
         /// <summary>
+        /// Stores the current state
+        /// </summary>
+        public string currentState;
+
+        /// <summary>
         /// Initializes a new animated sprite
         /// </summary>
         /// <param name="texture">Texture to put into the sprite</param>
@@ -80,12 +85,26 @@ namespace MyFirstGame.Sprites
         /// <param name="deactivate">Whether to deactivate the current animation</param>
         public void SetAnimation(string animationName, bool resetCurrent = true, bool deactivate = true)
         {
+            if (this.currentAnimation == null)
+                this.currentAnimation = this.animations[animationName];
             if (resetCurrent)
                 this.currentAnimation.Reset();
             if (deactivate)
                 this.currentAnimation.isActive = false;
             this.currentAnimation = animations[animationName];
             this.currentAnimation.isActive = true;
+        }
+
+        /// <summary>
+        /// Sets current animation and also sets the state variable
+        /// </summary>
+        /// <param name="animationName">Name of animation</param>
+        /// <param name="resetCurrent">Whether to reset the current animation to the start</param>
+        /// <param name="deactivate">Whether to deactivate the current animation</param>
+        public void SetStateAndAnimation(string animationName, bool resetCurrent = true, bool deactivate = true)
+        {
+            this.currentState = animationName;
+            this.SetAnimation(animationName, resetCurrent, deactivate);
         }
 
         /// <summary>
@@ -98,7 +117,7 @@ namespace MyFirstGame.Sprites
         /// <param name="timePerFrame">Time per frame</param>
         /// <param name="animationName">Name to give the animation</param>
         /// <returns></returns>
-        public bool addAnimation(int xStart, int yStart, int xEnd, int yEnd, float timePerFrame = 0.1f, string animationName = "", bool isReversible = false, bool isLooping = true)
+        public bool addAnimation(int xStart, int yStart, int xEnd, int yEnd, float timePerFrame = 0.1f, string animationName = "", bool isReversible = false, bool isLooping = true, Action onFinish = null)
         {
             // Return false if there are invalid parameters
             if (xStart >= this.numberOfColumns || xEnd >= this.numberOfColumns || yEnd >= this.numberOfRows || yStart >= this.numberOfRows)
@@ -110,6 +129,8 @@ namespace MyFirstGame.Sprites
             try
             {
                 Animation newAnimation = new Animation(this, xStart, yStart, xEnd, yEnd, timePerFrame, isReversible, isLooping);
+                if (onFinish != null)
+                    newAnimation.onFinish = onFinish;
                 this.animations.Add(animationName, newAnimation);
             }
             catch (Exception)
@@ -212,6 +233,11 @@ namespace MyFirstGame.Sprites
         public bool isReversible;
 
         /// <summary>
+        /// Action to perform on the animation's finishing
+        /// </summary>
+        public Action onFinish; 
+
+        /// <summary>
         /// Initializes a new animation
         /// </summary>
         /// <param name="sprite">Sprite to attach animation to</param>
@@ -308,6 +334,10 @@ namespace MyFirstGame.Sprites
                     {
                         this.currentFrame = this.numberOfFrames - 1;
                         this.isFinished = true;
+                        if (this.onFinish != null)
+                        {
+                            this.onFinish();
+                        }
                         break;
                     }
 
