@@ -36,7 +36,7 @@ namespace MyFirstGame.Sprites
 
 		public float acceleration = 3;
 
-		public float maxSpeed = 10;
+		public float maxSpeed = 5;
 
         public float cutOff = 0.2f;
 
@@ -176,7 +176,7 @@ namespace MyFirstGame.Sprites
 						destinationY = closestFloor;
 					}
 					this.currentSpeed = 0;
-					this.position.Y += Math.Min((destinationY - this.position.Y) * (float)gameTime.ElapsedGameTime.TotalSeconds*2.5f, maxSpeed);
+					this.position.Y += Math.Max (Math.Min ((destinationY - this.position.Y) * (float)gameTime.ElapsedGameTime.TotalSeconds * 5f, maxSpeed), -1 * maxSpeed);
 					if (Math.Abs (destinationY - this.position.Y) < 5) {
 						this.position.Y = destinationY;
 						this.state = AnimationNames.Deaccelerating;
