@@ -246,7 +246,7 @@ namespace MyFirstGame.Sprites
         /// <param name="xEnd">X position of square in sprite to end this animation</param>
         /// <param name="yEnd">Y position of square in sprite to end this animation</param>
         /// <param name="timePerFrame">Duration of each frame</param>
-        public Animation(BaseAnimatedSprite sprite, int xStart, int yStart, int xEnd, int yEnd, float timePerFrame = 0, bool isReversible = false, bool isLooping = true)
+		public Animation(BaseAnimatedSprite sprite, int xStart, int yStart, int xEnd, int yEnd, float timePerFrame = 0, bool isReversible = false, bool isLooping = true, int border = 0)
         {
             // Initialize a bunch of stuff
             this.isActive = true;
@@ -291,7 +291,7 @@ namespace MyFirstGame.Sprites
             int y = yStart;
             for (int i = 0; i < numberOfFrames; i++)
             {
-                rectangles[i] = new Rectangle(x * this.frameWidth + x, y * this.frameHeight + y, this.frameWidth, this.frameHeight);
+				rectangles[i] = new Rectangle(x * this.frameWidth+x*border, y * this.frameHeight+y*border, this.frameWidth, this.frameHeight);
                 x = x + this.frameAdvance;
                 if (x >= this.sprite.numberOfColumns)
                 {

@@ -33,6 +33,8 @@ namespace MyFirstGame.Sprites
         /// </summary>
         public float currentSpeed = 0;
 
+		float previousSpeed;
+
         /// <summary>
         /// Factor to deaccelerate by each interval
         /// </summary>
@@ -41,12 +43,12 @@ namespace MyFirstGame.Sprites
         /// <summary>
         /// Acceleration
         /// </summary>
-		public float acceleration = 3;
+		public float acceleration = 1500;
 
         /// <summary>
         /// Maximum speed
         /// </summary>
-		public float maxSpeed = 5;
+		public float maxSpeed = 300;
 
         /// <summary>
         /// Cutoff before setting speed to 0
@@ -72,21 +74,35 @@ namespace MyFirstGame.Sprites
         /// Initializes a new instance of the test animated sprite
         /// </summary>
         public Elevator():
-		base(ContentLoader.GetTexture("testelevator.png"),
-            new Vector2(200, 200),
-            4, 2)
+//		base(ContentLoader.GetTexture("testelevator.png"),
+//            new Vector2(200, 200),
+//            4, 2)
+//        {
+//            this.addAnimation(0, 0, 0, 0, 1f, AnimationNames.Still);
+//            this.addAnimation(0, 0, 3, 0, 0.1f, AnimationNames.Opening, false, false, () => this.SetStateAndAnimation(AnimationNames.Opened));
+//            this.addAnimation(3, 0, 0, 0, 0.1f, AnimationNames.Closing, false, false, () => this.SetStateAndAnimation(AnimationNames.Still));
+//            this.addAnimation(3, 0, 3, 0, 1f, AnimationNames.Opened);
+//            this.addAnimation(0, 1, 3, 1, 0.1f, AnimationNames.Accelerating, false, false, () => this.SetStateAndAnimation(AnimationNames.Moving));
+//            this.addAnimation(3, 1, 0, 1, 0.15f, AnimationNames.Deaccelerating, false, false, 
+//				() => this.SetStateAndAnimation(AnimationNames.Still));
+//            this.addAnimation(3, 1, 3, 1, 0.15f, AnimationNames.Moving);
+//
+//            this.SetStateAndAnimation(AnimationNames.Still);
+//        }
+		base(ContentLoader.GetTexture("elevator.png"),
+            new Vector2(0, 200),
+            6, 1)
         {
             this.addAnimation(0, 0, 0, 0, 1f, AnimationNames.Still);
-            this.addAnimation(0, 0, 3, 0, 0.1f, AnimationNames.Opening, false, false, () => this.SetStateAndAnimation(AnimationNames.Opened));
-            this.addAnimation(3, 0, 0, 0, 0.1f, AnimationNames.Closing, false, false, () => this.SetStateAndAnimation(AnimationNames.Still));
-            this.addAnimation(3, 0, 3, 0, 1f, AnimationNames.Opened);
-            this.addAnimation(0, 1, 3, 1, 0.1f, AnimationNames.Accelerating, false, false, () => this.SetStateAndAnimation(AnimationNames.Moving));
-            this.addAnimation(3, 1, 0, 1, 0.15f, AnimationNames.Deaccelerating, false, false, () => this.SetStateAndAnimation(AnimationNames.Still));
-            this.addAnimation(3, 1, 3, 1, 0.15f, AnimationNames.Moving);
+            this.addAnimation(0, 0, 5, 0, 0.1f, AnimationNames.Opening, false, false, () => this.SetStateAndAnimation(AnimationNames.Opened));
+            this.addAnimation(5, 0, 0, 0, 0.1f, AnimationNames.Closing, false, false, () => this.SetStateAndAnimation(AnimationNames.Still));
+            this.addAnimation(5, 0, 5, 0, 1f, AnimationNames.Opened);
+            this.addAnimation(0, 0, 0, 0, 0.1f, AnimationNames.Accelerating, false, false, () => this.SetStateAndAnimation(AnimationNames.Moving));
+			this.addAnimation (0, 0, 0, 0, 0.15f, AnimationNames.Deaccelerating, false, false);//, () => this.SetStateAndAnimation(AnimationNames.Still));
+            this.addAnimation(0, 0, 0, 0, 0.15f, AnimationNames.Moving);
 
             this.SetStateAndAnimation(AnimationNames.Still);
         }
-
         /// <summary>
         /// Updates stuff.
         /// REMEMBER TO CALL BASE.UPDATE to draw things.
@@ -110,18 +126,21 @@ namespace MyFirstGame.Sprites
             // Cut off speed to 0 if we've deaccelerated enough
 			if (this.currentState == AnimationNames.Deaccelerating) {
 				this.currentSpeed = this.currentSpeed * this.deacceleratePerSecond;
-				if ((this.currentSpeed < this.cutOff && this.currentSpeed > 0) || (this.currentSpeed > -this.cutOff && this.currentSpeed < 0))
+				if ((this.currentSpeed < this.cutOff && this.currentSpeed <= 0) || (this.currentSpeed > -this.cutOff && this.currentSpeed >= 0)) {
 					this.currentSpeed = 0;
+					this.SetStateAndAnimation (AnimationNames.Still);
+				}
 			}
 
             // If we have 0 speed and are still, open the door
-            if (this.currentSpeed == 0 && this.currentState == AnimationNames.Still)
+            if (this.currentState == AnimationNames.Still)
             {
+				this.currentSpeed = 0;
                 this.SetStateAndAnimation(AnimationNames.Opening);
             }
-            
+			this.currentSpeed = MathHelper.Clamp (this.currentSpeed, -1 * this.maxSpeed, this.maxSpeed);
             // Change the position of the elevator
-            this.position.Y -= CurrentGame.getDelta(gameTime) * 100 * currentSpeed;
+            this.position.Y += CurrentGame.getDelta(gameTime) * currentSpeed;
         }
 
         /// <summary>
@@ -135,30 +154,39 @@ namespace MyFirstGame.Sprites
             {
                 if (this.currentState == AnimationNames.Accelerating || this.currentState == AnimationNames.Moving)
                 {
-                    this.SetAnimation(AnimationNames.Deaccelerating);
+                    
                     if (this.currentSpeed != 0)
                     {
                         float closestFloor = float.MaxValue, smallestDist = float.MaxValue;
+						float elevatorBottom = this.position.Y + this.texture.Height / this.numberOfRows;
                         for (int i = 0; i < currentBuilding.floors.Length; i++)
                         {
-                            if (Math.Sign(this.currentBuilding.floors[i] - position.Y) == -1 * Math.Sign(this.currentSpeed) &&
-                                Math.Abs(this.currentBuilding.floors[i] - position.Y) < smallestDist)
+							if ((Math.Sign(this.currentBuilding.floors[i] - elevatorBottom) ==  Math.Sign(this.currentSpeed) || this.currentBuilding.floors[i] - elevatorBottom == 0) &&
+								Math.Abs(this.currentBuilding.floors[i] - elevatorBottom) < smallestDist)
                             {
-                                smallestDist = Math.Abs(currentBuilding.floors[i] - position.Y);
+								smallestDist = Math.Abs(currentBuilding.floors[i] - elevatorBottom);
                                 closestFloor = this.currentBuilding.floors[i];
                             }
                         }
-                        destinationY = closestFloor;
+						//this.currentSpeed = Math.Sign(this.currentSpeed)*this.maxSpeed;
+						destinationY = closestFloor - this.texture.Height / this.numberOfRows;
                     }
-                    this.currentSpeed = 0;
                     float delta = CurrentGame.getDelta(gameTime);
-                    float velocity = MathHelper.Clamp((destinationY - this.position.Y) * 5f, -1 * maxSpeed / delta, maxSpeed / delta);
-                    this.position.Y += velocity * delta;
-                    if (Math.Abs(destinationY - this.position.Y) < 5)
+					
+					this.currentSpeed = MathHelper.Clamp((destinationY - this.position.Y) * 15f, -1 * maxSpeed, maxSpeed);
+
+					if (Math.Abs(this.destinationY - (this.position.Y + this.currentSpeed*delta)) < 1)
                     {
                         this.position.Y = destinationY;
+
                         this.currentState = AnimationNames.Deaccelerating;
                     }
+
+					if (Math.Abs (this.previousSpeed) < Math.Abs (this.currentSpeed) && this.currentState != AnimationNames.Deaccelerating) {
+						this.SetAnimation(AnimationNames.Deaccelerating);
+					}
+
+					this.previousSpeed = this.currentSpeed;
                 }
             }
         }
@@ -172,11 +200,9 @@ namespace MyFirstGame.Sprites
             if (InputState.IsKeyDown(Keys.Up))
             {
                 currentKey = Keys.Up;
-                if (this.currentState == AnimationNames.Accelerating)
+				if (this.currentState == AnimationNames.Accelerating || this.currentState == AnimationNames.Moving)
                 {
-                    this.currentSpeed = this.currentSpeed + CurrentGame.getDelta(gameTime) * this.acceleration;
-                    if (this.currentSpeed > this.maxSpeed)
-                        this.currentSpeed = this.maxSpeed;
+                    this.currentSpeed = this.currentSpeed - CurrentGame.getDelta(gameTime) * this.acceleration;
                 }
 
                 if (this.currentState == AnimationNames.Opened)
@@ -193,11 +219,10 @@ namespace MyFirstGame.Sprites
             if (InputState.IsKeyDown(Keys.Down))
             {
                 currentKey = Keys.Down;
-                if (this.currentState == AnimationNames.Accelerating)
+				if (this.currentState == AnimationNames.Accelerating || this.currentState == AnimationNames.Moving)
                 {
-                    this.currentSpeed = this.currentSpeed - CurrentGame.getDelta(gameTime) * acceleration;
-                    if (this.currentSpeed < -this.maxSpeed)
-                        this.currentSpeed = -this.maxSpeed;
+                    this.currentSpeed = this.currentSpeed + CurrentGame.getDelta(gameTime) * acceleration;
+
                 }
 
                 if (this.currentState == AnimationNames.Opened)

@@ -6,8 +6,8 @@ namespace MyFirstGame
 {
 	public class Building:BaseSprite
 	{
-		public float[] floors = {0, 200, 400};
-		public Building (): base(ContentLoader.GetTexture("building.png"), new Vector2(300, 0))
+		public float[] floors = {200, 400, 600};
+		public Building (): base(ContentLoader.GetTexture("building.png"), new Vector2(100, 0))
 		{
 			
 		}

@@ -32,8 +32,10 @@ namespace MyFirstGame.Screens
 			elevator = new Elevator ();
 			Building building = new Building ();
             //this.addSprite(new TestSprite(game), Special.Hero);
+			this.addSprite (new BaseSprite(ContentLoader.GetTexture("shaft.png"), new Vector2(0,0)));
             this.addSprite(elevator, Special.Hero);
 			this.addSprite (building);
+
 			elevator.currentBuilding = building;
             //this.addDecorator(new TestCameraDecorator(this));
         }

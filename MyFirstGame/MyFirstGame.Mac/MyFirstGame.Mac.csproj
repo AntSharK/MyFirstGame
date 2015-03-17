@@ -58,7 +58,6 @@
   <Import Project="$(MSBuildExtensionsPath)\Mono\MonoMac\v0.0\Mono.MonoMac.targets" />
   <ItemGroup>
     <None Include="Info.plist" />
-    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\" />
@@ -367,6 +366,12 @@
     </BundleResource>
     <BundleResource Include="..\MyFirstGame.Shared\Content\Images\building.png">
       <Link>Content\Images\building.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\MyFirstGame.Shared\Content\Images\elevator.png">
+      <Link>Content\Images\elevator.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\MyFirstGame.Shared\Content\Images\shaft.png">
+      <Link>Content\Images\shaft.png</Link>
     </BundleResource>
   </ItemGroup>
 </Project>

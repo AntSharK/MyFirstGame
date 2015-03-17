@@ -91,6 +91,31 @@ namespace MyFirstGame
 			return false;
 		}
 
+		/// <summary>
+		/// Checks if any one of a number of keys has just been pressed in this update cycle
+		/// </summary>
+		/// <param name="keys">The keys we want to check</param>
+		/// <returns>True if any key is pressed, false otherwise</returns>
+		public static bool AnyKeysPressed(params Keys[] keys) {
+			foreach (Keys key in keys) {
+				if (IsKeyPressed(key))
+					return true;
+			}
+			return false;
+		}
+
+		/// <summary>
+		/// Checks if any one number of keys has just been released in this update cycle
+		/// </summary>
+		/// <param name="keys">The keys we want to check</param>
+		/// <returns>True if any key is released, false otherwise</returns>
+		public static bool AnyKeysReleased(params Keys[] keys) {
+			foreach (Keys key in keys) {
+				if (IsKeyReleased(key))
+					return true;
+			}
+			return false;
+		}
 
 		/// <summary>
 		/// Checks if a number of keys have just been pressed in this update cycle
@@ -102,7 +127,7 @@ namespace MyFirstGame
 			bool result = true;
 
 			foreach (Keys key in keys) {
-				result = result && IsKeyPress(key);
+				result = result && IsKeyPressed(key);
 			}
 			return result;
 		}
@@ -116,7 +141,7 @@ namespace MyFirstGame
 			bool result = true;
 
 			foreach (Keys key in keys) {
-				result = result && IsKeyRelease(key);
+				result = result && IsKeyReleased(key);
 			}
 			return result;
 		}
@@ -153,7 +178,7 @@ namespace MyFirstGame
         /// </summary>
         /// <param name="key">The key to check</param>
         /// <returns>True if key has been pressed this update cycle, false otherwise</returns>
-		public static bool IsKeyPress(Keys key) {
+		public static bool IsKeyPressed(Keys key) {
 			return currentKeyboardState.IsKeyDown (key) && previousKeyboardState.IsKeyUp (key);
 		}
 
@@ -162,7 +187,7 @@ namespace MyFirstGame
         /// </summary>
         /// <param name="key">The key to check</param>
         /// <returns>True if key has been released this update cycle, false otherwise</returns>
-        public static bool IsKeyRelease(Keys key) {
+        public static bool IsKeyReleased(Keys key) {
 			return currentKeyboardState.IsKeyUp(key) && previousKeyboardState.IsKeyDown(key);
 		}
 
