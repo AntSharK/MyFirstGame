@@ -97,7 +97,7 @@ namespace MyFirstGame.Screens
         /// <param name="sprite">Sprite to add</param>
         /// <param name="special">Optional parameter to add as a reserved sprite</param>
         /// <returns>True if successful, false if cannot be added to list</returns>
-        protected bool addSprite(BaseSprite sprite, string special = "")
+        public bool AddSprite(BaseSprite sprite, string special = "")
         {
             this.sprites.Add(sprite);
             sprite.screen = this;
@@ -121,7 +121,7 @@ namespace MyFirstGame.Screens
         /// </summary>
         /// <param name="spriteName">Name of sprite to be removed</param>
         /// <returns>True if successfully removed, false otherwise</returns>
-        protected bool removeSprite(string spriteName)
+        public bool RemoveSprite(string spriteName)
         {
             try
             {
@@ -143,7 +143,7 @@ namespace MyFirstGame.Screens
         /// </summary>
         /// <param name="decorator">Decorator to add</param>
         /// <returns>True all the time</returns>
-        protected bool addDecorator(BaseScreenDecorator decorator)
+        public bool AddDecorator(BaseScreenDecorator decorator)
         {
             this.decorators.Add(decorator);
             return true;

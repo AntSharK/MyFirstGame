@@ -33,8 +33,7 @@ namespace MyFirstGame.Sprites
         /// </summary>
         public float currentSpeed = 0;
 
-
-		/// <summary>
+        /// <summary>
 		/// y velocity in previous frame
 		/// </summary>
 		float previousSpeed;
@@ -84,7 +83,7 @@ namespace MyFirstGame.Sprites
         /// </summary>
         public Elevator():
 		base(ContentLoader.GetTexture("elevator.png"),
-            new Vector2(0, 200),
+            new Vector2(50, 300),
             6, 1)
         {
             this.addAnimation(0, 0, 0, 0, 1f, AnimationNames.Still);
@@ -113,7 +112,6 @@ namespace MyFirstGame.Sprites
             // Handles moving up and down
             this.handleMovingInput(gameTime);
             
-
             // Goes to the floor we think the player is headed to.
             this.projectToIntendedFloor(gameTime);
 			
@@ -133,6 +131,7 @@ namespace MyFirstGame.Sprites
                 this.SetStateAndAnimation(AnimationNames.Opening);
             }
 			this.currentSpeed = MathHelper.Clamp (this.currentSpeed, -1 * this.maxSpeed, this.maxSpeed);
+
             // Change the position of the elevator
             this.position.Y += CurrentGame.getDelta(gameTime) * currentSpeed;
         }
@@ -147,19 +146,18 @@ namespace MyFirstGame.Sprites
             {
                 if (this.currentState == AnimationNames.Accelerating || this.currentState == AnimationNames.Moving)
                 {
-                    
                     if (this.currentSpeed != 0)
                     {
 						// Find the closest floor in the moving direction
                         float closestFloor = float.MaxValue, smallestDist = float.MaxValue;
 						float elevatorBottom = this.position.Y + this.texture.Height / this.numberOfRows;
-                        for (int i = 0; i < currentBuilding.floors.Length; i++)
+                        for (int i = 0; i < currentBuilding.floorBase.Length; i++)
                         {
-							if ((Math.Sign(this.currentBuilding.floors[i] - elevatorBottom) ==  Math.Sign(this.currentSpeed) || this.currentBuilding.floors[i] - elevatorBottom == 0) &&
-								Math.Abs(this.currentBuilding.floors[i] - elevatorBottom) < smallestDist)
+							if ((Math.Sign(this.currentBuilding.floorBase[i] - elevatorBottom) ==  Math.Sign(this.currentSpeed) || this.currentBuilding.floorBase[i] - elevatorBottom == 0) &&
+								Math.Abs(this.currentBuilding.floorBase[i] - elevatorBottom) < smallestDist)
                             {
-								smallestDist = Math.Abs(currentBuilding.floors[i] - elevatorBottom);
-                                closestFloor = this.currentBuilding.floors[i];
+								smallestDist = Math.Abs(currentBuilding.floorBase[i] - elevatorBottom);
+                                closestFloor = this.currentBuilding.floorBase[i];
                             }
                         }
 						destinationY = closestFloor - this.texture.Height / this.numberOfRows;

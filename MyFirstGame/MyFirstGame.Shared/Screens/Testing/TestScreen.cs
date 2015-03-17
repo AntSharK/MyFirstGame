@@ -16,28 +16,32 @@ namespace MyFirstGame.Screens
         /// Internal class of strings, used for reserved keywords
         /// See debate on: enum vs const string
         /// </summary>
-        public class Special
+        public class Elements
         {
-            public const string Hero = "hero";
+            public const string Elevator = "elevator";
+            public const string Tower = "tower";
+            public const string Shaft = "shaft";
         }
 
-
-		Elevator elevator;
         /// <summary>
         /// Initializes the test screen
         /// </summary>
         /// <param name="game">Our main game class</param>
         public TestScreen(): base()
         {
-			elevator = new Elevator ();
-			Building building = new Building ();
-            //this.addSprite(new TestSprite(game), Special.Hero);
-			this.addSprite (new BaseSprite(ContentLoader.GetTexture("shaft.png"), new Vector2(0,0)));
-            this.addSprite(elevator, Special.Hero);
-			this.addSprite (building);
+            this.AddSprite(new Building(), Elements.Tower);
+            ((Building)this.reservedSprite[Elements.Tower]).addFloor(ContentLoader.GetTexture("floor1.png"));
+            ((Building)this.reservedSprite[Elements.Tower]).addFloor(ContentLoader.GetTexture("floor2.png"));
+            ((Building)this.reservedSprite[Elements.Tower]).addFloor(ContentLoader.GetTexture("floor3.png"));
 
-			elevator.currentBuilding = building;
-            //this.addDecorator(new TestCameraDecorator(this));
+            this.AddSprite(new BaseSprite(ContentLoader.GetTexture("shaft.png"), new Vector2(50, 300)));
+            this.AddSprite(new Elevator(), Elements.Elevator);
+
+            ((Elevator)this.reservedSprite[Elements.Elevator]).currentBuilding = ((Building)this.reservedSprite[Elements.Tower]);
+
+            TestCameraDecorator camera = new TestCameraDecorator(this);
+            camera.AttachToSprite(this.reservedSprite[Elements.Elevator]);
+            this.AddDecorator(camera);
         }
 
         /// <summary>
@@ -49,30 +53,14 @@ namespace MyFirstGame.Screens
         {
 		    base.Update(gameTime);
 
-			if (InputState.IsKeyDown(Keys.D))
-            {
-				this.reservedSprite[Special.Hero].position.X += CurrentGame.getDelta(gameTime) * 100;
-            }
-			if (InputState.IsKeyDown(Keys.A))
-            {
-				this.reservedSprite[Special.Hero].position.X -= CurrentGame.getDelta(gameTime) * 100;
-            }
-			if (InputState.IsKeyDown(Keys.W))
-            {
-				this.reservedSprite[Special.Hero].position.Y -= CurrentGame.getDelta(gameTime) * 100;
-            }
-			if (InputState.IsKeyDown(Keys.S))
-            {
-				this.reservedSprite[Special.Hero].position.Y += CurrentGame.getDelta(gameTime) * 100;
-            }
-
-
+            /*
 			if (elevator.position.Y < 0) {
 				elevator.position.Y = 0;
 			}
 			if (elevator.position.Y + elevator.texture.Height / elevator.numberOfRows > CurrentGame.graphics.GraphicsDevice.Viewport.Height) {
 				elevator.position.Y = CurrentGame.graphics.GraphicsDevice.Viewport.Height - elevator.texture.Height / elevator.numberOfRows;
 			}
+            */
         }
     }
 }
