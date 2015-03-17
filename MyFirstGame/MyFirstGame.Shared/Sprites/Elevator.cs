@@ -33,17 +33,26 @@ namespace MyFirstGame.Sprites
         /// </summary>
         public float currentSpeed = 0;
 
+
+		/// <summary>
+		/// y velocity in previous frame
+		/// </summary>
 		float previousSpeed;
 
         /// <summary>
         /// Factor to deaccelerate by each interval
         /// </summary>
         public float deacceleratePerSecond = 0.95f;
-
+	
         /// <summary>
         /// Acceleration
         /// </summary>
 		public float acceleration = 1500;
+
+		/// <summary>
+		/// how fast the elevator accelerates when moving to the nearest floor
+		/// </summary>
+		public float homingMultiplier = 15f;
 
         /// <summary>
         /// Maximum speed
@@ -74,21 +83,6 @@ namespace MyFirstGame.Sprites
         /// Initializes a new instance of the test animated sprite
         /// </summary>
         public Elevator():
-//		base(ContentLoader.GetTexture("testelevator.png"),
-//            new Vector2(200, 200),
-//            4, 2)
-//        {
-//            this.addAnimation(0, 0, 0, 0, 1f, AnimationNames.Still);
-//            this.addAnimation(0, 0, 3, 0, 0.1f, AnimationNames.Opening, false, false, () => this.SetStateAndAnimation(AnimationNames.Opened));
-//            this.addAnimation(3, 0, 0, 0, 0.1f, AnimationNames.Closing, false, false, () => this.SetStateAndAnimation(AnimationNames.Still));
-//            this.addAnimation(3, 0, 3, 0, 1f, AnimationNames.Opened);
-//            this.addAnimation(0, 1, 3, 1, 0.1f, AnimationNames.Accelerating, false, false, () => this.SetStateAndAnimation(AnimationNames.Moving));
-//            this.addAnimation(3, 1, 0, 1, 0.15f, AnimationNames.Deaccelerating, false, false, 
-//				() => this.SetStateAndAnimation(AnimationNames.Still));
-//            this.addAnimation(3, 1, 3, 1, 0.15f, AnimationNames.Moving);
-//
-//            this.SetStateAndAnimation(AnimationNames.Still);
-//        }
 		base(ContentLoader.GetTexture("elevator.png"),
             new Vector2(0, 200),
             6, 1)
@@ -103,6 +97,7 @@ namespace MyFirstGame.Sprites
 
             this.SetStateAndAnimation(AnimationNames.Still);
         }
+
         /// <summary>
         /// Updates stuff.
         /// REMEMBER TO CALL BASE.UPDATE to draw things.
@@ -118,7 +113,6 @@ namespace MyFirstGame.Sprites
             // Handles moving up and down
             this.handleMovingInput(gameTime);
             
-			//Console.WriteLine (this.currentState);
 
             // Goes to the floor we think the player is headed to.
             this.projectToIntendedFloor(gameTime);
@@ -145,7 +139,6 @@ namespace MyFirstGame.Sprites
 
         /// <summary>
         /// Projects the elevator to the intended floor.
-        /// *** WORK IN PROGRESS ***
         /// </summary>
         /// <param name="gameTime">Game time to calculated elapsed time</param>
         private void projectToIntendedFloor(GameTime gameTime)
@@ -157,6 +150,7 @@ namespace MyFirstGame.Sprites
                     
                     if (this.currentSpeed != 0)
                     {
+						// Find the closest floor in the moving direction
                         float closestFloor = float.MaxValue, smallestDist = float.MaxValue;
 						float elevatorBottom = this.position.Y + this.texture.Height / this.numberOfRows;
                         for (int i = 0; i < currentBuilding.floors.Length; i++)
@@ -168,13 +162,16 @@ namespace MyFirstGame.Sprites
                                 closestFloor = this.currentBuilding.floors[i];
                             }
                         }
-						//this.currentSpeed = Math.Sign(this.currentSpeed)*this.maxSpeed;
 						destinationY = closestFloor - this.texture.Height / this.numberOfRows;
                     }
-                    float delta = CurrentGame.getDelta(gameTime);
-					
-					this.currentSpeed = MathHelper.Clamp((destinationY - this.position.Y) * 15f, -1 * maxSpeed, maxSpeed);
 
+                    float delta = CurrentGame.getDelta(gameTime);
+
+
+					// Set the speed based on the floor location
+					this.currentSpeed = MathHelper.Clamp((destinationY - this.position.Y) * homingMultiplier, -1 * maxSpeed, maxSpeed);
+
+					// Check if floor has been reached
 					if (Math.Abs(this.destinationY - (this.position.Y + this.currentSpeed*delta)) < 1)
                     {
                         this.position.Y = destinationY;
@@ -182,6 +179,7 @@ namespace MyFirstGame.Sprites
                         this.currentState = AnimationNames.Deaccelerating;
                     }
 
+					//Set animation to decelerating when speed starts decreasing
 					if (Math.Abs (this.previousSpeed) < Math.Abs (this.currentSpeed) && this.currentState != AnimationNames.Deaccelerating) {
 						this.SetAnimation(AnimationNames.Deaccelerating);
 					}
