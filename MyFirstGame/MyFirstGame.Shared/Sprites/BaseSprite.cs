@@ -35,6 +35,26 @@ namespace MyFirstGame.Sprites
         public BaseScreen screen;
 
         /// <summary>
+        /// Rotation in RADIANS. Clockwise.
+        /// </summary>
+        public float rotation;
+
+        /// <summary>
+        /// Origin point. By definition, the center of the sprite, unless otherwise needed.
+        /// </summary>
+        public Vector2 origin;
+
+        /// <summary>
+        /// Default of 1
+        /// </summary>
+        public Vector2 scale;
+
+        /// <summary>
+        /// Depth, for drawing
+        /// </summary>
+        public float depth;
+        
+        /// <summary>
         /// Initializes the sprite
         /// </summary>
         /// <param name="texture">Enter a texture here to load</param>
@@ -56,16 +76,32 @@ namespace MyFirstGame.Sprites
             this.position = position;
             this.isActive = true;
             this.isVisible = true;
+            this.rotation = 0f;
+            this.origin = new Vector2(this.texture.Width / 2, this.texture.Height / 2);
+            this.scale = new Vector2(1, 1);
+            this.depth = 0;
             this.screen = screen;
         }
 
+        /// <summary>
+        /// Scales the sprite, in both dimensions, equally, by a FACTOR
+        /// </summary>
+        /// <param name="newScale">Factor to scale by</param>
+        public virtual void setScale(float newScale)
+        {
+            this.origin.X = this.origin.X * newScale;
+            this.origin.Y = this.origin.Y * newScale;
+            this.scale.X = this.scale.X * newScale;
+            this.scale.Y = this.scale.Y * newScale;
+        }
+        
         /// <summary>
         /// Draws the sprite for the spritebatch
         /// </summary>
         /// <param name="batch">Spritebatch to draw on</param>
         public virtual void Draw(SpriteBatch batch)
         {
-            batch.Draw(this.texture, this.position, Color.White);
+            batch.Draw(this.texture, this.position, null, Color.White, this.rotation, this.origin, this.scale, SpriteEffects.None, this.depth);
         }
 
         /// <summary>

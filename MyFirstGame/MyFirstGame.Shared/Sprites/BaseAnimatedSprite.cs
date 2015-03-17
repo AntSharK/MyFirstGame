@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+
 namespace MyFirstGame.Sprites
 {
     /// <summary>
@@ -47,6 +48,10 @@ namespace MyFirstGame.Sprites
         {
             this.numberOfColumns = numberOfColumns;
             this.numberOfRows = numberOfRows;
+            
+            // To correct for origin to be calculated off size of a single square, not the whole texture
+            this.origin.X = this.origin.X / numberOfColumns;
+            this.origin.Y = this.origin.Y / numberOfRows;
         }
 
         /// <summary>
@@ -356,7 +361,7 @@ namespace MyFirstGame.Sprites
         /// <param name="batch">Sprite batch to draw on</param>
         public void Draw(SpriteBatch batch)
         {
-            batch.Draw(this.sprite.texture, this.sprite.position, this.rectangles[this.currentFrame], Color.White);
+            batch.Draw(this.sprite.texture, this.sprite.position, this.rectangles[this.currentFrame], Color.White, this.sprite.rotation, this.sprite.origin, this.sprite.scale, SpriteEffects.None, this.sprite.depth);
         }
 
         /// <summary>
