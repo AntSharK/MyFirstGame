@@ -374,5 +374,14 @@
     <BundleResource Include="..\MyFirstGame.Shared\Content\Images\elevator.png">
       <Link>Content\Images\elevator.png</Link>
     </BundleResource>
+    <BundleResource Include="..\MyFirstGame.Shared\Content\Images\floor1.png">
+      <Link>Content\Images\floor1.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\MyFirstGame.Shared\Content\Images\floor2.png">
+      <Link>Content\Images\floor2.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\MyFirstGame.Shared\Content\Images\floor3.png">
+      <Link>Content\Images\floor3.png</Link>
+    </BundleResource>
   </ItemGroup>
 </Project>

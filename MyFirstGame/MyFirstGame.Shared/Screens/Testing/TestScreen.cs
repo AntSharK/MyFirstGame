@@ -30,9 +30,9 @@ namespace MyFirstGame.Screens
         public TestScreen(): base()
         {
             this.AddSprite(new Building(), Elements.Tower);
-            ((Building)this.reservedSprite[Elements.Tower]).addFloor(ContentLoader.GetTexture("floor1.png"));
-           ((Building)this.reservedSprite[Elements.Tower]).addFloor(ContentLoader.GetTexture("floor2.png"));
-           ((Building)this.reservedSprite[Elements.Tower]).addFloor(ContentLoader.GetTexture("floor3.png"));
+            ((Building)this.reservedSprite[Elements.Tower]).addFloor(ContentLoader.GetTexture("floor3.png"));
+        //   ((Building)this.reservedSprite[Elements.Tower]).addFloor(ContentLoader.GetTexture("floor2.png"));
+           ((Building)this.reservedSprite[Elements.Tower]).addFloor(ContentLoader.GetTexture("floor1.png"));
 
 			BaseAnimatedSprite shaft = new BaseAnimatedSprite (ContentLoader.GetTexture ("shaft.png"), new Vector2 (0, 0), 5, 1);
 			shaft.addAnimation (0, 0, 4, 0, 0.25f, "animation");
@@ -45,7 +45,7 @@ namespace MyFirstGame.Screens
 			this.camera = new Camera (800, 600) {
 				Position = new Vector2 (400, 300)
 			};
-
+					
 			CurrentGame.camera = camera;
 			this.camera.spriteToFollow = ((Elevator)this.reservedSprite [Elements.Elevator]);
 
