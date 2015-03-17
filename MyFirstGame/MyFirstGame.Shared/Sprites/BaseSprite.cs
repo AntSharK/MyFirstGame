@@ -83,6 +83,12 @@ namespace MyFirstGame.Sprites
             this.screen = screen;
         }
 
+		public Vector2 Center {
+			get {
+				return this.position + this.origin/2 * this.scale;
+			}
+		}
+
         /// <summary>
         /// Scales the sprite, in both dimensions, equally, by a FACTOR
         /// </summary>

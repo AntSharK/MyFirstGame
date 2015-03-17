@@ -43,13 +43,13 @@ namespace MyFirstGame
             ////GraphicsDevice.Clear(Color.CornflowerBlue);
             CurrentGame.graphics.GraphicsDevice.Clear(Color.CornflowerBlue);
             // Draw all visible screens.
-            CurrentGame.spriteBatch.Begin();
+            
             foreach (BaseScreen screen in screens)
             {
                 if (screen.isVisible)
                     screen.Draw(gameTime);
             }
-            CurrentGame.spriteBatch.End();
+            
 
             base.Draw(gameTime);
         }

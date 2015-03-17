@@ -26,6 +26,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Core\ContentLoader.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Sprites\Elevator.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Sprites\Floor.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\Camera.cs" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="$(MSBuildThisFileDirectory)GamePage.xaml">

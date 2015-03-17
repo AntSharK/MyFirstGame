@@ -78,6 +78,7 @@ namespace MyFirstGame.Sprites
         /// </summary>
 		public Building currentBuilding;
 
+	
         /// <summary>
         /// Initializes a new instance of the test animated sprite
         /// </summary>
@@ -90,12 +91,14 @@ namespace MyFirstGame.Sprites
             this.addAnimation(0, 0, 5, 0, 0.1f, AnimationNames.Opening, false, false, () => this.SetStateAndAnimation(AnimationNames.Opened));
             this.addAnimation(5, 0, 0, 0, 0.1f, AnimationNames.Closing, false, false, () => this.SetStateAndAnimation(AnimationNames.Still));
             this.addAnimation(5, 0, 5, 0, 1f, AnimationNames.Opened);
-            this.addAnimation(0, 0, 0, 0, 0.1f, AnimationNames.Accelerating, false, false, () => this.SetStateAndAnimation(AnimationNames.Moving));
+			this.addAnimation (0, 0, 0, 0, 0.1f, AnimationNames.Accelerating, false, false, () => this.SetStateAndAnimation (AnimationNames.Moving));
 			this.addAnimation (0, 0, 0, 0, 0.15f, AnimationNames.Deaccelerating, false, false);//, () => this.SetStateAndAnimation(AnimationNames.Still));
             this.addAnimation(0, 0, 0, 0, 0.15f, AnimationNames.Moving);
 
             this.SetStateAndAnimation(AnimationNames.Still);
         }
+
+
 
         /// <summary>
         /// Updates stuff.
@@ -129,9 +132,12 @@ namespace MyFirstGame.Sprites
             {
 				this.currentSpeed = 0;
                 this.SetStateAndAnimation(AnimationNames.Opening);
+				CurrentGame.camera.targetScale = 1;
             }
 			this.currentSpeed = MathHelper.Clamp (this.currentSpeed, -1 * this.maxSpeed, this.maxSpeed);
-
+			if (this.currentSpeed != 0) {
+				CurrentGame.camera.targetScale = 1.5f;
+			}
             // Change the position of the elevator
             this.position.Y += CurrentGame.getDelta(gameTime) * currentSpeed;
         }

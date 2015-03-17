@@ -40,7 +40,14 @@ namespace MyFirstGame.Screens
             this.AddSprite(shaft);
             this.AddSprite(new Elevator(), Elements.Elevator);
 
-            ((Elevator)this.reservedSprite[Elements.Elevator]).currentBuilding = ((Building)this.reservedSprite[Elements.Tower]);
+			((Elevator)this.reservedSprite[Elements.Elevator]).currentBuilding = ((Building)this.reservedSprite[Elements.Tower]);
+
+			this.camera = new Camera (800, 600) {
+				Position = new Vector2 (400, 300)
+			};
+
+			CurrentGame.camera = camera;
+			this.camera.spriteToFollow = ((Elevator)this.reservedSprite [Elements.Elevator]);
 
           //  TestCameraDecorator camera = new TestCameraDecorator(this);
          //   camera.AttachToSprite(this.reservedSprite[Elements.Elevator]);
@@ -55,14 +62,18 @@ namespace MyFirstGame.Screens
         /// <param name="gameTime">GameTime from main game</param>
         public override void Update(GameTime gameTime)
         {
+			
 		    base.Update(gameTime);
+			camera.ClampToArea (0, 0, 800, 600);
 			Elevator elevator = (Elevator)this.reservedSprite [Elements.Elevator];
             
 			if (elevator.position.Y < 0) {
 				elevator.position.Y = 0;
+				camera.shake (0.7f, 25);
 			}
 			if (elevator.position.Y + elevator.texture.Height / elevator.numberOfRows > CurrentGame.graphics.GraphicsDevice.Viewport.Height) {
 				elevator.position.Y = CurrentGame.graphics.GraphicsDevice.Viewport.Height - elevator.texture.Height / elevator.numberOfRows;
+				camera.shake (0.7f, 25);
 			}
             
         }

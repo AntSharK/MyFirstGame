@@ -47,6 +47,8 @@ namespace MyFirstGame.Screens
         /// </summary>
         public ContentManager content;
 
+		public Camera camera;
+
         /// <summary>
         /// Initializes the screen.
         /// By default, it is visible and active on initialization.
@@ -58,6 +60,10 @@ namespace MyFirstGame.Screens
             this.isVisible = true;
         }
 
+		public void setCamera(Camera camera) {
+			this.camera = camera;
+		}
+
         /// <summary>
         /// Draws every sprite.
         /// Only draws visible sprites.
@@ -65,11 +71,16 @@ namespace MyFirstGame.Screens
         /// <param name="gameTime">Current game time</param>
         public void Draw(GameTime gameTime)
         {
+			if (camera != null)
+				CurrentGame.spriteBatch.Begin (SpriteSortMode.Deferred, BlendState.AlphaBlend, null, null, null, null, camera.matrix);
+			else
+				CurrentGame.spriteBatch.Begin (SpriteSortMode.Deferred, BlendState.AlphaBlend, null, null, null, null);
             foreach (BaseSprite sprite in sprites)
             {
                 if (sprite.isVisible)
                     sprite.Draw(CurrentGame.spriteBatch);
             }
+			CurrentGame.spriteBatch.End();
         }
 
         /// <summary>
@@ -79,6 +90,8 @@ namespace MyFirstGame.Screens
         /// <param name="gameTime"></param>
         public virtual void Update(GameTime gameTime) 
         {
+			if (this.camera != null)
+				this.camera.Update (gameTime);
             foreach (BaseScreenDecorator decorator in decorators)
             {
                 if (decorator.isActive)

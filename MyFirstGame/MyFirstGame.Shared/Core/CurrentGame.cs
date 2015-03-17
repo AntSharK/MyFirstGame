@@ -35,8 +35,12 @@ namespace MyFirstGame
         /// </summary>
         public static ContentManager content;	
 
+		public static Camera camera;
+
 
 		public static float timeScale = 1f;
+
+		public static Random random = new Random();
 
 		public static float getDelta(GameTime gameTime)
 		{
