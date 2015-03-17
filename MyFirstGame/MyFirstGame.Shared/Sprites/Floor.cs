@@ -53,7 +53,7 @@ namespace MyFirstGame.Sprites
         /// <returns>Bottom as a Y coordinate</returns>
         private float getBottom()
         {
-            return this.position.Y + this.texture.Height - this.origin.Y;
+			return this.position.Y + this.texture.Height;
         }
     }
 }

@@ -32,9 +32,9 @@ namespace MyFirstGame.Sprites
         /// <summary>
         /// Initializes the building
         /// </summary>
-		public Building () : base(ContentLoader.GetTexture("groundLevel.png"), new Vector2(400, 600))
+		public Building () : base(ContentLoader.GetTexture("groundLevel.png"), new Vector2(0, 0))
 		{
-            this.origin = new Vector2(400, 0);
+            //this.origin = new Vector2(400, 0);
             this.top = 0;
 		}
 
@@ -45,8 +45,8 @@ namespace MyFirstGame.Sprites
         public void addFloor(Texture2D texture)
         {
             // 100 to account for space for shaft.
-            float x = 100 + texture.Width/2;
-            float y = this.top + texture.Height/2;
+			float x = 100;// + texture.Width/2;
+			float y = this.top;// + texture.Height/2;
             Floor newFloor = new Floor(texture, new Vector2(x, y));
             this.top = this.top + texture.Height;
 

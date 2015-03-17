@@ -101,7 +101,7 @@ namespace MyFirstGame.Sprites
         /// <param name="batch">Spritebatch to draw on</param>
         public virtual void Draw(SpriteBatch batch)
         {
-            batch.Draw(this.texture, this.position, null, Color.White, this.rotation, this.origin, this.scale, SpriteEffects.None, this.depth);
+			batch.Draw(this.texture, this.position + this.origin, null, Color.White, this.rotation, this.origin, this.scale, SpriteEffects.None, this.depth);
         }
 
         /// <summary>
@@ -109,7 +109,7 @@ namespace MyFirstGame.Sprites
         /// </summary>
         public virtual void Draw()
         {
-            CurrentGame.spriteBatch.Draw(this.texture, this.position, Color.White);
+			CurrentGame.spriteBatch.Draw(this.texture, this.position + this.origin, Color.White);
         }
 
         /// <summary>

@@ -361,7 +361,7 @@ namespace MyFirstGame.Sprites
         /// <param name="batch">Sprite batch to draw on</param>
         public void Draw(SpriteBatch batch)
         {
-            batch.Draw(this.sprite.texture, this.sprite.position, this.rectangles[this.currentFrame], Color.White, this.sprite.rotation, this.sprite.origin, this.sprite.scale, SpriteEffects.None, this.sprite.depth);
+			batch.Draw(this.sprite.texture, this.sprite.position + new Vector2(this.rectangles[this.currentFrame].Width/2, this.rectangles[this.currentFrame].Height/2), this.rectangles[this.currentFrame], Color.White, this.sprite.rotation, this.sprite.origin, this.sprite.scale, SpriteEffects.None, this.sprite.depth);
         }
 
         /// <summary>

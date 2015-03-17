@@ -31,17 +31,21 @@ namespace MyFirstGame.Screens
         {
             this.AddSprite(new Building(), Elements.Tower);
             ((Building)this.reservedSprite[Elements.Tower]).addFloor(ContentLoader.GetTexture("floor1.png"));
-            ((Building)this.reservedSprite[Elements.Tower]).addFloor(ContentLoader.GetTexture("floor2.png"));
-            ((Building)this.reservedSprite[Elements.Tower]).addFloor(ContentLoader.GetTexture("floor3.png"));
+           ((Building)this.reservedSprite[Elements.Tower]).addFloor(ContentLoader.GetTexture("floor2.png"));
+           ((Building)this.reservedSprite[Elements.Tower]).addFloor(ContentLoader.GetTexture("floor3.png"));
 
-            this.AddSprite(new BaseSprite(ContentLoader.GetTexture("shaft.png"), new Vector2(50, 300)));
+			BaseAnimatedSprite shaft = new BaseAnimatedSprite (ContentLoader.GetTexture ("shaft.png"), new Vector2 (0, 0), 5, 1);
+			shaft.addAnimation (0, 0, 4, 0, 0.25f, "animation");
+			shaft.SetAnimation ("animation");
+            this.AddSprite(shaft);
             this.AddSprite(new Elevator(), Elements.Elevator);
 
             ((Elevator)this.reservedSprite[Elements.Elevator]).currentBuilding = ((Building)this.reservedSprite[Elements.Tower]);
 
-            TestCameraDecorator camera = new TestCameraDecorator(this);
-            camera.AttachToSprite(this.reservedSprite[Elements.Elevator]);
-            this.AddDecorator(camera);
+          //  TestCameraDecorator camera = new TestCameraDecorator(this);
+         //   camera.AttachToSprite(this.reservedSprite[Elements.Elevator]);
+         //   this.AddDecorator(camera);
+
         }
 
         /// <summary>
@@ -52,15 +56,15 @@ namespace MyFirstGame.Screens
         public override void Update(GameTime gameTime)
         {
 		    base.Update(gameTime);
-
-            /*
+			Elevator elevator = (Elevator)this.reservedSprite [Elements.Elevator];
+            
 			if (elevator.position.Y < 0) {
 				elevator.position.Y = 0;
 			}
 			if (elevator.position.Y + elevator.texture.Height / elevator.numberOfRows > CurrentGame.graphics.GraphicsDevice.Viewport.Height) {
 				elevator.position.Y = CurrentGame.graphics.GraphicsDevice.Viewport.Height - elevator.texture.Height / elevator.numberOfRows;
 			}
-            */
+            
         }
     }
 }
