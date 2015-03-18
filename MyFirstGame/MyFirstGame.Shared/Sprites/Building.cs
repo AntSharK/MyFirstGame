@@ -32,10 +32,10 @@ namespace MyFirstGame.Sprites
         /// <summary>
         /// Initializes the building
         /// </summary>
-		public Building () : base(ContentLoader.GetTexture("groundLevel.png"), new Vector2(0, 0))
+		public Building () : base(ContentLoader.GetTexture("groundLevel.png"), new Vector2(0, 600))
 		{
             //this.origin = new Vector2(400, 0);
-            this.top = 0;
+            this.top = this.position.Y;
 		}
 
         /// <summary>
@@ -45,10 +45,10 @@ namespace MyFirstGame.Sprites
         public void addFloor(Texture2D texture)
         {
             // 100 to account for space for shaft.
-			float x = 100;// + texture.Width/2;
-			float y = this.top;// + texture.Height/2;
+			float x = 100;
+            this.top = this.top - texture.Height;
+			float y = this.top;
             Floor newFloor = new Floor(texture, new Vector2(x, y));
-            this.top = this.top + texture.Height;
 
             if (this.floors.Count == 0)
             {
@@ -62,20 +62,7 @@ namespace MyFirstGame.Sprites
             }
             this.screen.AddSprite(newFloor);
         }
-        /*
-        /// <summary>
-        /// Draw the base, then draw all floors
-        /// </summary>
-        /// <param name="batch"></param>
-        public override void Draw(SpriteBatch batch)
-        {
-            base.Draw(batch);
-            foreach(Floor floor in this.floors)
-            {
-                floor.Draw(batch);
-            }
-        }
-        */
+
         /// <summary>
         /// Overrides setting scale by also changing the top
         /// </summary>
