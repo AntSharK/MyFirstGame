@@ -19,8 +19,7 @@ namespace MyFirstGame
         /// </summary>
         public static GraphicsDeviceManager graphics;
 
-
-		/// <summary>
+        /// <summary>
 		/// Graphics device 
 		/// </summary>
 		public static GraphicsDevice graphicsDevice;
@@ -35,13 +34,26 @@ namespace MyFirstGame
         /// </summary>
         public static ContentManager content;	
 
+        /// <summary>
+        /// Our game camera
+        /// </summary>
 		public static Camera camera;
-
-
+        
+        /// <summary>
+        /// Timescale for matrix elevator slow-mo scenes and other explosions
+        /// </summary>
 		public static float timeScale = 1f;
 
+        /// <summary>
+        /// Random generator
+        /// </summary>
 		public static Random random = new Random();
 
+        /// <summary>
+        /// Returns the number of seconds passed, adjusted for time scale
+        /// </summary>
+        /// <param name="gameTime">Game time object</param>
+        /// <returns>The number of seconds elapsed, adjusted for time scale</returns>
 		public static float getDelta(GameTime gameTime)
 		{
 			return (float) gameTime.ElapsedGameTime.TotalSeconds*timeScale;

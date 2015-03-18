@@ -83,6 +83,9 @@ namespace MyFirstGame.Sprites
             this.screen = screen;
         }
 
+        /// <summary>
+        /// The center of the sprite
+        /// </summary>
 		public Vector2 Center {
 			get {
 				return this.position + this.origin/2 * this.scale;

@@ -98,8 +98,7 @@ namespace MyFirstGame
 		/// <param name="keys">The keys we want to check</param>
 		/// <returns>True if all keys are pressed, false otherwise</returns>
 		public static bool AreKeysPressed(params Keys[] keys) {
-
-			bool result = true;
+            bool result = true;
 
 			foreach (Keys key in keys) {
 				result = result && IsKeyPress(key);
@@ -191,9 +190,6 @@ namespace MyFirstGame
 		public static void EndUpdate() {
 			previousKeyboardState = currentKeyboardState;
 		}
-
-
-
 	}
 }
 

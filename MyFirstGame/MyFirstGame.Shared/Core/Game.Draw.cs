@@ -40,17 +40,15 @@ namespace MyFirstGame
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            ////GraphicsDevice.Clear(Color.CornflowerBlue);
             CurrentGame.graphics.GraphicsDevice.Clear(Color.CornflowerBlue);
-            // Draw all visible screens.
             
+            // Draw all visible screens.
             foreach (BaseScreen screen in screens)
             {
                 if (screen.isVisible)
                     screen.Draw(gameTime);
             }
             
-
             base.Draw(gameTime);
         }
     }
