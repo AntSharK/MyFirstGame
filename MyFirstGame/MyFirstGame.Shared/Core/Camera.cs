@@ -8,12 +8,10 @@ namespace MyFirstGame
 {
 	public class Camera
 	{
-
-		/// <summary>
+        /// <summary>
 		/// Position of camera. Denotes center of viewport.
 		/// </summary>
 		private Vector2 position;
-
 
 		/// <summary>
 		/// Rotation in radians.
@@ -26,9 +24,19 @@ namespace MyFirstGame
 		private float scale;
 
 		/// <summary>
-		/// The sprite the camera will follow around. If set to null, camera remains still.
+		/// The sprite the camera will follow around on the X axis. If set to null, camera remains still.
 		/// </summary>
-		public BaseSprite spriteToFollow;
+		public BaseSprite spriteToFollowX;
+
+        /// <summary>
+        /// The sprite the camera will follow around on the Y axis. If set to null, camera remains still.
+        /// </summary>
+        public BaseSprite spriteToFollowY;
+
+        /// <summary>
+        /// A soft camera lock will lag behind the sprite it follows. A hard lock immediately updates position.
+        /// </summary>
+        public bool softLock;
 
 		/// <summary>
 		/// The linear transformation represented by position, rotation, and scale of the camera. Passed into SpriteBatch.Begin()
@@ -39,7 +47,6 @@ namespace MyFirstGame
 		/// Viewing window of the camera. 
 		/// </summary>
 		public Vector2 viewport;           
-
 
 		/// <summary>
 		/// How fast the camera locks on to the character. 
@@ -56,11 +63,10 @@ namespace MyFirstGame
 		/// </summary>
 		public float targetScale;
 
-
-		/// <summary>
+        /// <summary>
 		/// Determine whether the camera is currently shaking.
 		/// </summary>
-		private bool shaking;
+		private bool isShaking;
 
 		/// <summary>
 		/// Power of the shake.
@@ -82,38 +88,35 @@ namespace MyFirstGame
 		/// </summary>
 		private Vector2 shakeOffset;
 
-
 		/// <summary>
 		/// Property for changing position.
 		/// </summary>
 		public Vector2 Position
 		{
 			get { 
-				return position; 
+				return this.position; 
 			}
-			set { 
-				position = value;
-				updateMatrix();
+			set {
+                this.position = value;
+                this.updateMatrix();
 			}
 		}
 			
 		/// <summary>
-		/// Property for chaning the rotation.
+		/// Property for changing the rotation.
 		/// </summary>
 		public float Rotation
 		{
 			get
 			{
-				return rotation;
+                return this.rotation;
 			}
 			set
 			{
-				rotation = value;
-				updateMatrix();
+                this.rotation = value;
+                this.updateMatrix();
 			}
 		}
-
-
 
 		/// <summary>
 		/// Property for changing the scale
@@ -122,12 +125,12 @@ namespace MyFirstGame
 		{
 			get
 			{
-				return scale;
+                return this.scale;
 			}
 			set
 			{
-				scale = value;
-				updateMatrix();
+                this.scale = value;
+                this.updateMatrix();
 			}
 		}
 
@@ -138,12 +141,13 @@ namespace MyFirstGame
 		/// <param name="height">Height of the viewport</param>
 		public Camera(float width, float height)
 		{
-			position = Vector2.Zero;
-			rotation = 0;
-			scale = 1f;
-			targetScale = 1.5f;
-			viewport = new Vector2(width, height);
-			updateMatrix();
+            this.position = Vector2.Zero;
+            this.rotation = 0;
+            this.scale = 0.5f;
+            this.targetScale = 1f;
+            this.viewport = new Vector2(width, height);
+            this.softLock = false;
+            this.updateMatrix();
 		}
 
 		/// <summary>
@@ -151,11 +155,11 @@ namespace MyFirstGame
 		/// </summary>
 		private void updateMatrix()
 		{
-			position = new Vector2((float)Math.Round(position.X, 3), (float)Math.Round(position.Y, 3));
-			matrix = Matrix.CreateTranslation(-position.X, -position.Y, 0.0f) *
-				Matrix.CreateRotationZ(rotation) *
-				Matrix.CreateScale(scale) *
-				Matrix.CreateTranslation(viewport.X / 2, viewport.Y / 2, 0.0f);
+            this.position = new Vector2((float)Math.Round(position.X, 3), (float)Math.Round(position.Y, 3));
+            this.matrix = Matrix.CreateTranslation(-this.position.X, -this.position.Y, 0.0f) *
+                Matrix.CreateRotationZ(this.rotation) *
+                Matrix.CreateScale(this.scale) *
+                Matrix.CreateTranslation(this.viewport.X / 2, this.viewport.Y / 2, 0.0f);
 		}
 
 		/// <summary>
@@ -165,9 +169,9 @@ namespace MyFirstGame
 		/// <param name="height">Height of the viewport</param>
 		public void updateViewport(float width, float height)
 		{
-			viewport.X = width;
-			viewport.Y = height;
-			updateMatrix();
+            this.viewport.X = width;
+            this.viewport.Y = height;
+            this.updateMatrix();
 		}
 
 		/// <summary>
@@ -177,12 +181,12 @@ namespace MyFirstGame
 		/// <param name="magnitude">The furthest length of a single shake/param>
 		public void shake(float duration, float magnitude)
 		{
-			shaking = true;
+            this.isShaking = true;
 
-			shakeMagnitude = magnitude;
-			shakeDuration = duration;
+            this.shakeMagnitude = magnitude;
+            this.shakeDuration = duration;
 
-			shakeTimer = 0f;
+            this.shakeTimer = 0f;
 		}
 
 		/// <summary>
@@ -194,7 +198,6 @@ namespace MyFirstGame
 			return Vector2.Transform(position, matrix);
 		}
 
-
 		/// <summary>
 		/// Transforms a camera point to a point in the world.
 		/// </summary>
@@ -204,34 +207,32 @@ namespace MyFirstGame
 			return Vector2.Transform(position, Matrix.Invert(matrix));
 		}
 
-
-
 		/// <summary>
-		/// [DEPRECATED] Locks the camera to a sprite.
+		/// Moves camera to location of Sprite
 		/// </summary>
-		/// <param name="sprite">Sprite to lock to</param>
-		public void LockToTarget(BaseSprite sprite)
+		/// <param name="sprite">Sprite to move to</param>
+        /// <param name="axis">X for x axis, Y for y axis, XY for both</param>
+		public void ZoomToTarget(BaseSprite sprite, string axis = "XY")
 		{
-
-			position.X =
-				sprite.position.X +
-				(sprite.texture.Width / 2);
-			position.Y =
-				sprite.position.Y +
-				(sprite.texture.Height / 2);
-
+            if (axis.Contains("X"))
+                this.position.X = sprite.position.X + sprite.origin.X;
+            if (axis.Contains("Y"))
+                this.position.Y = sprite.position.Y + sprite.origin.Y;
 		}
 
-	
 		/// <summary>
 		/// Sets the follow target for the camera.
 		/// </summary>
 		/// <param name="sprite">Sprite to followo</param>
-		public void SetTarget(BaseSprite sprite)
+        /// <param name="axis">X for x axis, Y for y axis, XY for both</param>
+		public void SetTarget(BaseSprite sprite, string axis = "XY")
 		{
-			this.spriteToFollow = sprite;
+            this.ZoomToTarget(sprite, axis);
+            if (axis.Contains("X"))
+			    this.spriteToFollowX = sprite;
+            if (axis.Contains("Y"))
+                this.spriteToFollowY = sprite;
 		}
-
 
 		/// <summary>
 		/// Updates the shaking and handles the target following.
@@ -239,22 +240,21 @@ namespace MyFirstGame
 		/// <param name="gameTime">GameTime from main game</param>
 		public void Update(GameTime gameTime)
 		{
-
-			if (shaking)
+            if (this.isShaking)
 			{
 				// Move our timer ahead based on the elapsed time
-				shakeTimer += CurrentGame.getDelta(gameTime);
+                this.shakeTimer += CurrentGame.getDelta(gameTime);
 
 				// If we're at the max duration, we're not going to be shaking
 				// anymore
-				if (shakeTimer >= shakeDuration)
+                if (this.shakeTimer >= this.shakeDuration)
 				{
-					shaking = false;
-					shakeTimer = shakeDuration;
+                    this.isShaking = false;
+                    this.shakeTimer = this.shakeDuration;
 				}
 
 				// Compute our progress in a [0, 1] range
-				float progress = shakeTimer / shakeDuration;
+                float progress = this.shakeTimer / this.shakeDuration;
 
 				// Compute our magnitude based on our maximum value and our
 				// progress. This causes
@@ -265,32 +265,51 @@ namespace MyFirstGame
 				// off of our magnitude. We could switch that with just progress if
 				// we want a linear
 				// fall off.
-				float magnitude = shakeMagnitude * (1f - (progress * progress));
+                float magnitude = this.shakeMagnitude * (1f - (progress * progress));
 
 				// Generate a new offset vector with three random values and our
 				// magnitude
-				shakeOffset = new Vector2((float) CurrentGame.random.NextDouble()*2 - 1,
-					(float) CurrentGame.random.NextDouble()*2 - 1)*magnitude;
-				Position += shakeOffset;
+                this.shakeOffset = new Vector2((float)CurrentGame.random.NextDouble() * 2 - 1,
+                    (float)CurrentGame.random.NextDouble() * 2 - 1) * magnitude;
+                this.Position += this.shakeOffset;
 			}
 
+            float delta = CurrentGame.getDelta (gameTime);
 
-			float delta = CurrentGame.getDelta (gameTime);
+            this.scale += (this.targetScale - this.scale) * this.zoomSpeed * delta;
 
-			scale += (targetScale - scale) * zoomSpeed * delta;
-			if (spriteToFollow != null) {
-				Vector2 spriteCenter = spriteToFollow.Center;
-				position.X += ((spriteCenter.X - position.X) * acceleration * delta);
-				position.Y += ((spriteCenter.Y - position.Y) * acceleration * delta);
+            if (this.spriteToFollowX != null)
+            {
+				float spriteCenterX = spriteToFollowX.Center.X;
 
-			}
+                if (this.softLock)
+                {
+                    this.position.X += ((spriteCenterX - position.X) * acceleration * delta);
+                }
+                else
+                {
+                    this.position.X = spriteCenterX;
+                }
+            }
+
+            if (this.spriteToFollowY != null)
+            {
+                float spriteCenterY = spriteToFollowY.Center.Y;
+
+                if (this.softLock)
+                {
+                    this.position.Y += ((spriteCenterY - position.Y) * acceleration * delta);
+                }
+                else
+                {
+                    this.position.Y = spriteCenterY;
+                }
+            }
 
 			updateMatrix ();
-
 		}
 
-
-		/// <summary>
+        /// <summary>
 		/// Prevents the camera from moving out of the specificed rectangle.
 		/// </summary>
 		/// <param name="z">X value of rect</param>
@@ -302,11 +321,9 @@ namespace MyFirstGame
 			// Calculate bounds of rectangle
 			int left = x, right = x + width, top = y, bottom = y + height;
 
-
 			// Calculate bounds of camera viewport
 			float cameraLeft = position.X - (viewport.X / 2) / scale, cameraRight = position.X + (viewport.X / 2) / scale,
 			cameraTop = position.Y - (viewport.Y / 2) / scale, cameraBottom = position.Y + (viewport.Y / 2) / scale;
-
 
 			// use bounds to calcualate new camera bounds
 
@@ -329,7 +346,6 @@ namespace MyFirstGame
 
 			// Average camera bounds to determine new caemra position
 			Position = new Vector2 ((cameraLeft + cameraRight) / 2, (cameraTop + cameraBottom) / 2);
-
 		}
 	}
 }
