@@ -46,7 +46,12 @@ namespace MyFirstGame.Sprites
         /// <summary>
         /// Acceleration
         /// </summary>
-		public float acceleration = 1500;
+		public float acceleration = 150;
+
+        /// <summary>
+        /// Deacceleration
+        /// </summary>
+        public float deacceleration = 200;
 
 		/// <summary>
 		/// how fast the elevator accelerates when moving to the nearest floor
@@ -57,6 +62,21 @@ namespace MyFirstGame.Sprites
         /// Maximum speed
         /// </summary>
 		public float maxSpeed = 300;
+
+        /// <summary>
+        /// Minimum speed
+        /// </summary>
+        public float minSpeed = 50;
+
+        /// <summary>
+        /// At this distance, we don't care about direction of movement.
+        /// </summary>
+        public float cutOffDistance = 50;
+
+        /// <summary>
+        /// Whether the elevator is being controlled
+        /// </summary>
+        public bool isControlled = false;
 
         /// <summary>
         /// Cutoff before setting speed to 0
@@ -137,7 +157,7 @@ namespace MyFirstGame.Sprites
             this.handleMovingInput(gameTime);
             
             // Goes to the floor we think the player is headed to.
-            this.projectToIntendedFloor(gameTime);
+            this.deaccelerate(gameTime);
 			
             // Cut off speed to 0 if we've deaccelerated enough
 			if (this.currentState == AnimationNames.Deaccelerating) {
@@ -166,7 +186,6 @@ namespace MyFirstGame.Sprites
             float elevatorHeight = this.texture.Height / this.numberOfRows;
 
             // Bind elevator to building. TODO: Bind to shaft instead.
-            
             if (newPositionY < this.CurrentBuilding.top)
             {
                 this.position.Y = this.CurrentBuilding.top;
@@ -179,13 +198,8 @@ namespace MyFirstGame.Sprites
             {
                 // Change the position of the elevator
                 this.position.Y = newPositionY;
-                float elevatorBottom = this.position.Y + elevatorHeight;
 
-                // Change the current floor. While loop because we might go past multiple floors in one update
-                while (this.currentSpeed > 0 && elevatorBottom > this.currentFloor.bottom && this.currentFloor.downstairs != null)
-                    this.currentFloor = this.currentFloor.downstairs;
-                while (this.currentSpeed < 0 && elevatorBottom < this.currentFloor.bottom && this.currentFloor.upstairs != null)
-                    this.currentFloor = this.currentFloor.upstairs;
+                this.projectToIntendedFloor2(gameTime);
             }
         }
 
@@ -246,6 +260,122 @@ namespace MyFirstGame.Sprites
         }
 
         /// <summary>
+        /// Projects to intended floor, 2nd attempt.
+        /// </summary>
+        /// <param name="gameTime">Game time to calculate elapsed time</param>
+        private void projectToIntendedFloor2(GameTime gameTime)
+        {
+            float elevatorHeight = this.texture.Height / this.numberOfRows;
+            float elevatorBottom = this.position.Y + elevatorHeight;
+
+            while (this.currentSpeed > 0 && elevatorBottom >= this.currentFloor.bottom && this.currentFloor.downstairs != null)
+            {
+                if (this.currentSpeed <= this.minSpeed && this.isControlled == false)
+                {
+                    this.position.Y = this.currentFloor.bottom - elevatorHeight;
+                    this.currentState = AnimationNames.Deaccelerating;
+                    this.currentSpeed = 0;
+                }
+                else
+                {
+                    this.currentFloor = this.currentFloor.downstairs;
+                    this.currentFloor.isVisible = false;
+                        if (this.currentFloor.upstairs != null)
+                            this.currentFloor.upstairs.isVisible = true;
+                        if (this.currentFloor.downstairs != null)
+                            this.currentFloor.downstairs.isVisible = true;
+                }
+            }
+            
+            while (this.currentSpeed < 0 && elevatorBottom <= this.currentFloor.bottom && this.currentFloor.upstairs != null)
+            {
+                if (this.currentSpeed >= -this.minSpeed && this.isControlled == false)
+                {
+                    this.position.Y = this.currentFloor.bottom - elevatorHeight;
+                    this.currentState = AnimationNames.Deaccelerating;
+                    this.currentSpeed = 0;
+                }
+                else
+                {
+                    this.currentFloor = this.currentFloor.upstairs;
+                    this.currentFloor.isVisible = false;
+
+                    if (this.currentFloor.upstairs != null)
+                        this.currentFloor.upstairs.isVisible = true;
+                    if (this.currentFloor.downstairs != null)
+                        this.currentFloor.downstairs.isVisible = true;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Deaccelerates the elevator.
+        /// </summary>
+        /// <param name="gameTime">Game time to calculated elapsed time</param>
+        private void deaccelerate(GameTime gameTime)
+        {
+            if (InputState.AreKeysUp(Keys.Up, Keys.Down))
+            {
+                // Actions to perform upon letting go
+                if (this.isControlled)
+                { 
+                    this.isControlled = false;
+                }
+
+                if (this.currentState == AnimationNames.Accelerating || this.currentState == AnimationNames.Moving)
+                {
+                    float delta = CurrentGame.getDelta(gameTime);
+                    float elevatorHeight = this.texture.Height / this.numberOfRows;
+                    float newSpeed = this.currentSpeed;
+
+                    // Reverse direction if moving away from a very close floor
+                    if (newSpeed <= this.minSpeed && newSpeed >= -this.minSpeed)
+                    {
+                        if (newSpeed > 0 && currentFloor.upstairs != null && this.position.Y + elevatorHeight - currentFloor.upstairs.bottom < this.cutOffDistance)
+                        {
+                            newSpeed = -this.minSpeed;
+                            this.currentFloor = this.currentFloor.upstairs;
+                        }
+                        if (newSpeed < 0 && currentFloor.downstairs != null && currentFloor.downstairs.bottom - (this.position.Y + elevatorHeight) < this.cutOffDistance)
+                        {
+                            newSpeed = this.minSpeed;
+                            this.currentFloor = this.currentFloor.downstairs;
+                        }
+                    }
+                    else
+                    {
+                        if (this.currentSpeed > this.minSpeed)
+                        {
+                            newSpeed = this.currentSpeed - delta * this.deacceleration;
+                        }
+                        else if (this.currentSpeed < -this.minSpeed)
+                        {
+                            newSpeed = this.currentSpeed + delta * this.deacceleration;
+                        }
+
+                        if (this.currentSpeed > 0 && newSpeed < this.minSpeed)
+                        {
+                            newSpeed = this.minSpeed;
+                        }
+                        else if (this.currentSpeed < 0 && newSpeed > -this.minSpeed)
+                        {
+                            newSpeed = -this.minSpeed;
+                        }
+                    }
+                    
+                    // Set animation to decelerating when speed starts decreasing
+                    if (Math.Abs(this.previousSpeed) < Math.Abs(this.currentSpeed) && this.currentState != AnimationNames.Deaccelerating)
+                    {
+                        this.SetAnimation(AnimationNames.Deaccelerating);
+                    }
+                    this.currentSpeed = newSpeed;
+
+                    this.previousSpeed = this.currentSpeed;
+                }
+            }
+        }
+
+        /// <summary>
         /// Handles input for moving the elevator when keys are up or down
         /// </summary>
         /// <param name="gameTime">Game time to calculate elapsed time</param>
@@ -268,6 +398,7 @@ namespace MyFirstGame.Sprites
                 {
                     this.SetStateAndAnimation(AnimationNames.Accelerating);
                 }
+                this.isControlled = true;
             }
 
             if (InputState.IsKeyDown(Keys.Down))
@@ -287,6 +418,7 @@ namespace MyFirstGame.Sprites
                 {
                     this.SetStateAndAnimation(AnimationNames.Accelerating);
                 }
+                this.isControlled = true;
             }
         }
 
