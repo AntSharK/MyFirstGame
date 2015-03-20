@@ -95,9 +95,10 @@ namespace MyFirstGame.Sprites
             set
             {
                 this.currentBuilding = value;
+
                 // Set to the ground floor
-                this.position.Y = this.currentBuilding.position.Y - this.texture.Height;
                 this.currentFloor = this.currentBuilding.floors[0];
+                this.position.Y = this.currentFloor.bottom - this.texture.Height/this.numberOfRows;
             }
         }
 	
@@ -162,14 +163,15 @@ namespace MyFirstGame.Sprites
 
             // We project the position, to not hit one pixel off
             float newPositionY = this.position.Y + CurrentGame.getDelta(gameTime) * currentSpeed;
-            float elevatorHeight = this.position.Y + this.texture.Height / this.numberOfRows;
+            float elevatorHeight = this.texture.Height / this.numberOfRows;
 
             // Bind elevator to building. TODO: Bind to shaft instead.
-            if (newPositionY <= this.CurrentBuilding.top)
+            
+            if (newPositionY < this.CurrentBuilding.top)
             {
                 this.position.Y = this.CurrentBuilding.top;
             }
-            else if (newPositionY + elevatorHeight >= this.CurrentBuilding.position.Y)
+            else if (newPositionY + elevatorHeight > this.CurrentBuilding.position.Y)
             {
                 this.position.Y = this.CurrentBuilding.position.Y - elevatorHeight;
             }
@@ -177,11 +179,12 @@ namespace MyFirstGame.Sprites
             {
                 // Change the position of the elevator
                 this.position.Y = newPositionY;
+                float elevatorBottom = this.position.Y + elevatorHeight;
 
                 // Change the current floor. While loop because we might go past multiple floors in one update
-                while (this.currentSpeed > 0 && this.position.Y + elevatorHeight > this.currentFloor.bottom && this.currentFloor.downstairs != null)
+                while (this.currentSpeed > 0 && elevatorBottom > this.currentFloor.bottom && this.currentFloor.downstairs != null)
                     this.currentFloor = this.currentFloor.downstairs;
-                while (this.currentSpeed < 0 && this.position.Y + elevatorHeight > this.currentFloor.bottom + this.currentFloor.texture.Height && this.currentFloor.upstairs != null)
+                while (this.currentSpeed < 0 && elevatorBottom < this.currentFloor.bottom && this.currentFloor.upstairs != null)
                     this.currentFloor = this.currentFloor.upstairs;
             }
         }
@@ -196,10 +199,10 @@ namespace MyFirstGame.Sprites
             {
                 if (this.currentState == AnimationNames.Accelerating || this.currentState == AnimationNames.Moving)
                 {
+                    /*
                     if (this.currentSpeed != 0)
                     {
-                        
-						// Find the closest floor in the moving direction
+                        // Find the closest floor in the moving direction
                         float closestFloor = float.MaxValue, smallestDist = float.MaxValue;
                         float elevatorHeight = this.texture.Height / this.numberOfRows;
 						float elevatorBottom = this.position.Y + elevatorHeight;
@@ -217,9 +220,10 @@ namespace MyFirstGame.Sprites
                         
                         //destinationY = this.currentFloor.bottom - elevatorHeight;
                     }
-
+                    */
                     float delta = CurrentGame.getDelta(gameTime);
-
+                    float elevatorHeight = this.texture.Height / this.numberOfRows;
+                    this.destinationY = this.currentFloor.bottom - elevatorHeight;
                     // Set the speed based on the floor location
 					this.currentSpeed = MathHelper.Clamp((destinationY - this.position.Y) * homingMultiplier, -1 * maxSpeed, maxSpeed);
 
