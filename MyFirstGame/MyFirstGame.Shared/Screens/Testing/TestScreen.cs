@@ -35,13 +35,44 @@ namespace MyFirstGame.Screens
             ((Building)this.reservedSprite[Elements.Tower]).addFloor(ContentLoader.GetTexture("floor3.png")); 
             ((Building)this.reservedSprite[Elements.Tower]).addFloor(ContentLoader.GetTexture("floor1.png"));
             ((Building)this.reservedSprite[Elements.Tower]).addFloor(ContentLoader.GetTexture("floor2.png"));
-            ((Building)this.reservedSprite[Elements.Tower]).addFloor(ContentLoader.GetTexture("floor3.png"));
             
             // TODO: Shaft gets its own sprite. This makes sense because when we add floors, shaft has to be elongated
-			BaseAnimatedSprite shaft = new BaseAnimatedSprite (ContentLoader.GetTexture ("shaft.png"), new Vector2 (0, 0), 5, 1);
-			shaft.addAnimation (0, 0, 4, 0, 0.25f, "animation");
-			shaft.SetAnimation ("animation");
-            this.AddSprite(shaft);
+			BaseAnimatedSprite shaftLv1 = new BaseAnimatedSprite (ContentLoader.GetTexture ("shaftbottom.png"), new Vector2 (0, 400), 5, 1);
+			shaftLv1.addAnimation (0, 0, 4, 0, 0.25f, "animation");
+			shaftLv1.SetAnimation ("animation");
+            this.AddSprite(shaftLv1);
+            BaseAnimatedSprite shaftLv2 = new BaseAnimatedSprite(ContentLoader.GetTexture("shaftmid.png"), new Vector2(0, 200), 5, 1);
+            shaftLv2.addAnimation(0, 0, 4, 0, 0.25f, "animation");
+            shaftLv2.SetAnimation("animation");
+            this.AddSprite(shaftLv2);
+            BaseAnimatedSprite shaftLv3 = new BaseAnimatedSprite(ContentLoader.GetTexture("shafttop.png"), new Vector2(0, 0), 5, 1);
+            shaftLv3.addAnimation(0, 0, 4, 0, 0.25f, "animation");
+            shaftLv3.SetAnimation("animation");
+            this.AddSprite(shaftLv3);
+            BaseAnimatedSprite shaftLv4 = new BaseAnimatedSprite(ContentLoader.GetTexture("shafttopflip.png"), new Vector2(0, -200), 5, 1);
+            shaftLv4.addAnimation(0, 0, 4, 0, 0.25f, "animation");
+            shaftLv4.SetAnimation("animation");
+            this.AddSprite(shaftLv4);
+            BaseAnimatedSprite shaftLv5 = new BaseAnimatedSprite(ContentLoader.GetTexture("shaftmidflip.png"), new Vector2(0, -400), 5, 1);
+            shaftLv5.addAnimation(0, 0, 4, 0, 0.25f, "animation");
+            shaftLv5.SetAnimation("animation");
+            this.AddSprite(shaftLv5);
+            BaseAnimatedSprite shaftLv6 = new BaseAnimatedSprite(ContentLoader.GetTexture("shaftmid.png"), new Vector2(0, -600), 5, 1);
+            shaftLv6.addAnimation(0, 0, 4, 0, 0.25f, "animation");
+            shaftLv6.SetAnimation("animation");
+            this.AddSprite(shaftLv6);
+            /*
+            ((Building)this.reservedSprite[Elements.Tower]).addFloor(ContentLoader.GetTexture("floor3.png"));
+            BaseAnimatedSprite shaftLv7 = new BaseAnimatedSprite(ContentLoader.GetTexture("shafttop.png"), new Vector2(0, -800), 5, 1);
+            shaftLv7.addAnimation(0, 0, 4, 0, 0.25f, "animation");
+            shaftLv7.SetAnimation("animation");
+            this.AddSprite(shaftLv7);
+            BaseAnimatedSprite shaftLv8 = new BaseAnimatedSprite(ContentLoader.GetTexture("shafttopflip.png"), new Vector2(0, -1000), 5, 1);
+            shaftLv8.addAnimation(0, 0, 4, 0, 0.25f, "animation");
+            shaftLv8.SetAnimation("animation");
+            this.AddSprite(shaftLv8);
+            */
+
             this.AddSprite(new Elevator(), Elements.Elevator);
 
 			((Elevator)this.reservedSprite[Elements.Elevator]).CurrentBuilding = ((Building)this.reservedSprite[Elements.Tower]);
