@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using MyFirstGame.Sprites;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -24,6 +25,11 @@ namespace MyFirstGame.Sprites
         /// The floor above
         /// </summary>
         public Floor upstairs;
+
+        /// <summary>
+        /// List of all shafts that are a part of this floor
+        /// </summary>
+        public List<Shaft> shafts = new List<Shaft>();
 
         /// <summary>
         /// Initializes a new floor. The bulk of the floor logic is handled in Building

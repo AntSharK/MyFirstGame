@@ -37,6 +37,12 @@ namespace MyFirstGame.Screens
             ((Building)this.reservedSprite[Elements.Tower]).addFloor(ContentLoader.GetTexture("floor2.png"));
             
             // TODO: Shaft gets its own sprite. This makes sense because when we add floors, shaft has to be elongated
+
+            ((Building)this.reservedSprite[Elements.Tower]).addShaft(ContentLoader.GetTexture("shaftbottom.png"));
+            ((Building)this.reservedSprite[Elements.Tower]).addShaft(ContentLoader.GetTexture("shaftmid.png"));
+            ((Building)this.reservedSprite[Elements.Tower]).addShaft(ContentLoader.GetTexture("shafttop.png"));
+            ((Building)this.reservedSprite[Elements.Tower]).addShaft(ContentLoader.GetTexture("shafttopflip.png"));
+            /*
 			BaseAnimatedSprite shaftLv1 = new BaseAnimatedSprite (ContentLoader.GetTexture ("shaftbottom.png"), new Vector2 (0, 400), 5, 1);
 			shaftLv1.addAnimation (0, 0, 4, 0, 0.25f, "animation");
 			shaftLv1.SetAnimation ("animation");
@@ -61,6 +67,7 @@ namespace MyFirstGame.Screens
             shaftLv6.addAnimation(0, 0, 4, 0, 0.25f, "animation");
             shaftLv6.SetAnimation("animation");
             this.AddSprite(shaftLv6);
+            */
             /*
             ((Building)this.reservedSprite[Elements.Tower]).addFloor(ContentLoader.GetTexture("floor3.png"));
             BaseAnimatedSprite shaftLv7 = new BaseAnimatedSprite(ContentLoader.GetTexture("shafttop.png"), new Vector2(0, -800), 5, 1);
@@ -73,7 +80,7 @@ namespace MyFirstGame.Screens
             this.AddSprite(shaftLv8);
             */
 
-            this.AddSprite(new Elevator(), Elements.Elevator);
+            this.AddSprite(new Elevator(350), Elements.Elevator);
 
 			((Elevator)this.reservedSprite[Elements.Elevator]).CurrentBuilding = ((Building)this.reservedSprite[Elements.Tower]);
 
