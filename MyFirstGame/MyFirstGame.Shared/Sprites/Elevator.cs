@@ -125,9 +125,11 @@ namespace MyFirstGame.Sprites
         /// <summary>
         /// Initializes a new instance of the test animated sprite
         /// </summary>
-        public Elevator():
+        /// <param name="x">X position</param>
+        /// <param name="y">Y position</param>
+        public Elevator(float x = 0, float y = 0):
 		base(ContentLoader.GetTexture("elevator.png"),
-            new Vector2(0, 0),
+            new Vector2(x, y),
             6, 1)
         {
             this.addAnimation(0, 0, 0, 0, 1f, AnimationNames.Still);
@@ -182,6 +184,14 @@ namespace MyFirstGame.Sprites
             if (this.currentState == AnimationNames.Still && this.currentSpeed == 0)
             {
                 this.SetStateAndAnimation(AnimationNames.Opening);
+                this.fade = 1.0f;
+                CurrentGame.camera.targetScale = 1.0f;
+            }
+            // Otherwise, do stuff like zoom in and all that
+            else if (this.currentState == AnimationNames.Accelerating)
+            {
+                this.fade = 0.5f;
+                CurrentGame.camera.targetScale = 2.0f;
             }
         }
 
@@ -228,9 +238,9 @@ namespace MyFirstGame.Sprites
             float elevatorHeight = this.texture.Height / this.numberOfRows;
 
             // Bind elevator to building. TODO: Bind to shaft instead.
-            if (newPositionY <= this.CurrentBuilding.top)
+            if (newPositionY <= this.CurrentBuilding.shaftTop)
             {
-                this.position.Y = this.CurrentBuilding.top;
+                this.position.Y = this.CurrentBuilding.shaftTop;
                 this.currentSpeed = -0.01f;
                 return true;
             }
@@ -295,22 +305,43 @@ namespace MyFirstGame.Sprites
             while (currentBottom > this.currentFloor.bottom && this.currentFloor.downstairs != null)
             {
                 this.currentFloor = this.currentFloor.downstairs;
-                this.currentFloor.isVisible = false;
-                if (this.currentFloor.upstairs != null)
-                    this.currentFloor.upstairs.isVisible = true;
-                if (this.currentFloor.downstairs != null)
-                    this.currentFloor.downstairs.isVisible = true;
+                this.floorArtTransition();
             }
             // Change to a higher floor
             while (currentBottom <= this.currentFloor.position.Y && this.currentFloor.upstairs != null)
             {
                 this.currentFloor = this.currentFloor.upstairs;
-                this.currentFloor.isVisible = false;
-                if (this.currentFloor.upstairs != null)
-                    this.currentFloor.upstairs.isVisible = true;
-                if (this.currentFloor.downstairs != null)
-                    this.currentFloor.downstairs.isVisible = true;
+                this.floorArtTransition();
             }
+        }
+
+        /// <summary>
+        /// REMOVE THIS SOON
+        /// Just a method for visual indication of state and floor etc.
+        /// </summary>
+        private void floorArtTransition()
+        {
+            this.currentFloor.fade = 0.8f;
+            foreach (Shaft s in this.currentFloor.shafts)
+            {
+                s.fade = 0.5f;
+            }
+            if (this.currentFloor.upstairs != null)
+            {
+                this.currentFloor.upstairs.fade = 1.0f;
+                foreach (Shaft s in this.currentFloor.upstairs.shafts)
+                {
+                    s.fade = 1.0f;
+                }
+            }
+            if (this.currentFloor.downstairs != null)
+            {
+                this.currentFloor.downstairs.fade = 1.0f;
+                foreach (Shaft s in this.currentFloor.downstairs.shafts)
+                {
+                    s.fade = 1.0f;
+                }
+            }    
         }
 
         /// <summary>
