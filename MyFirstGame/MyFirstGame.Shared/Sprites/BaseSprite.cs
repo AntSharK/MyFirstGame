@@ -50,6 +50,11 @@ namespace MyFirstGame.Sprites
         public Vector2 scale;
 
         /// <summary>
+        /// Fade to white
+        /// </summary>
+        public float fade;
+
+        /// <summary>
         /// Depth, for drawing
         /// </summary>
         public float depth;
@@ -77,6 +82,7 @@ namespace MyFirstGame.Sprites
             this.isActive = true;
             this.isVisible = true;
             this.rotation = 0f;
+            this.fade = 1.0f;
             this.origin = new Vector2(this.texture.Width / 2, this.texture.Height / 2);
             this.scale = new Vector2(1, 1);
             this.depth = 0;
@@ -110,7 +116,7 @@ namespace MyFirstGame.Sprites
         /// <param name="batch">Spritebatch to draw on</param>
         public virtual void Draw(SpriteBatch batch)
         {
-			batch.Draw(this.texture, this.position + this.origin, null, Color.White, this.rotation, this.origin, this.scale, SpriteEffects.None, this.depth);
+			batch.Draw(this.texture, this.position + this.origin, null, Color.White * fade, this.rotation, this.origin, this.scale, SpriteEffects.None, this.depth);
         }
 
         /// <summary>
