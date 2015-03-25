@@ -16,7 +16,7 @@ namespace MyFirstGame
         /// </summary>
         /// <param name="screen">Screen to be added</param>
         /// <param name="screenName">Name of screen in screenDictionary</param>
-        private void addScreen(BaseScreen screen, string screenName)
+        private void AddScreen(BaseScreen screen, string screenName)
         {
 			screens.Add(screen);
             screenDictionary.Add(screenName, screen);
@@ -27,7 +27,7 @@ namespace MyFirstGame
         /// </summary>
         /// <param name="screenName">Screen name to be removed</param>
         /// <returns>True if screen was successfully removed, false if not</returns>
-        private bool removeScreen(string screenName)
+        private bool RemoveScreen(string screenName)
         {
             BaseScreen toBeRemoved;
             try

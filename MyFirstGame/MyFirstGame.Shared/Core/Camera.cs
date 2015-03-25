@@ -98,7 +98,7 @@ namespace MyFirstGame
 			}
 			set {
                 this.position = value;
-                this.updateMatrix();
+                this.UpdateMatrix();
 			}
 		}
 			
@@ -114,7 +114,7 @@ namespace MyFirstGame
 			set
 			{
                 this.rotation = value;
-                this.updateMatrix();
+                this.UpdateMatrix();
 			}
 		}
 
@@ -130,7 +130,7 @@ namespace MyFirstGame
 			set
 			{
                 this.scale = value;
-                this.updateMatrix();
+                this.UpdateMatrix();
 			}
 		}
 
@@ -147,13 +147,13 @@ namespace MyFirstGame
             this.targetScale = 1f;
             this.viewport = new Vector2(width, height);
             this.softLock = false;
-            this.updateMatrix();
+            this.UpdateMatrix();
 		}
 
 		/// <summary>
 		/// Updates the camera's matrix. Called after any change to position, rotation, or scale.
 		/// </summary>
-		private void updateMatrix()
+		private void UpdateMatrix()
 		{
             this.position = new Vector2((float)Math.Round(position.X, 3), (float)Math.Round(position.Y, 3));
             this.matrix = Matrix.CreateTranslation(-this.position.X, -this.position.Y, 0.0f) *
@@ -167,11 +167,11 @@ namespace MyFirstGame
 		/// </summary>
 		/// <param name="width">Width of the viewport</param>
 		/// <param name="height">Height of the viewport</param>
-		public void updateViewport(float width, float height)
+		public void UpdateViewport(float width, float height)
 		{
             this.viewport.X = width;
             this.viewport.Y = height;
-            this.updateMatrix();
+            this.UpdateMatrix();
 		}
 
 		/// <summary>
@@ -179,7 +179,7 @@ namespace MyFirstGame
 		/// </summary>
 		/// <param name="duration">How long the shake will be</param>
 		/// <param name="magnitude">The furthest length of a single shake/param>
-		public void shake(float duration, float magnitude)
+		public void Shake(float duration, float magnitude)
 		{
             this.isShaking = true;
 
@@ -193,7 +193,7 @@ namespace MyFirstGame
 		/// Returns a point applied to the camera's transformation matrix.
 		/// </summary>
 		/// <param name="position">Point to transform</param>
-		public Vector2 getPointRelativeToCamera(Vector2 position)
+		public Vector2 GetPointRelativeToCamera(Vector2 position)
 		{
 			return Vector2.Transform(position, matrix);
 		}
@@ -243,7 +243,7 @@ namespace MyFirstGame
             if (this.isShaking)
 			{
 				// Move our timer ahead based on the elapsed time
-                this.shakeTimer += CurrentGame.getDelta(gameTime);
+                this.shakeTimer += CurrentGame.GetDelta(gameTime);
 
 				// If we're at the max duration, we're not going to be shaking
 				// anymore
@@ -274,7 +274,7 @@ namespace MyFirstGame
                 this.Position += this.shakeOffset;
 			}
 
-            float delta = CurrentGame.getDelta (gameTime);
+            float delta = CurrentGame.GetDelta (gameTime);
 
             this.scale += (this.targetScale - this.scale) * this.zoomSpeed * delta;
 
@@ -306,7 +306,7 @@ namespace MyFirstGame
                 }
             }
 
-			updateMatrix ();
+			UpdateMatrix ();
 		}
 
         /// <summary>

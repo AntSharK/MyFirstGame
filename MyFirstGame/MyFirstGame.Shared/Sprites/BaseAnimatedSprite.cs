@@ -330,7 +330,7 @@ namespace MyFirstGame.Sprites
         {
             if (this.isActive)
             {
-				this.timeElapsed = this.timeElapsed + CurrentGame.getDelta(gameTime);
+				this.timeElapsed = this.timeElapsed + CurrentGame.GetDelta(gameTime);
                 while (this.timeElapsed > this.timePerFrame)
                 {
                     this.currentFrame++;

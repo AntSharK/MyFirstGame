@@ -66,7 +66,7 @@ namespace MyFirstGame.Sprites
         /// <param name="position">Enter a position here</param>
         public BaseSprite(Texture2D texture, Vector2 position)
         {
-            this.initialize(texture, position);
+            this.Initialize(texture, position);
         }
 
         /// <summary>
@@ -75,7 +75,7 @@ namespace MyFirstGame.Sprites
         /// <param name="texture">Texture to draw for the sprite</param>
         /// <param name="position">Position, as a vector2</param>
         /// <param name="screen">Screen to attach the sprite to</param>
-        public void initialize(Texture2D texture, Vector2 position, BaseScreen screen = null)
+        public void Initialize(Texture2D texture, Vector2 position, BaseScreen screen = null)
         {
             this.texture = texture;
             this.position = position;
@@ -102,7 +102,7 @@ namespace MyFirstGame.Sprites
         /// Scales the sprite, in both dimensions, equally, by a FACTOR
         /// </summary>
         /// <param name="newScale">Factor to scale by</param>
-        public virtual void setScale(float newScale)
+        public virtual void SetScale(float newScale)
         {
             this.origin.X = this.origin.X * newScale;
             this.origin.Y = this.origin.Y * newScale;

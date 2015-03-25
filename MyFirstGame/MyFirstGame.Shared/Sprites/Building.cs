@@ -52,7 +52,7 @@ namespace MyFirstGame.Sprites
         /// </summary>
         /// <param name="texture">Texture for floor</param>
         /// <param name="x">X axis position</param>
-        public void addFloor(Texture2D texture, float x = 0)
+        public void AddFloor(Texture2D texture, float x = 0)
         {
             this.top = this.top - texture.Height;
 			float y = this.top;
@@ -76,7 +76,7 @@ namespace MyFirstGame.Sprites
         /// </summary>
         /// <param name="sprite">Animated sprite to use for the shaft</param>
         /// <param name="x">X position</param>
-        public void addShaft(Texture2D texture, float x = 350, int numberOfColumns = 5, int numberOfRows = 1)
+        public void AddShaft(Texture2D texture, float x = 350, int numberOfColumns = 5, int numberOfRows = 1)
         {
             float height = texture.Height / numberOfRows;
             this.shaftTop = this.shaftTop - height;
@@ -96,7 +96,7 @@ namespace MyFirstGame.Sprites
             }
             newShaft.addAnimation(0, 0, newShaft.numberOfColumns-1, 0, 0.25f, "animation");
             newShaft.SetAnimation("animation");
-            newShaft.bindToFloor(this.floors);
+            newShaft.BindToFloor(this.floors);
             this.screen.AddSprite(newShaft);
         }
 
@@ -104,9 +104,9 @@ namespace MyFirstGame.Sprites
         /// Overrides setting scale by also changing the top
         /// </summary>
         /// <param name="newScale">New scale to multiply by</param>
-        public override void setScale(float newScale)
+        public override void SetScale(float newScale)
         {
-            base.setScale(newScale);
+            base.SetScale(newScale);
             this.top = this.top * newScale;
             this.shaftTop = this.shaftTop * newScale;
         }

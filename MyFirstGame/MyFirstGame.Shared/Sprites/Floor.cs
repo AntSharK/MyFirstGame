@@ -38,7 +38,7 @@ namespace MyFirstGame.Sprites
         /// <param name="position"></param>
         public Floor(Texture2D texture, Vector2 position) : base(texture, position)
 		{
-            this.bottom = this.getBottom();
+            this.bottom = this.GetBottom();
             this.downstairs = null;
             this.upstairs = null;
 		}
@@ -47,17 +47,17 @@ namespace MyFirstGame.Sprites
         /// Sets the scale, and re-calculates the bottom
         /// </summary>
         /// <param name="newScale">Factor to scale by</param>
-        public override void setScale(float newScale)
+        public override void SetScale(float newScale)
         {
-            base.setScale(newScale);
-            this.getBottom();
+            base.SetScale(newScale);
+            this.GetBottom();
         }
 
         /// <summary>
         /// Get the Y coordinate of the bottom
         /// </summary>
         /// <returns>Bottom as a Y coordinate</returns>
-        private float getBottom()
+        private float GetBottom()
         {
 			return this.position.Y + this.texture.Height;
         }

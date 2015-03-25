@@ -41,7 +41,7 @@ namespace MyFirstGame.Sprites
         public Shaft(Texture2D texture, Vector2 position, int numberOfColumns = 1, int numberOfRows = 1)
             : base(texture, position, numberOfColumns, numberOfRows)
         {
-            this.bottom = this.getBottom();
+            this.bottom = this.GetBottom();
             this.above = null;
             this.below = null;
         }
@@ -50,10 +50,10 @@ namespace MyFirstGame.Sprites
         /// Sets the scale, and re-calculates the bottom
         /// </summary>
         /// <param name="newScale">Factor to scale by</param>
-        public override void setScale(float newScale)
+        public override void SetScale(float newScale)
         {
-            base.setScale(newScale);
-            this.getBottom();
+            base.SetScale(newScale);
+            this.GetBottom();
         }
 
         /// <summary>
@@ -62,13 +62,13 @@ namespace MyFirstGame.Sprites
         /// </summary>
         /// <param name="floors">List of candidate floors</param>
         /// <returns>True if binded, false otherwise</returns>
-        public bool bindToFloor(List<Floor> floors)
+        public bool BindToFloor(List<Floor> floors)
         {
             foreach (Floor floor in floors)
             {
                 if (floor.bottom >= this.bottom && floor.bottom - floor.texture.Height <= this.bottom)
                 {
-                    bindToFloor(floor);
+                    BindToFloor(floor);
                     return true;
                 }
             }
@@ -79,7 +79,7 @@ namespace MyFirstGame.Sprites
         /// Binds to the floor
         /// </summary>
         /// <param name="floor">The floor to bind to</param>
-        public void bindToFloor(Floor floor)
+        public void BindToFloor(Floor floor)
         {
             this.floor = floor;
             floor.shafts.Add(this);
@@ -89,7 +89,7 @@ namespace MyFirstGame.Sprites
         /// Get the Y coordinate of the bottom
         /// </summary>
         /// <returns>Bottom as a Y coordinate</returns>
-        private float getBottom()
+        private float GetBottom()
         {
             return this.position.Y + this.texture.Height / this.numberOfColumns;
         }

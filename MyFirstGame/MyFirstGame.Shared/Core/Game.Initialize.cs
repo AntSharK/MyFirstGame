@@ -70,7 +70,7 @@ namespace MyFirstGame
             CurrentGame.spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // Load all the screens at the start here
-            this.addScreen(new TestScreen(), ScreenNames.Test);
+            this.AddScreen(new TestScreen(), ScreenNames.Test);
         }
 
         /// <summary>

@@ -60,7 +60,7 @@ namespace MyFirstGame.Screens
             this.isVisible = true;
         }
 
-		public void setCamera(Camera camera) {
+		public void SetCamera(Camera camera) {
 			this.camera = camera;
 		}
 

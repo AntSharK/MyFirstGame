@@ -54,7 +54,7 @@ namespace MyFirstGame
         /// </summary>
         /// <param name="gameTime">Game time object</param>
         /// <returns>The number of seconds elapsed, adjusted for time scale</returns>
-		public static float getDelta(GameTime gameTime)
+		public static float GetDelta(GameTime gameTime)
 		{
 			return (float) gameTime.ElapsedGameTime.TotalSeconds*timeScale;
 		}

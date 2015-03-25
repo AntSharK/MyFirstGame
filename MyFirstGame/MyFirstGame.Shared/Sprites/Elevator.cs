@@ -153,29 +153,29 @@ namespace MyFirstGame.Sprites
             base.Update(gameTime);
             
             // Test method for registering animations
-            this.testAnimationInput();
+            this.TestAnimationKeys();
 
             // Handles moving up and down to change speed
-            this.handleMovingInput(gameTime);
+            this.HandleInput(gameTime);
 
             // Sets the current floor that we're at
-            this.setCurrentFloor();
+            this.SetCurrentFloor();
             
             // Deaccelerates to minspeed if there's no input and there's no nearby floor
-            this.deaccelerate(gameTime);
+            this.Deaccelerate(gameTime);
 			
             // Changes direction of movement if we're near a floor
-            this.projectToIntendedFloor(gameTime);
+            this.ProjectToNearFloor(gameTime);
 
             // Now we can get the new position
-            float newPositionY = this.position.Y + CurrentGame.getDelta(gameTime) * this.currentSpeed;
+            float newPositionY = this.position.Y + CurrentGame.GetDelta(gameTime) * this.currentSpeed;
 
             // Move if we haven't forced a position change
             // NOT A SHORT CIRCUIT. We must run both.
             // First condition binds position to elevator shaft/building so our elevator doesn't fly to space.
             // Second condition determines if we are crossing a floor boundary, and stops if conditions are right.
             // If one is true, that means we have forced a positional change, and should not take the new position.
-            if (!this.bindPosition(newPositionY) & !this.stopAtFloor(newPositionY))
+            if (!this.BindPosition(newPositionY) & !this.StopAtFloor(newPositionY))
             {
                 this.position.Y = newPositionY;
             }
@@ -191,7 +191,7 @@ namespace MyFirstGame.Sprites
             else if (this.currentState == AnimationNames.Accelerating)
             {
                 this.fade = 0.5f;
-                CurrentGame.camera.targetScale = 2.0f;
+                CurrentGame.camera.targetScale = 1.75f;
             }
         }
 
@@ -200,7 +200,7 @@ namespace MyFirstGame.Sprites
         /// </summary>
         /// <param name="gameTime">Game time to calculate time elapsed</param>
         /// <returns>True if near to a floor and at minimum speed, false otherwise</returns>
-        private bool projectToIntendedFloor(GameTime gameTime)
+        private bool ProjectToNearFloor(GameTime gameTime)
         {
             // First condition: No control being placed, and we are deaccelerating
             if (!this.isControlled && this.currentState == AnimationNames.Deaccelerating)
@@ -233,7 +233,7 @@ namespace MyFirstGame.Sprites
         /// </summary>
         /// <param name="newPositionY">The intended new position we want to move the elevator to</param>
         /// <remarks>True if we forced a change in position, false otherwise</remarks>
-        private bool bindPosition(float newPositionY)
+        private bool BindPosition(float newPositionY)
         {
             float elevatorHeight = this.texture.Height / this.numberOfRows;
 
@@ -258,7 +258,7 @@ namespace MyFirstGame.Sprites
         /// </summary>
         /// <param name="newPositionY"></param>
         /// <returns></returns>
-        private bool stopAtFloor(float newPositionY)
+        private bool StopAtFloor(float newPositionY)
         {
             // First condition: No control being placed, and we are deaccelerating
             if (!this.isControlled && this.currentState == AnimationNames.Deaccelerating)
@@ -296,7 +296,7 @@ namespace MyFirstGame.Sprites
         /// <summary>
         ///  Sets the floor that the player is currently at. To hit a floor, you must be above, or exactly at, that floor
         /// </summary>
-        private void setCurrentFloor()
+        private void SetCurrentFloor()
         {
             float elevatorHeight = this.texture.Height / this.numberOfRows;
             float currentBottom = this.position.Y + elevatorHeight;
@@ -305,13 +305,13 @@ namespace MyFirstGame.Sprites
             while (currentBottom > this.currentFloor.bottom && this.currentFloor.downstairs != null)
             {
                 this.currentFloor = this.currentFloor.downstairs;
-                this.floorArtTransition();
+                this.FloorArtChange();
             }
             // Change to a higher floor
             while (currentBottom <= this.currentFloor.position.Y && this.currentFloor.upstairs != null)
             {
                 this.currentFloor = this.currentFloor.upstairs;
-                this.floorArtTransition();
+                this.FloorArtChange();
             }
         }
 
@@ -319,7 +319,7 @@ namespace MyFirstGame.Sprites
         /// REMOVE THIS SOON
         /// Just a method for visual indication of state and floor etc.
         /// </summary>
-        private void floorArtTransition()
+        private void FloorArtChange()
         {
             this.currentFloor.fade = 0.8f;
             foreach (Shaft s in this.currentFloor.shafts)
@@ -348,7 +348,7 @@ namespace MyFirstGame.Sprites
         /// Deaccelerates the elevator.
         /// </summary>
         /// <param name="gameTime">Game time to calculated elapsed time</param>
-        private void deaccelerate(GameTime gameTime)
+        private void Deaccelerate(GameTime gameTime)
         {
             if (InputState.AreKeysUp(Keys.Up, Keys.Down))
             {
@@ -360,7 +360,7 @@ namespace MyFirstGame.Sprites
 
                 if (this.currentState == AnimationNames.Accelerating || this.currentState == AnimationNames.Moving || this.currentState == AnimationNames.Deaccelerating)
                 {
-                    float delta = CurrentGame.getDelta(gameTime);
+                    float delta = CurrentGame.GetDelta(gameTime);
                     float elevatorHeight = this.texture.Height / this.numberOfRows;
                     float newSpeed = this.currentSpeed;
 
@@ -400,14 +400,14 @@ namespace MyFirstGame.Sprites
         /// Handles input for moving the elevator when keys are up or down
         /// </summary>
         /// <param name="gameTime">Game time to calculate elapsed time</param>
-        private void handleMovingInput(GameTime gameTime)
+        private void HandleInput(GameTime gameTime)
         {
             if (InputState.IsKeyDown(Keys.Up))
             {
                 currentKey = Keys.Up;
 				if (this.currentState == AnimationNames.Accelerating || this.currentState == AnimationNames.Moving)
                 {
-                    this.currentSpeed = this.currentSpeed - CurrentGame.getDelta(gameTime) * this.acceleration;
+                    this.currentSpeed = this.currentSpeed - CurrentGame.GetDelta(gameTime) * this.acceleration;
                 }
 
                 if (this.currentState == AnimationNames.Opened)
@@ -427,7 +427,7 @@ namespace MyFirstGame.Sprites
                 currentKey = Keys.Down;
 				if (this.currentState == AnimationNames.Accelerating || this.currentState == AnimationNames.Moving)
                 {
-                    this.currentSpeed = this.currentSpeed + CurrentGame.getDelta(gameTime) * acceleration;
+                    this.currentSpeed = this.currentSpeed + CurrentGame.GetDelta(gameTime) * acceleration;
                 }
 
                 if (this.currentState == AnimationNames.Opened)
@@ -448,7 +448,7 @@ namespace MyFirstGame.Sprites
         /// REMOVE THIS SOON.
         /// Just shortcuts to test animations.
         /// </summary>
-        private void testAnimationInput()
+        private void TestAnimationKeys()
         {
             if (InputState.IsKeyDown(Keys.Z))
             {

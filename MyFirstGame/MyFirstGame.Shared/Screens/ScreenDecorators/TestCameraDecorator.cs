@@ -37,37 +37,37 @@ namespace MyFirstGame.Screens.ScreenDecorators
             if (InputState.IsKeyDown(Keys.W))
             {
                 CurrentGame.camera.Position = new Vector2(CurrentGame.camera.Position.X,
-                    CurrentGame.camera.Position.Y - CurrentGame.getDelta(gameTime) * 100);
+                    CurrentGame.camera.Position.Y - CurrentGame.GetDelta(gameTime) * 100);
             }
             if (InputState.IsKeyDown(Keys.S))
             {
                 CurrentGame.camera.Position = new Vector2(CurrentGame.camera.Position.X,
-                    CurrentGame.camera.Position.Y + CurrentGame.getDelta(gameTime) * 100);
+                    CurrentGame.camera.Position.Y + CurrentGame.GetDelta(gameTime) * 100);
             }
             if (InputState.IsKeyDown(Keys.A))
             {
-                CurrentGame.camera.Position = new Vector2(CurrentGame.camera.Position.X - CurrentGame.getDelta(gameTime) * 100,
+                CurrentGame.camera.Position = new Vector2(CurrentGame.camera.Position.X - CurrentGame.GetDelta(gameTime) * 100,
                     CurrentGame.camera.Position.Y);
             }
             if (InputState.IsKeyDown(Keys.D))
             {
-                CurrentGame.camera.Position = new Vector2(CurrentGame.camera.Position.X + CurrentGame.getDelta(gameTime) * 100,
+                CurrentGame.camera.Position = new Vector2(CurrentGame.camera.Position.X + CurrentGame.GetDelta(gameTime) * 100,
                     CurrentGame.camera.Position.Y);
             }
             if (InputState.IsKeyDown(Keys.E))
             {
-                CurrentGame.camera.targetScale = CurrentGame.camera.targetScale * (1 + CurrentGame.getDelta(gameTime));
+                CurrentGame.camera.targetScale = CurrentGame.camera.targetScale * (1 + CurrentGame.GetDelta(gameTime));
             }
             if (InputState.IsKeyDown(Keys.Q))
             {
-                CurrentGame.camera.targetScale = CurrentGame.camera.targetScale * (1 - CurrentGame.getDelta(gameTime));
+                CurrentGame.camera.targetScale = CurrentGame.camera.targetScale * (1 - CurrentGame.GetDelta(gameTime));
             }
 
             if (InputState.IsKeyDown(Keys.R))
             {
                 foreach (BaseSprite s in this.screen.sprites)
                 {
-                    s.rotation = s.rotation + CurrentGame.getDelta(gameTime);
+                    s.rotation = s.rotation + CurrentGame.GetDelta(gameTime);
                 }
             }
 
