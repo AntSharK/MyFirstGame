@@ -160,10 +160,11 @@ namespace MyFirstGame.Sprites
 
             // Sets the current floor that we're at
             this.SetCurrentFloor();
-            
-            // Deaccelerates to minspeed if there's no input and there's no nearby floor
-            this.Deaccelerate(gameTime);
-			
+            if (InputState.AreKeysUp(Keys.Up, Keys.Down))
+            {
+                // Deaccelerates to minspeed if there's no input and there's no nearby floor
+                this.Deaccelerate(gameTime);
+            }
             // Changes direction of movement if we're near a floor
             this.ProjectToNearFloor(gameTime);
 
@@ -241,13 +242,13 @@ namespace MyFirstGame.Sprites
             if (newPositionY <= this.CurrentBuilding.shaftTop)
             {
                 this.position.Y = this.CurrentBuilding.shaftTop;
-                this.currentSpeed = -0.01f;
+                this.currentSpeed = 0;
                 return true;
             }
             else if (newPositionY + elevatorHeight > this.CurrentBuilding.position.Y)
             {
                 this.position.Y = this.CurrentBuilding.position.Y - elevatorHeight;
-                this.currentSpeed = 0.01f;
+                this.currentSpeed = 0;
                 return true;
             }
             return false;
@@ -350,49 +351,47 @@ namespace MyFirstGame.Sprites
         /// <param name="gameTime">Game time to calculated elapsed time</param>
         private void Deaccelerate(GameTime gameTime)
         {
-            if (InputState.AreKeysUp(Keys.Up, Keys.Down))
+
+            // Actions to perform upon letting go
+            if (this.isControlled)
             {
-                // Actions to perform upon letting go
-                if (this.isControlled)
-                { 
-                    this.isControlled = false;
-                }
+                this.isControlled = false;
+            }
 
-                if (this.currentState == AnimationNames.Accelerating || this.currentState == AnimationNames.Moving || this.currentState == AnimationNames.Deaccelerating)
+            if (this.currentState == AnimationNames.Accelerating || this.currentState == AnimationNames.Moving || this.currentState == AnimationNames.Deaccelerating)
+            {
+                float delta = CurrentGame.GetDelta(gameTime);
+                float elevatorHeight = this.texture.Height / this.numberOfRows;
+                float newSpeed = this.currentSpeed;
+
+                // Deaccelerate if greater than min speed
+                if (this.currentSpeed > this.minSpeed)
                 {
-                    float delta = CurrentGame.GetDelta(gameTime);
-                    float elevatorHeight = this.texture.Height / this.numberOfRows;
-                    float newSpeed = this.currentSpeed;
-
-                    // Deaccelerate if greater than min speed
-                    if (this.currentSpeed > this.minSpeed)
-                    {
-                        newSpeed = this.currentSpeed - delta * this.deacceleration;
-                    }
-                    else if (this.currentSpeed < -this.minSpeed)
-                    {
-                        newSpeed = this.currentSpeed + delta * this.deacceleration;
-                    }
-
-                    // Set to min speed if less than min speed.
-                    if (this.currentSpeed < this.minSpeed && this.currentSpeed > 0)
-                    {
-                        newSpeed = Math.Min(this.currentSpeed + delta * this.deacceleration, this.minSpeed);
-                    }
-                    else if (this.currentSpeed > -this.minSpeed && this.currentSpeed < 0)
-                    {
-                        newSpeed = Math.Max(this.currentSpeed - delta * this.deacceleration, -this.minSpeed);
-                    }
-
-                    // Set animation to decelerating when speed starts decreasing
-                    if ((Math.Abs(this.previousSpeed) < Math.Abs(this.currentSpeed) || Math.Abs(this.currentSpeed) == this.minSpeed) && this.currentState != AnimationNames.Deaccelerating)
-                    {
-                        this.SetStateAndAnimation(AnimationNames.Deaccelerating);
-                    }
-                    this.currentSpeed = newSpeed;
-
-                    this.previousSpeed = this.currentSpeed;
+                    newSpeed = this.currentSpeed - delta * this.deacceleration;
                 }
+                else if (this.currentSpeed < -this.minSpeed)
+                {
+                    newSpeed = this.currentSpeed + delta * this.deacceleration;
+                }
+
+                // Set to min speed if less than min speed.
+                if (this.currentSpeed < this.minSpeed && this.currentSpeed > 0)
+                {
+                    newSpeed = Math.Min(this.currentSpeed + delta * this.deacceleration, this.minSpeed);
+                }
+                else if (this.currentSpeed > -this.minSpeed && this.currentSpeed < 0)
+                {
+                    newSpeed = Math.Max(this.currentSpeed - delta * this.deacceleration, -this.minSpeed);
+                }
+
+                // Set animation to decelerating when speed starts decreasing or in the special case where the top or bottom of building is hit
+                if ((Math.Abs(this.previousSpeed) < Math.Abs(this.currentSpeed) || Math.Abs(this.currentSpeed) == this.minSpeed || this.currentSpeed == 0) && this.currentState != AnimationNames.Deaccelerating)
+                {
+                    this.SetStateAndAnimation(AnimationNames.Deaccelerating);
+                }
+                this.currentSpeed = newSpeed;
+
+                this.previousSpeed = this.currentSpeed;
             }
         }
 
