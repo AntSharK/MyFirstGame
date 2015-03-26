@@ -42,6 +42,7 @@ namespace MyFirstGame.Screens
             ((Building)this.reservedSprite[Elements.Tower]).AddShaft(ContentLoader.GetTexture("shaftmid.png"));
             ((Building)this.reservedSprite[Elements.Tower]).AddShaft(ContentLoader.GetTexture("shafttop.png"));
             ((Building)this.reservedSprite[Elements.Tower]).AddShaft(ContentLoader.GetTexture("shafttopflip.png"));
+            ((Building)this.reservedSprite[Elements.Tower]).AddShaft(ContentLoader.GetTexture("shaftmidflip.png"));
             /*
 			BaseAnimatedSprite shaftLv1 = new BaseAnimatedSprite (ContentLoader.GetTexture ("shaftbottom.png"), new Vector2 (0, 400), 5, 1);
 			shaftLv1.addAnimation (0, 0, 4, 0, 0.25f, "animation");
