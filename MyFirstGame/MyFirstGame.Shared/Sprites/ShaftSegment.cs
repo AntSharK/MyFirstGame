@@ -9,7 +9,7 @@ namespace MyFirstGame.Sprites
     /// <summary>
     /// The elevator shaft. Should be pretty simple. Most of the logic is in Building.
     /// </summary>
-    public class Shaft : BaseAnimatedSprite
+    public class ShaftSegment : BaseAnimatedSprite
     {
         /// <summary>
         /// Bottom of this section of the shaft
@@ -19,12 +19,12 @@ namespace MyFirstGame.Sprites
         /// <summary>
         /// The shaft below
         /// </summary>
-        public Shaft below;
+        public ShaftSegment below;
 
         /// <summary>
         /// The shaft above
         /// </summary>
-        public Shaft above;
+        public ShaftSegment above;
 
         /// <summary>
         /// The floor that this shaft is on
@@ -38,7 +38,7 @@ namespace MyFirstGame.Sprites
         /// <param name="position">Position</param>
         /// <param name="numberOfColumns">Number of Columns</param>
         /// <param name="numberOfRows">Number of rows</param>
-        public Shaft(Texture2D texture, Vector2 position, int numberOfColumns = 1, int numberOfRows = 1)
+        public ShaftSegment(Texture2D texture, Vector2 position, int numberOfColumns = 1, int numberOfRows = 1)
             : base(texture, position, numberOfColumns, numberOfRows)
         {
             this.bottom = this.GetBottom();
@@ -82,7 +82,7 @@ namespace MyFirstGame.Sprites
         public void BindToFloor(Floor floor)
         {
             this.floor = floor;
-            floor.shafts.Add(this);
+            floor.shaft.Add(this);
         }
 
         /// <summary>

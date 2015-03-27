@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using MyFirstGame.Sprites.Testing;
 
 namespace MyFirstGame.Sprites
 {
@@ -35,7 +36,7 @@ namespace MyFirstGame.Sprites
         /// <summary>
         /// The whole elevator shaft
         /// </summary>
-        public List<Shaft> shaft = new List<Shaft>();
+        public List<ShaftSegment> shaft = new List<ShaftSegment>();
 
         /// <summary>
         /// Initializes the building
@@ -69,6 +70,27 @@ namespace MyFirstGame.Sprites
                 this.floors.Add(newFloor);
             }
             this.screen.AddSprite(newFloor);
+            TestSpriteLayeringInitiate(newFloor);
+        }
+
+        /// <summary>
+        /// TEST METHOD. REMOVE ONCE DONE
+        /// </summary>
+        private void TestSpriteLayeringInitiate(Floor f)
+        {
+            f.People = new MultiLayerSprite();
+            f.People.sprites.Add(new TestPerson(f, new Vector2(100, 100)));
+            f.People.sprites.Add(new TestPerson(f, new Vector2(110, 105)));
+            f.People.sprites.Add(new TestPerson(f, new Vector2(120, 110)));
+            f.People.sprites.Add(new TestPerson(f, new Vector2(130, 115)));
+            /*f.People.sprites.Add(new BaseSprite(ContentLoader.GetTexture("blackball.png"),
+                                new Vector2(110, 105)));
+            f.People.sprites.Add(new BaseSprite(ContentLoader.GetTexture("blackball.png"),
+                                new Vector2(120, 110)));
+            f.People.sprites.Add(new BaseSprite(ContentLoader.GetTexture("blackball.png"),
+                                new Vector2(100, 100)));
+            f.People.sprites.Add(new BaseSprite(ContentLoader.GetTexture("blackball.png"),
+                                new Vector2(130, 115)));*/
         }
 
         /// <summary>
@@ -82,7 +104,7 @@ namespace MyFirstGame.Sprites
             this.shaftTop = this.shaftTop - height;
             float y = this.shaftTop;
 
-            Shaft newShaft = new Shaft(texture, new Vector2(x, y), numberOfColumns, numberOfRows);
+            ShaftSegment newShaft = new ShaftSegment(texture, new Vector2(x, y), numberOfColumns, numberOfRows);
 
             if (this.shaft.Count == 0)
             {
