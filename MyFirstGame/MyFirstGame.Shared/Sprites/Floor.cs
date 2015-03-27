@@ -12,6 +12,11 @@ namespace MyFirstGame.Sprites
     public class Floor : BaseSprite
     {
         /// <summary>
+        /// True if the elevator is on this floor
+        /// </summary>
+        private bool current;
+
+        /// <summary>
         /// Bottom of floor
         /// </summary>
         public float bottom;
@@ -27,9 +32,65 @@ namespace MyFirstGame.Sprites
         public Floor upstairs;
 
         /// <summary>
+        /// The people on this floor
+        /// </summary>
+        private MultiLayerSprite people;
+
+        /// <summary>
+        /// Gets or sets the people group
+        /// </summary>
+        public MultiLayerSprite People
+        {
+            get
+            {
+                return this.people;
+            }
+            set
+            {
+                this.people = value;
+                this.screen.AddSprite(this.people);
+            }
+        }
+
+        /// <summary>
         /// List of all shafts that are a part of this floor
         /// </summary>
-        public List<Shaft> shafts = new List<Shaft>();
+        public List<ShaftSegment> shaft = new List<ShaftSegment>();
+
+        /// <summary>
+        ///  Gets or sets whether this floor is the current floor the elevator is at
+        /// </summary>
+        public bool Current
+        {
+            get
+            {
+                return this.current;
+            }
+            set
+            {
+                // If current, apply some fading. TEMPORARY MEASURE.
+                if (value == true)
+                {
+                    this.fade = 0.5f;
+                    foreach(ShaftSegment s in shaft)
+                    {
+                        s.fade = 0.8f;
+                        People.isVisible = true;
+                    }
+                }
+                // Otherwise, undo fading. TEMPORARY MEASURE.
+                else
+                {
+                    this.fade = 1.0f;
+                    foreach (ShaftSegment s in shaft)
+                    {
+                        s.fade = 1.0f;
+                        People.isVisible = false;
+                    }
+                }
+                this.current = value;
+            }
+        }
 
         /// <summary>
         /// Initializes a new floor. The bulk of the floor logic is handled in Building
@@ -42,6 +103,7 @@ namespace MyFirstGame.Sprites
             this.downstairs = null;
             this.upstairs = null;
 		}
+
 
         /// <summary>
         /// Sets the scale, and re-calculates the bottom

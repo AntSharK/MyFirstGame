@@ -186,13 +186,13 @@ namespace MyFirstGame.Sprites
             {
                 this.SetStateAndAnimation(AnimationNames.Opening);
                 this.fade = 1.0f;
-                CurrentGame.camera.targetScale = 1.0f;
+                //CurrentGame.camera.targetScale = 1.0f;
             }
             // Otherwise, do stuff like zoom in and all that
             else if (this.currentState == AnimationNames.Accelerating)
             {
                 this.fade = 0.5f;
-                CurrentGame.camera.targetScale = 1.75f;
+                //CurrentGame.camera.targetScale = 1.75f;
             }
         }
 
@@ -305,44 +305,34 @@ namespace MyFirstGame.Sprites
             // Change to a lower floor
             while (currentBottom > this.currentFloor.bottom && this.currentFloor.downstairs != null)
             {
+                this.ToggleFloorCurrent(false);
                 this.currentFloor = this.currentFloor.downstairs;
-                this.FloorArtChange();
+                this.ToggleFloorCurrent(true);
             }
             // Change to a higher floor
             while (currentBottom <= this.currentFloor.position.Y && this.currentFloor.upstairs != null)
             {
+                this.ToggleFloorCurrent(false);
                 this.currentFloor = this.currentFloor.upstairs;
-                this.FloorArtChange();
+                this.ToggleFloorCurrent(true);
             }
         }
 
         /// <summary>
-        /// REMOVE THIS SOON
-        /// Just a method for visual indication of state and floor etc.
+        /// Toggles some floors as current, for art and other stuff
         /// </summary>
-        private void FloorArtChange()
+        /// <param name="toggle">Set to true or false</param>
+        private void ToggleFloorCurrent(bool toggle)
         {
-            this.currentFloor.fade = 0.8f;
-            foreach (Shaft s in this.currentFloor.shafts)
-            {
-                s.fade = 0.5f;
-            }
             if (this.currentFloor.upstairs != null)
             {
-                this.currentFloor.upstairs.fade = 1.0f;
-                foreach (Shaft s in this.currentFloor.upstairs.shafts)
-                {
-                    s.fade = 1.0f;
-                }
+                this.currentFloor.upstairs.Current = toggle;
             }
             if (this.currentFloor.downstairs != null)
             {
-                this.currentFloor.downstairs.fade = 1.0f;
-                foreach (Shaft s in this.currentFloor.downstairs.shafts)
-                {
-                    s.fade = 1.0f;
-                }
-            }    
+                this.currentFloor.downstairs.Current = toggle;
+            }
+            this.currentFloor.Current = toggle;
         }
 
         /// <summary>
