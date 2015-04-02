@@ -12,7 +12,15 @@ namespace MyFirstGame.Sprites
     /// </summary>
     public class MultiLayerSprite : BaseSprite
     {
+        /// <summary>
+        /// List of sprites that we want to draw in some order
+        /// </summary>
         public List<BaseSprite> sprites = new List<BaseSprite>();
+
+        /// <summary>
+        /// A bit that we flip every update cycle, for swapping
+        /// </summary>
+        public bool swapSwitch = false;
 
         /// <summary>
         /// Texture and position don't matter.
@@ -28,7 +36,7 @@ namespace MyFirstGame.Sprites
         /// <param name="gameTime">GameTime for updating</param>
         public override void Update(GameTime gameTime)
         {
-            foreach (BaseSprite s in sprites)
+            foreach (BaseSprite s in this.sprites)
             {
                 s.Update(gameTime);
             }
@@ -40,8 +48,22 @@ namespace MyFirstGame.Sprites
         /// <param name="batch"></param>
         public override void Draw(SpriteBatch batch)
         {
-            sprites.Sort(new OrderByCenter());
-            foreach (BaseSprite s in sprites)
+            int index = this.swapSwitch ? 2 : 1;
+            while (index < this.sprites.Count)
+            {
+                if (this.sprites[index].Center.Y < this.sprites[index-1].Center.Y)
+                {
+                    // Swap the sprites
+                    BaseSprite temp = this.sprites[index];
+                    this.sprites[index] = this.sprites[index - 1];
+                    this.sprites[index - 1] = temp;
+                }
+                index = index + 2;
+            }
+            // Flip the switch on even or odd bubbling
+            this.swapSwitch = !this.swapSwitch;
+
+            foreach (BaseSprite s in this.sprites)
             {
                 s.Draw(batch);
             }
@@ -56,7 +78,7 @@ namespace MyFirstGame.Sprites
         }
 
         /// <summary>
-        /// Class to compare sprites by their centers
+        /// Class to compare sprites by their centers' Y coordinate
         /// </summary>
         private class OrderByCenter : IComparer<BaseSprite>
         {
