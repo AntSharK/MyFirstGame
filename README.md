@@ -1,3 +1,7 @@
+# ARCHIVED
+This project is archived. It is no longer under development. It was fun to develop and track, but it died organically as contributors had other commitments.
+---
+
 # MyFirstGame
 Development environment:
 Monogame 3.2
